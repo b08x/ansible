@@ -1,0 +1,2 @@
+[soundbots]
+ninjabot ansible_connection=local ansible_user=b08x ansible_become=true os=soundbot osver=1

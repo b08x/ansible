@@ -1,0 +1,23 @@
+---
+
+- name: clone i3blocks
+  git: >
+    repo=https://github.com/vivien/i3blocks.git
+    dest="{{ local_src_dir }}/i3blocks"
+    accept_hostkey=yes
+    update=no
+    force=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: run make on i3blocks
+  command: make all
+  args:
+    chdir: "{{ local_src_dir }}/i3blocks"
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: run make install on i3blocks
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/i3blocks"

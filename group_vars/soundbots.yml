@@ -1,0 +1,20 @@
+---
+
+local_src_dir: "{{ user.home }}/Downloads/source"
+local_bin_dir: "{{ user.home }}/bin"
+temp_dir: /tmp
+
+gnupg:
+  enable_agent: False
+  emulate_ssh: False
+
+dotfiles:
+  url: git@github.com:b08x/dotfiles.git
+  branch: master
+  destination: "{{ user.home }}/Workspace/dotfiles"
+  rcup_flags: -fx README.md
+
+bashit:
+  url: git@github.com:b08x/bash-it.git
+  branch: master
+  destination: "{{ user.home }}/.bash_it"

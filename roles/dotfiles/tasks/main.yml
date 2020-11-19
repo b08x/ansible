@@ -1,0 +1,30 @@
+---
+
+- name: enable rcm repo
+  command: dnf -y copr enable seeitcoming/rcm
+  tags: ['repos']
+
+- name: install rcm
+  dnf: name=rcm state=present
+  tags: ['utilpkgs']
+
+- name: Clone user dotfiles
+  git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=no version={{ dotfiles.branch }}
+  when: dotfiles is defined
+  become: yes
+  become_user: "{{ user.name }}"
+
+
+# TODO: add condition for host tags
+
+- name: Install user dotfiles
+  command: rcup -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
+  when: dotfiles is defined
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: correct ownership of ssh config
+  command: chmod 600 {{ user.home }}/.ssh/config
+
+- include: bashit.yml
+  tags: ['bashit']

@@ -1,0 +1,34 @@
+---
+
+- name: install browsers
+  dnf: name={{ item }} state=present
+  with_items:
+    - w3m
+    - surf
+
+
+- name: install surfraw
+  dnf: name=surfraw state=present
+  tags: ['search']
+
+#- name: enable rcm repo for albert
+#  command: dnf -y copr enable rabiny/albert
+#  tags: ['repos']
+#
+#- name: install albert
+#  dnf: name=albert state=present
+#  tags: ['albert']
+
+- name: install adobe flash repo rpm
+  dnf: name='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm' state=present
+  tags: ['repos', 'flash']
+
+- name: install gpg key for adobe flash
+  rpm_key: >
+    state=present 
+    key=/etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+  tags: ['repos', 'flash']  
+
+- name: install adobe flash
+  dnf: name=flash-plugin state=present
+  tags: ['flash']

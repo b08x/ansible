@@ -1,0 +1,10 @@
+---
+
+- name: install alsa packages
+  dnf: name={{ item }} state=present
+  with_items:
+    - alsa-firmware
+    - alsa-plugins-jack
+    - alsa-tools
+    - alsa-utils
+    - alsa-plugins-speex

@@ -1,0 +1,8 @@
+---
+
+rosegarden_src_dir: '{{ local_src_dir }}/rosegarden-17.04'
+rosegarden_src: '{{ local_src_dir }}/rosegarden-17.04.tar.bz2'
+rosegarden_build_dir: '{{ local_src_dir }}/rosegarden-17.04/build'
+
+
+clthreads_src: '{{ local_src_dir}}/clthreads/'

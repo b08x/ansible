@@ -1,0 +1,16 @@
+---
+
+- name: install ladspa and lv2 plugins
+  dnf: name={{ item }} state=present
+  with_items:
+    - ladspa
+    - ladspa-devel
+    - ladspa-amb-plugins
+    - ladspa-swh-plugins
+    - ladspa-guitarix-plugins
+    - lv2
+    - lv2-x42-plugins
+    - jalv
+    - jalv-gtk
+    - jalv_select
+  tags: ['plugins']

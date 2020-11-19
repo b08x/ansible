@@ -1,0 +1,11 @@
+---
+
+- name: install audacity
+  dnf: name=audacity-freeworld state=present
+  tags: ['audacity']
+
+- name: install qtractor
+  dnf: name={{ item }} state=present
+  with_items:
+    - qtractor
+  tags: ['qtractor']

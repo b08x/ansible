@@ -1,0 +1,8 @@
+---
+
+- name: install taskwarrior and friends
+  dnf: name={{ item }} state=present
+  with_items:
+    - task
+    - bugwarrior
+    - vit

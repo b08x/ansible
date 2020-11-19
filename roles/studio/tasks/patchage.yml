@@ -1,0 +1,15 @@
+---
+
+- name: install required depencecies for patchage (and by proxy, ganv)
+  dnf: name={{ item }} state=present
+  with_items:
+    - gobject-introspection-devel
+    - graphviz-devel
+    - gtkmm24-devel
+    - glibmm24-devel
+    - dbus-glib-devel
+    - jack-audio-connection-kit-devel
+    - boost-devel
+
+#TODO ganv-1 rpm
+# use `./waf configure --prefix=/usr

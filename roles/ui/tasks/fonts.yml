@@ -1,0 +1,57 @@
+---
+
+#- name: clone nerd-fonts
+#  git: >
+#    repo=https://github.com/ryanoasis/nerd-fonts.git
+#    dest="{{ local_src_dir }}/nerd-fonts"
+#    accept_hostkey=yes
+#    clone=yes
+#    update=yes
+#    force=yes
+#  become: yes
+#  become_user: "{{ user.name }}"
+
+# ignore errors here. the fonts get copied,
+# ansible just complains because it cant 
+# update the system fontcache
+
+#- name: install nerd-fonts
+#  shell: ./install.sh -A
+#  args:
+#    chdir: "{{ local_src_dir }}/nerd-fonts"
+#    executable: /bin/bash
+#  become: yes
+#  become_user: "{{ user.name }}"
+#  ignore_errors: True
+
+- name: install hack fonts repo
+  command: 'dnf -y copr enable heliocastro/hack-fonts'
+  tags: ['repos']
+
+- name: install hack fonts
+  dnf: >
+    name={{ item }}
+    state=present
+  with_items:
+    - hack-fonts
+    - fontawesome-fonts
+  tags: ['fonts']
+ 
+
+#- name: install japanese lang support
+#  dnf: name={{ item }} state=present
+#  with_items:
+#    - langpacks-ja
+#    - vlgothic-fonts
+
+#- name: install hindi lang support
+#  dnf: name={{ item }} state=present
+#  with_items:
+#   - langpacks-hi
+#   - sarai-fonts
+
+#- name: install russian lang support
+#  dnf: name={{ item }} state=present
+#  with_items:
+#   - langpacks-ru
+#   - fonts-KOI8-R

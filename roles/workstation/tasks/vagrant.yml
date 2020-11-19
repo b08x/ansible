@@ -1,0 +1,26 @@
+---
+
+# - name: install vagrant rpm
+#   dnf: name="https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.rpm" state=present
+#
+# - name: install libvirt-devel for vagrant plugin
+#   dnf: name=libvirt-devel state=present
+#
+# # need to become user who is using vagrant otherwise this will install plugins
+# # using root or remote_user
+# - name: install vagrant plugins
+#   command: vagrant plugin install {{ item }}
+#   with_items:
+#     - vagrant-libvirt
+#     - vagrant-hostmanager
+#   become: yes
+#   become_user: "{{ user.name }}"
+#   tags: ['vagrant-plugins']
+
+- name: install vagrant
+  dnf: name={{ item }} state=present
+  with_items:
+    - vagrant
+    - vagrant-libvirt
+    - vagrant-sshfs
+  tags: ['vagrant']

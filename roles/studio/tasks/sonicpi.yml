@@ -1,0 +1,77 @@
+---
+
+- name: install build dependencies
+  dnf: name={{ item }} state=present
+  with_items:
+    - qscintilla-devel.x86_64
+
+# - name: install planetccrma
+#   dnf: >
+#     name='http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetccrma/27/x86_64/planetccrma-repo-1.1-3.fc27.ccrma.noarch.rpm'
+#     state=present
+#   tags: ['repos']
+#
+# - name: install planetcore
+#   dnf: >
+#     name='http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetcore/27/x86_64/planetccrma-core-2018.01.09-1.fc27.ccrma.x86_64.rpm'
+#     state=present
+#   tags: ['repos']
+
+- name: install supercollider and friends
+  dnf: >
+    name={{ item }}
+    state=present
+  with_items:
+    # - supercollider
+    # - supercollider-devel
+    # - supercollider-sc3-plugins
+    - jack-audio-connection-kit-devel
+    - libsndfile-devel
+    - alsa-lib-devel
+    - avahi-devel
+    - libicu-devel
+    - readline-devel
+    - fftw-devel
+    - libXt-devel
+    - libgudev-devel
+    - cmake
+    - boost-devel
+    - qwt-qt5-devel
+    - qscintilla-qt5-devel
+    - qt5-qtsvg-devel
+    - qt-devel
+    - qt5-qttools-devel
+    - qt5-qtdeclarative-devel
+    - qt5-qtwebkit-devel
+    - qt5-qtlocation-devel
+    - qt5-qtsensors-devel
+    - aubio-devel
+    - qtchooser
+    - wkhtmltopdf
+    - systemd-devel
+#TODO conditional to check if sonic-pi-tool already exists. if it does, ansible fartsx.
+
+- name: install sonic-pi-tool prereqs
+  dnf: name="cargo" state="present"
+  tags: ['sonic']
+
+- name: install sonic-pi-tool
+  command: "cargo install --git https://github.com/lpil/sonic-pi-tool/"
+  become: yes
+  become_user: "{{ user.name }}"
+  tags: ['sonic']
+
+
+
+#
+#
+# - name: clone sonic pi
+#   git: >
+#     repo=https://github.com/samaaron/sonic-pi.git
+#     dest="{{ user.home }}/studio/sonic-pi"
+#     accept_hostkey=yes
+#     update=no
+#     force=no
+#   become: yes
+#   become_user: "{{ user.name }}"
+#   tags: ['sonic']

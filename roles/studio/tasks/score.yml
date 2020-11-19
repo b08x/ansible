@@ -1,0 +1,14 @@
+---
+
+- name: install ABC stuff
+  dnf: name={{ item }} state=present
+  with_items:
+    - abcMIDI
+    - abcm2ps
+    - tclabc
+    - pygame-devel
+    
+- name: ABC syntax hightlight
+  command: apm-beta install ABC-notation
+  become: yes
+  become_user: "{{ user.name }}"

@@ -1,0 +1,46 @@
+---
+
+- name: enable rofi-compton repo
+  command: 'dnf -y copr enable yaroslav/i3desktop'
+  tags: ['repos']
+
+- name: install rofi
+  dnf: name="rofi" state="present"
+
+#- name: install dependencies for rofi
+  #dnf: name={{ item }} state=present
+  #with_items:
+    #- pango-devel
+    #- cairo-devel
+    #- libxcb-devel
+    #- libxkbcommon-devel
+    #- libxkbcommon-x11-devel
+    #- startup-notification-devel
+    #- xcb-util-xrm-devel
+    #- xcb-util-wm-devel
+    #- xcb-util-devel
+
+
+#- block:
+  #- name: download rofi source tar
+    #get_url: >
+      #dest="{{ temp_dir }}/rofi-1.5.0.tar.gz"
+      #url="https://github.com/DaveDavenport/rofi/releases/download/1.5.0/rofi-1.5.0.tar.gz"
+  
+  #- name: extract rofi source tar
+    #unarchive: >
+      #src="{{ temp_dir }}/rofi-1.5.0.tar.gz"
+      #dest="{{ local_src_dir }}/"
+  
+  #- name: run configure and make on rofi
+    #command: bash -lc "./configure && make"
+    #args:
+      #chdir: "{{ local_src_dir }}/rofi-1.5.0"
+  
+  #become: yes
+  #become_user: "{{ user.name }}"
+
+#- name: run make install on rofi
+  #command: make install
+  #args:
+    #chdir: "{{ local_src_dir }}/rofi-1.5.0"

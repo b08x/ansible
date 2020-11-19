@@ -1,0 +1,12 @@
+---
+
+- name: enable copr repo for deadbeef
+  command: "dnf -y copr enable yelanxin/deadbeef"
+
+- name: install deadbeef and jack plugin
+  dnf: >
+    name="{{ item }}"
+    state=present
+  with_items:
+    - deadbeef-static
+    - deadbeef-plugin-jack

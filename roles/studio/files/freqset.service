@@ -1,0 +1,11 @@
+[Unit]
+Description=Set max frequency-set for cpu and user rtc
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/freqset.sh
+Type=oneshot
+ 
+[Install]
+WantedBy=multi-user.target

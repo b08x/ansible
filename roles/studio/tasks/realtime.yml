@@ -1,0 +1,97 @@
+---
+
+- name: add user to audio and jackuser group
+  user: name={{ user.name }} groups=audio,jackuser,input append=yes
+
+- name: push jack limits file
+  copy: >
+    src=95-jack.conf
+    dest=/etc/security/limits.d/95-jack.conf
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+
+- name: push timer permissions file
+  copy: >
+    src=40-timer-permissions.rules
+    dest=/etc/udev/rules.d/40-timer-permissions.rules
+    owner=0
+    group=0
+    mode=0644
+
+- name: install kernel-tools for cpupower service
+  dnf: name=kernel-tools state=present
+
+- name: set cpu frequency governor to performance
+  command: cpupower -c all frequency-set -g performance
+
+- name: set vm.swappiness to 10
+  sysctl: name=vm.swappiness value=10 state=present reload=yes
+
+- name: set vm.dirty_background_bytes to 100000000
+  sysctl: name=vm.dirty_background_bytes value=100000000 state=present reload=yes
+
+- name: set fs.inotify.max_user_watches
+  sysctl: name=fs.inotify.max_user_watches value=524288 state=present reload=yes
+
+- name: dev.hpet.max-user-freq=3072
+  sysctl: name=dev.hpet.max-user-freq value=3072 state=present reload=yes
+
+- name: push freqset script
+  copy: src=freqset.sh dest=/usr/local/bin/freqset.sh mode=0775 owner=0 group=0
+
+- name: push freqset service file
+  copy: src=freqset.service dest=/usr/lib/systemd/system/freqset.service mode=0644 owner=0 group=0
+
+- name: just force systemd to reread configs (2.4 and above)
+  systemd: daemon_reload=yes name=freqset.service
+
+- name: enable freqset and cpupower service
+  service: name={{ item }} enabled=yes
+  with_items:
+    - freqset
+    - cpupower
+
+# To use real time scheduling, you will either need to boot Linux with the “threadirqs”
+# parameter or use a kernel with the realtime patch set. To always boot with the “threadirqs”
+# kernel argument, add it to your grub.cfg by editing /etc/default/grub as root, adding “threadirqs”
+# to the line for GRUB_CMDLINE_LINUX, then generate a new grub.cfg file.
+- name: install tuned and related packages
+  dnf: name={{ item }} state=present
+  with_items:
+    - tuna
+    - xauth
+    - pygtk2-libglade
+    - tuned
+    - tuned-profiles-realtime
+    - tuned-gtk
+    - rtirq
+
+- name: add threadirqs to grub cmdline opts
+  template: >
+    src=rtirq.j2
+    dest=/etc/sysconfig/rtirq
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: ['realtime']
+
+- name: enable service
+  systemd: name=rtirq state=started enabled=yes
+
+- name: add threadirqs to grub cmdline opts
+  template: >
+    src=defaultgrub.j2
+    dest=/etc/default/grub
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: ['grub']
+  register: result
+
+- name: remake grub configs
+  command: grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+  when: result.changed == True

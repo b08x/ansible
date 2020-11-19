@@ -1,0 +1,4 @@
+---
+
+- name: install dunst
+  dnf: name=dunst  state=present

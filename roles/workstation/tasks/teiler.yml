@@ -1,0 +1,139 @@
+---
+
+- name: install xclip
+  dnf: name=xclip state=present
+
+- name: install build deps
+  dnf: name={{ item }} state=present
+  with_items:
+    - cmake
+    - libGLEW
+    - glew-devel
+    - glm-devel
+    - libjpeg-turbo-devel
+
+### install slop ###
+
+- name: check if slop is already installed, if not then dont.
+  stat: path="/usr/bin/slop"
+  register: slop_bin
+
+- name: clone slop
+  git: >
+    repo=https://github.com/naelstrof/slop.git
+    dest="{{ local_src_dir }}/slop"
+    accept_hostkey=yes
+    update=no
+    force=no
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not slop_bin.stat.exists
+
+- name: run cmake on slop
+  command: bash -lc 'cmake -DCMAKE_INSTALL_PREFIX="/usr" ./ && make'
+  args:
+    chdir: "{{ local_src_dir }}/slop"
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not slop_bin.stat.exists
+
+- name: run make install on slop
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/slop"
+  when: not slop_bin.stat.exists
+
+- name: link libslopy lib to lib64 
+  file: >
+    src=/usr/lib/libslopy.so
+    dest=/usr/lib64/libslopy.so
+    owner=0
+    group=0
+    state=link
+
+### install xininfo ###
+
+- name: clone xininfo
+  git: >
+    repo=https://github.com/naelstrof/xininfo.git
+    dest="{{ local_src_dir }}/xininfo"
+    accept_hostkey=yes
+    update=no
+    force=no
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: generate the build system
+  command: autoreconf -i
+  args:
+    chdir: "{{ local_src_dir }}/xininfo"
+
+- name: create build directory if it doesn't exist
+  file: >
+    path="{{ local_src_dir }}/xininfo/build"
+    state=directory
+    mode=0755
+
+- name: configure and make
+  command: bash -lc '../configure --prefix="/usr/" && make -j4'
+  args:
+    chdir: "{{ local_src_dir }}/xininfo/build"
+
+- name: make install
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/xininfo/build"
+
+### install maim ###
+
+- name: check if maim is already installed, if not then dont.
+  stat: path="/usr/bin/maim"
+  register: maim_bin
+
+- name: clone maim
+  git: >
+    repo=https://github.com/naelstrof/maim.git
+    dest="{{ local_src_dir }}/maim"
+    accept_hostkey=yes
+    update=no
+    force=no
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not maim_bin.stat.exists
+
+- name: run cmake on maim
+  command: bash -lc 'cmake -DCMAKE_INSTALL_PREFIX="/usr" ./ && make'
+  args:
+    chdir: "{{ local_src_dir }}/maim"
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not maim_bin.stat.exists
+
+- name: run make install on maim
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/maim"
+  when: not maim_bin.stat.exists
+
+### install teiler ###
+
+- name: check if teiler_bin is already installed, if not then dont.
+  stat: path="/usr/local/bin/teiler"
+  register: teiler_bin
+
+- name: clone teiler
+  git: >
+    repo=https://github.com/carnager/teiler.git
+    dest="{{ local_src_dir }}/teiler"
+    accept_hostkey=yes
+    update=no
+    force=no
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not teiler_bin.stat.exists
+
+- name: run make on teiler
+  command: make
+  args:
+    chdir: "{{ local_src_dir }}/teiler"
+  when: not teiler_bin.stat.exists

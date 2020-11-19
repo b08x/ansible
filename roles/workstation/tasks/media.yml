@@ -1,0 +1,76 @@
+---
+
+- name: check that the rpmfusion repo is installed and enabled.
+  stat: path=/etc/yum.repos.d/rpmfusion-free.repo
+  register: rpmfusionst
+
+- name: install codecs
+  dnf: name={{ item }} state=present
+  with_items:
+    - amrnb
+    - amrwb
+    - faac
+    - faad2
+    - flac
+    - lame
+    - libdca
+    - libmad
+    - libmatroska
+    - x264
+    - x265
+    - xvidcore
+    - ffmpeg
+    - ffmpeg-libs
+    - ffmpeg-devel
+  when: rpmfusionst.stat.exists
+
+# maybe: https://github.com/mps-youtube/mps-youtube
+
+# - name: install mpv
+#   dnf: name=mpv state=present
+#   tags: ['video', 'mpv']
+
+- name: install vlc
+  dnf: name=vlc state=present
+  tags: ['video', 'vlc']
+
+- name: install youtube-dl
+  dnf: name=youtube-dl state=present
+  tags: ['youtube-dl']
+
+- name: install transmission-cli
+  dnf: name=transmission-cli state=present
+  tags: ['transmission-cli']
+
+# install deadbeef from source
+
+
+# - name: see if deadbeef is already installed
+#   stat: path="/usr/local/bin/deadbeef"
+#   register: deadbeef_bin
+#
+# - name: copy deadbeef source to tmp dir
+#   copy: >
+#     src=deadbeef/deadbeef-0.7.2.tar.bz2
+#     dest="{{ temp_dir }}/deadbeef-0.7.2.tar.bz2"
+#   when: not deadbeef_bin.stat.exists
+#
+# - name: extract deadbeef source tar
+#   unarchive: >
+#     src="{{ temp_dir }}/deadbeef-0.7.2.tar.bz2"
+#     dest="{{ local_src_dir }}/"
+#   when: not deadbeef_bin.stat.exists
+#
+# - name: run configure
+#   command: bash -lc "./configure && make -j4"
+#   args:
+#     chdir: "{{ local_src_dir }}/deadbeef-0.7.2"
+#   when: not deadbeef_bin.stat.exists
+#
+# - name: run make install
+#   command: make install
+#   args:
+#     chdir: "{{ local_src_dir }}/deadbeef-0.7.2"
+#   when: not deadbeef_bin.stat.exists
+
+# - name: copy and extract plugins to .local/lib/deadbeef/plugins/

@@ -1,0 +1,7 @@
+---
+
+gitlfs_path: /usr/local/bin/git-lfs
+gitlfs_vers: 2.2.1
+
+gchrome:
+  repokey: https://dl-ssl.google.com/linux/linux_signing_key.pub

@@ -1,0 +1,9 @@
+---
+
+- name: install nvidia packages
+  dnf: name={{ item }} state=present
+  with_items:
+    - nvidia-driver
+    - kernel-devel
+    - dkms-nvidia
+    - nvidia-driver-libs

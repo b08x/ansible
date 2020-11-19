@@ -1,0 +1,36 @@
+---
+
+- name: install synths
+  dnf: name={{ item }} state=present
+  with_items:
+    - whysynth-dssi
+  tags: ['synth']
+
+- name: install fluidsynth and soundfonts
+  dnf: name={{ item }} state=present
+  with_items:
+    - fluid-soundfont-gs
+    - fluid-soundfont-gm
+    - fluid-soundfont-common
+  tags: ['soundfonts']
+
+#TODO task for fantasia
+#TODO build qsamplers
+
+- name: install qstuff
+  dnf: name={{ item }} state=present
+  with_items:
+    - qmidiarp
+  tags: ['sequencers']
+
+#FIXME
+# TASK [studio : install hydrogen] *************************************************************************************************************************************************************
+# task path: /home/b08x/workspace/jambot/roles/studio/tasks/synth.yml:26
+# failed: [qubert] (item=hydrogen) => {"changed": false, "item": "hydrogen", "msg": "one of the following is required: name, list, autoremove"}
+# failed: [qubert] (item=hydrogen-drumkits) => {"changed": false, "item": "hydrogen-drumkits", "msg": "one of the following is required: name, list, autoremove"}
+# - name: install hydrogen
+#   dnf: name= {{ item }} state=present
+#   with_items:
+#     - hydrogen
+#     - hydrogen-drumkits
+#   tags: ['drum_seq']

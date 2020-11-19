@@ -1,0 +1,27 @@
+---
+
+- name: install vim
+  dnf: name=vim state=present
+  tags: ['vim']
+
+# - name: install libreoffice writer
+#   dnf: name=libreoffice-writer state=present
+#   tags: ['libreoffice']
+
+# - name: install gpg key for sublime-text
+#   rpm_key: >
+#     state=present
+#     key=https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+#   tags: ['repos', 'subl']
+
+# - name: add sublime-text repo
+#   command: dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+#   tags: ['repos', 'subl']
+#
+# - name: install sublime text 3
+#   dnf: name=sublime-text state=present
+#   tags: ['subl']
+
+- name: install okular
+  dnf: name=okular state=present
+  tags: ['pdfviewer']

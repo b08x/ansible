@@ -1,0 +1,22 @@
+---
+
+- name: install i3 whatnot
+  dnf: >
+    name={{ item }}
+    state=present
+  with_items:
+    - i3
+    - i3status
+    - dmenu
+    - i3lock
+    - feh
+    - xterm
+    - sddm
+    - mesa-dri-drivers
+    - xorg-x11-drv-evdev
+    - xorg-x11-drv-fbdev
+    - xorg-x11-drv-synaptics
+    - vim-enhanced
+    - xbindkeys
+    - nitrogen
+    - xorg-x11-utils

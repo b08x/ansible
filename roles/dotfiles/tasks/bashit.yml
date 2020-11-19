@@ -1,0 +1,18 @@
+---
+
+- name: Clone user bashit
+  git: repo={{ bashit.url }} dest={{ bashit.destination }} accept_hostkey=yes update=no version={{ bashit.branch }}
+  when: bashit is defined
+  become: yes
+  become_user: "{{ user.name }}"
+
+# TODO: merge with dotfiles
+
+- name: install bashit
+  shell: ./install.sh --silent
+  args:
+    chdir: "{{ bashit.destination }}"
+    executable: /bin/bash
+  become: yes
+  become_user: "{{ user.name }}"
+  ignore_errors: True

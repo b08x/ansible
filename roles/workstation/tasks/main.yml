@@ -1,0 +1,28 @@
+---
+
+- include: repos.yml
+  tags: ['repos']
+
+- include: utilpkgs.yml
+  tags: ['utilpkgs']
+
+- include: atom.yml
+  tags: ['atom']
+
+- include: browsers.yml
+  tags: ['browsers']
+
+- include: comm.yml
+  tags: ['communication']
+
+- include: media.yml
+  tags: ['media']
+
+- include: taskwarrior.yml
+  tags: ['tasks']
+
+- include: zim.yml
+  tags: ['zim']
+
+# - include: teiler.yml
+#   tags: ['teiler']

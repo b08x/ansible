@@ -1,0 +1,44 @@
+---
+
+hostname: ninjabot
+
+make_hard: False
+
+host_environment_paths:
+  PATH: /home/b08x/.rvm/gems/ruby-2.5.1/bin:/home/b08x/.rvm/gems/ruby-2.5.1@global/bin:/home/b08x/.rvm/rubies/ruby-2.5.1/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/b08x/.rvm/bin:/home/b08x/.local/bin:/home/b08x/bin
+  GEM_PATH: /home/b08x/.rvm/gems/ruby-2.5.1
+
+rvm1_rubies:
+  - 'ruby-2.5.1'
+
+rvm1_install_flags: '--user-install'
+
+rvm1_user: 'b08x'
+
+kvmhost: False
+
+docker_host: False
+docker_storage: /var/lib/docker
+
+nvidiacard: False
+
+selinux_policy: targeted
+selinux_state: disabled
+
+sshd_port: 22
+sshd_allow_groups: b08x
+
+sysctl_ip_forward: False
+
+user:
+  name: b08x
+  uid: 1000
+  gid: 1000
+  group: b08x
+  shell: /bin/bash
+  email: rwpannick@gmail.com
+  home: /home/b08x
+  password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
+
+netdev: eth0
+nameservers: [ "208.67.222.222", "208.67.220.220" ]

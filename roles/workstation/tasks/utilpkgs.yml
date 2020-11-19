@@ -1,0 +1,17 @@
+---
+
+- name: install stuff
+  dnf: name={{ item }} state=present
+  with_items:
+    - terminator
+    - bash-completion
+    - bind-utils
+    - redshift-gtk
+    - '@C Development Tools and Libraries'
+    - privoxy
+    - htop
+    - iotop
+    - PyQt4-devel
+
+- name: start privoxy on boot
+  systemd: enabled=yes state=started name=privoxy

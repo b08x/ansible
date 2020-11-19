@@ -1,0 +1,45 @@
+---
+
+- include: i3setup.yml
+  tags: ['ui','i3']
+
+- include: sddm.yml
+  tags: ['sddm']
+
+- include: fonts.yml
+  tags: ['fonts']
+
+- name: check if i3blocks is already installed, if not then dont.
+  stat: path="/usr/local/bin/i3blocks"
+  register: i3blocks_bin
+
+- include: i3blocks.yml
+  when: not i3blocks_bin.stat.exists
+  tags: ['i3blocks']
+
+# - name: check if rofi is already installed, if not then dont.
+#   stat: path="/usr/local/bin/rofi"
+#   register: rofi_bin
+
+- include: rofi.yml
+  # when: not rofi_bin.stat.exists
+  tags: ['rofi']
+
+#- name: check if compton is already installed, if not then dont.
+#  stat: path="/usr/bin/compton"
+#  register: compton_bin
+
+#- include: compton.yml
+#  when: not compton_bin.stat.exists
+#  tags: ['compton']
+
+- name: install lxappearance
+  dnf: name={{ item }} state=present
+  with_items:
+    - lxappearance
+    - oomox
+    - librsvg2-tools
+  tags: ['utilpkgs']
+
+- include: dunst.yml
+  tags: ['dunst']

@@ -1,0 +1,55 @@
+---
+
+- name: install build dependecies
+  dnf: name={{ item }} state=present
+  with_items:
+    - imake
+    - qt5-devel
+    - alsa-lib-devel
+    - jack-audio-connection-kit-devel
+    - ladspa-devel
+    - dssi-devel
+    - liblo-devel
+    - lirc-devel
+    - liblrdf-devel
+    - fftw3-devel
+    - lilypond
+    - libsamplerate-devel
+    - libsndfile-devel
+    - libSM-devel
+    - qt5-linguist
+
+- name: copy source tarball to source processing directory
+  copy: >
+    src=rosegarden-17.04.tar.bz2
+    dest="{{ rosegarden_src }}"
+    owner={{ user.uid }}
+    group={{ user.gid }}
+
+- name: extract tarball
+  command: tar -xf rosegarden-17.04.tar.bz2
+  args:
+    chdir: "{{ local_src_dir }}"
+  become: yes
+  become_user: "{{ user.name }}"
+
+
+- name: create build directory if it doesn't exist
+  file: >
+    path="{{ rosegarden_build_dir }}"
+    state=directory
+    mode=0755
+    owner={{ user.uid }}
+    group={{ user.gid }}
+
+- name: run cmake on rosegarden
+  command: bash -lc 'cmake -DCMAKE_INSTALL_PREFIX="/usr" ./ && make -j4'
+  args:
+    chdir: "{{ rosegarden_src_dir }}"
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: run make install on rosegarden
+  command: make install
+  args:
+    chdir: "{{ rosegarden_src_dir }}"
