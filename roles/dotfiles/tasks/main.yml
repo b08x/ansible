@@ -22,6 +22,3 @@
 
 - name: correct ownership of ssh config
   command: chmod 600 {{ user.home }}/.ssh/config
-
-- include: bashit.yml
-  tags: ['bashit']
