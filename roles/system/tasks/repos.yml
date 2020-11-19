@@ -1,0 +1,15 @@
+---
+
+- name: push pamac conf with aur enabled
+  template: >
+    src=pamac.conf.j2
+    dest=/etc/pamac.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+
+- name: Run the equivalent of "pacman -Syu" as a separate step
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes

@@ -1,0 +1,14 @@
+---
+
+- name: setup
+  gather_facts: yes
+  hosts: lapbot
+  collections:
+    - community.general
+
+  tasks:
+    - name: install atom
+      package:
+        name: atom
+        state: present
+        use: '{{ package_manager }}'

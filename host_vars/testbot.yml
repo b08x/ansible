@@ -1,0 +1,17 @@
+---
+
+hostname: testbot
+
+make_hard: False
+
+docker_host: True
+docker_storage: /var/lib/docker
+
+sshd_port: 22
+sshd_allow_groups: b08x
+
+sysctl_ip_forward: False
+
+netdev: eth0
+
+package_manager: community.general.pacman

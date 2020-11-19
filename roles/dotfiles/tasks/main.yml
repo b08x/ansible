@@ -1,19 +1,16 @@
 ---
 
-- name: enable rcm repo
-  command: dnf -y copr enable seeitcoming/rcm
-  tags: ['repos']
-
 - name: install rcm
-  dnf: name=rcm state=present
-  tags: ['utilpkgs']
+  package:
+    name: rcm
+    state: present
+    use: '{{ package_manager }}'
 
 - name: Clone user dotfiles
   git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=no version={{ dotfiles.branch }}
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
-
 
 # TODO: add condition for host tags
 
