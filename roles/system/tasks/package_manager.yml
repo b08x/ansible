@@ -8,8 +8,10 @@
     owner=0
     group=0
     backup=yes
+  # when: os = arch
 
 - name: Run the equivalent of "pacman -Syu" as a separate step
   community.general.pacman:
     update_cache: yes
     upgrade: yes
+  # when: os = arch
