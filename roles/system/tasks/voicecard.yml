@@ -1,0 +1,16 @@
+---
+
+- name: clone voicecard repo
+  git: repo={{ voicecard.url }} dest={{ voicecard.destination }} accept_hostkey=yes update=no version={{ voicecard.branch }}
+  when: voicecard is defined
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: install voicecard
+  shell: ./install.sh --keep-kernel
+  args:
+    chdir: "{{ voicecard.destination }}"
+    executable: /bin/bash
+  become: yes
+  become_user: "{{ user.name }}"
+  ignore_errors: True
