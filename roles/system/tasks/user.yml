@@ -1,0 +1,24 @@
+---
+
+add user
+copy .ssh from user@bender:~/.ssh
+
+- name: add user to remote hosts
+  user: >
+    name={{ item.name }}
+    uid={{ item.uid }}
+    group={{ item.primary_group }}
+    groups={{ item.secondary_groups }}
+    append=yes
+    shell={{ item.shell }}
+    comment={{ item.email }}
+    state=present
+    password={{ item.password }}
+    update_password=on_create
+  register: newuser_remote
+
+- hosts: serverB
+  tasks:
+   - name: Copy Remote-To-Remote (from serverA to serverB)
+     synchronize: src={{ user.home }}/.ssh dest={{ user.home }}/.ssh
+     delegate_to: bender

@@ -3,5 +3,5 @@
 - include: network.yml
   tags: ['network']
 
-- include: repos.yml
+- include: package_manager.yml
   tags: ['packages']
