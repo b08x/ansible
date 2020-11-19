@@ -11,3 +11,12 @@
 
 - name: enable networkd service
   systemd: enabled=yes state=started name=systemd-networkd
+
+- name: push resolv.conf
+  template: >
+    src=resolv.conf.j2
+    dest=/etc/resolv.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
