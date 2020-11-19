@@ -1,3 +1,9 @@
 [soundbots]
-lapbot ansible_connection=local ansible_user=b08x ansible_become=true
 testbot ansible_connection=local ansible_user=b08x ansible_become=true
+soundbot01 ansible_connection=local ansible_user=b08x ansible_become=true
+soundbot02 ansible_connection=local ansible_user=b08x ansible_become=true
+
+[intranet]
+bender ansible_user=b08x ansible_become=true
+
+lapbot ansible_connection=local ansible_user=b08x ansible_become=true
