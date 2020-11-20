@@ -3,5 +3,8 @@
 - include: network.yml
   tags: ['network']
 
-- include: package_manager.yml
+- include: pamac.yml
+  tags: ['packages']
+
+- include: rpi.yml
   tags: ['packages']

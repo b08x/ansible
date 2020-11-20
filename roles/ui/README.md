@@ -9,3 +9,10 @@ tasks related to setting up the workstation environment
 ## fonts
 
 
+vivid
+bat
+
+
+https://github.com/motdotla/ansible-pi
+
+https://github.com/dinofizz/picluster-ansible/tree/main/roles/common/tasks

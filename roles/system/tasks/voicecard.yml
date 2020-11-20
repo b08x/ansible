@@ -1,5 +1,7 @@
 ---
 
+# run apt update/upgrade
+
 - name: clone voicecard repo
   git: repo={{ voicecard.url }} dest={{ voicecard.destination }} accept_hostkey=yes update=no version={{ voicecard.branch }}
   when: voicecard is defined
@@ -7,10 +9,14 @@
   become_user: "{{ user.name }}"
 
 - name: install voicecard
-  shell: ./install.sh --keep-kernel
+  shell: ./install.sh
   args:
     chdir: "{{ voicecard.destination }}"
     executable: /bin/bash
-  become: yes
-  become_user: "{{ user.name }}"
-  ignore_errors: True
+  # become: yes
+  # become_user: "{{ user.name }}"
+  # ignore_errors: True
+    user: '{{ user.name }}'
+    become: yes
+    become_user: root
+    become_method: sudo
