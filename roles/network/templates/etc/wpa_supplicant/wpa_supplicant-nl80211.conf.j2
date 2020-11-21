@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+ctrl_interface=DIR=/run/wpa_supplicant GROUP=network
+country=US
+
+network={
+    ssid="{{ intranet_ssid }}"
+    psk={{ wireless_pw }}
+}

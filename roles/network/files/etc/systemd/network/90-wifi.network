@@ -1,0 +1,8 @@
+[Match]
+Type=wlan
+
+[Network]
+DHCP=yes
+
+[DHCP]
+RouteMetric=2048
