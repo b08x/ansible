@@ -12,3 +12,6 @@
         name: atom
         state: present
         use: '{{ package_manager }}'
+
+  roles:
+    - { role: network, tags: ['network'] }
