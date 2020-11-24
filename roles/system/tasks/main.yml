@@ -1,5 +1,10 @@
 ---
 
+- include: user.yml
+  with_items: "{{ unix_users }}"
+  tags: [accounts,useradd]
+  when: item != None
+
 - include: network.yml
   tags: ['network']
 

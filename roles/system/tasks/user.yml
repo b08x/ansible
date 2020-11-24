@@ -1,7 +1,25 @@
 ---
+#
+# add user
+# copy .ssh from user@bender:~/.ssh
 
-add user
-copy .ssh from user@bender:~/.ssh
+- name: copy sudoers file from ansible host to remote hosts....
+  copy: >
+    src=sudoers_group
+    dest=/etc/groups.tmp
+    owner=root
+    group=root
+    mode=0440
+
+- name: copy tmp sudoers file to /etc/sudoers.d/ only if it passed visudo validation
+  copy: >
+    src=/etc/groups.tmp
+    remote_src=True
+    dest=/etc/sudoers.d/groups
+    owner=root
+    group=root
+    mode=0440
+    validate='visudo -cf %s'
 
 - name: add user to remote hosts
   user: >
@@ -17,8 +35,17 @@ copy .ssh from user@bender:~/.ssh
     update_password=on_create
   register: newuser_remote
 
-- hosts: serverB
-  tasks:
-   - name: Copy Remote-To-Remote (from serverA to serverB)
-     synchronize: src={{ user.home }}/.ssh dest={{ user.home }}/.ssh
-     delegate_to: bender
+# - hosts: serverB
+#   tasks:
+#    - name: Copy Remote-To-Remote (from serverA to serverB)
+#      synchronize: src={{ user.home }}/.ssh dest={{ user.home }}/.ssh
+#      delegate_to: bender
+#
+#
+# ###todo: if arch: network if rpi: netdev
+# - name: add user to network group
+#   user:
+#     name: {{ item.name }}
+#     shell: /bin/bash
+#     groups: network
+#     append: yes
