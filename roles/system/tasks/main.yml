@@ -2,14 +2,11 @@
 
 - include: user.yml
   with_items: "{{ unix_users }}"
-  tags: [accounts,useradd]
+  tags: [accounts,user]
   when: item != None
-
-- include: network.yml
-  tags: ['network']
 
 - include: pamac.yml
   tags: ['packages']
-
-- include: rpi.yml
-  tags: ['packages']
+  when: ansible_distribution == "Archlinux" and ansible_pkg_mgr == "pacman"
+# - include: rpi.yml
+#   tags: ['packages']
