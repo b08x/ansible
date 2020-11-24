@@ -21,6 +21,10 @@
     mode=0440
     validate='visudo -cf %s'
 
+- name: create needed groups
+  group: name={{ item.name }} state=present gid={{ item.gid }}
+  with_items: "{{ unix_groups }}"
+
 - name: add user to remote hosts
   user: >
     name={{ item.name }}
