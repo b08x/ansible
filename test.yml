@@ -2,16 +2,15 @@
 
 - name: setup
   gather_facts: yes
-  hosts: lapbot
+  hosts: testbot
   collections:
     - community.general
 
   tasks:
-    - name: install atom
-      package:
-        name: atom
-        state: present
-        use: '{{ package_manager }}'
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
 
-  roles:
-    - { role: network, tags: ['network'] }
+          #  roles:
+          #    - { role: network, tags: ['network'] }
+          #    - { role: system, tags: ['user'] }
