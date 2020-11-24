@@ -8,4 +8,3 @@
     owner=0
     group=0
     backup=yes
-  delegate_to: 127.0.0.1
