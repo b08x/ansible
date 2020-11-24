@@ -16,13 +16,13 @@ dotfiles:
 
 unix_groups:
   - name: home
-    gid: 1040
+    gid: 1041
 
 unix_users:
   - name: b08x
     uid: 1000
     primary_group: b08x
-    secondary_groups: "wheel,network,docker,input,audio"
+    secondary_groups: "wheel,network,input,audio,home"
     shell: /bin/bash
     email: rwpannick@gmail.com
     password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
