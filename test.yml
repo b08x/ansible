@@ -11,6 +11,6 @@
       ansible.builtin.debug:
         var: ansible_facts
 
-          #  roles:
-          #    - { role: network, tags: ['network'] }
-          #    - { role: system, tags: ['user'] }
+  roles:
+     - { role: network, tags: ['network'] }
+     - { role: system, tags: ['user'] }
