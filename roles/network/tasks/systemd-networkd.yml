@@ -1,0 +1,22 @@
+---
+
+- name: push resolv.conf
+  template: >
+    src=etc/resolv.conf.j2
+    dest=/etc/resolv.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+
+- name: copy systemd-networkd files
+  copy: >
+    src=etc/systemd/network/
+    dest=/etc/systemd/network/
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+
+- name: enable networkd service
+  systemd: enabled=yes state=started name=systemd-networkd

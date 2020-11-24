@@ -1,73 +1,10 @@
 ---
 
-- name: add user to network group
-  user:
-    name: {{ item.name }}
-    shell: /bin/bash
-    groups: network
-    append: yes
+- include: udev-rules.yml
+  tags: [network]
 
-- name: enable networkd service
-  systemd: enabled=yes state=started name=systemd-networkd
+- include: systemd-networkd.yml
+  tags: [network]
 
-- name: push resolv.conf
-  template: >
-    src=etc/resolv.conf.j2
-    dest=/etc/resolv.conf
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-
-
-- name: copy systemd-networkd files
-  copy: >
-    src=etc/systemd/network/90-wifi.network
-    dest=/etc/systemd/network/90-wifi.network
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  delegate_to: 127.0.0.1
-
-- name: copy systemd-networkd files
-  copy: >
-    src=etc/systemd/network/91-dhcp.network
-    dest=/etc/systemd/network/91-dhcp.network
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  delegate_to: 127.0.0.1
-
-
-
-
-- name: copy wpa_supplicant wireless systemd files
-  copy: >
-    src=etc/systemd/system/wpa_supplicant-nl80211@.service.d/
-    dest=/etc/systemd/system/wpa_supplicant-nl80211@.service.d
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  delegate_to: 127.0.0.1
-
-- name: copy wpa_supplicant wired systemd files
-  copy: >
-    src=etc/systemd/system/wpa_supplicant-wired@.service.d/
-    dest=/etc/systemd/system/wpa_supplicant-wired@.service.d
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  delegate_to: 127.0.0.1
-
-- name: push wpa_supplicant wireless config file
-  template: >
-    src=etc/wpa_supplicant/wpa_supplicant-nl80211.conf.j2
-    dest=/etc/wpa_supplicant/wpa_supplicant-nl80211.conf
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
+- include: wpa_supplicant.yml
+  tags: [network, wireless]
