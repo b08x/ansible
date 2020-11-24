@@ -1,12 +1,14 @@
 ---
 
 - name: add user to network group
+  user:
+    name: {{ item.name }}
+    shell: /bin/bash
+    groups: network
+    append: yes
 
 - name: enable networkd service
   systemd: enabled=yes state=started name=systemd-networkd
-
-
-
 
 - name: push resolv.conf
   template: >
