@@ -1,5 +1,6 @@
 [soundbots]
-testbot ansible_connection=local ansible_user=b08x ansible_become=true
+#testbot ansible_connection=local ansible_user=b08x ansible_become=true
+testbot ansible_user=b08x ansible_become=true
 soundbot01 ansible_connection=local ansible_user=b08x ansible_become=true
 soundbot02 ansible_connection=local ansible_user=b08x ansible_become=true
 

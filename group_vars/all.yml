@@ -23,3 +23,6 @@ user:
   email: rwpannick@gmail.com
   home: /home/b08x
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
+
+domain: simulation46a.org
+nameserver01: 192.168.36.1

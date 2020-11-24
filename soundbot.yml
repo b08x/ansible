@@ -7,6 +7,7 @@
     - community.general
 
   roles:
+    - { role: network, tags: ['network'] }
     - { role: system, tags: ['system'] }
   #   - { role: dotfiles, tags: ['dotfiles'] }
   #   - { role: workstation, tags: ['workstation'] }
