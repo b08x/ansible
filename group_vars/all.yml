@@ -14,15 +14,18 @@ dotfiles:
   destination: "{{ user.home }}/Workspace/dotfiles"
   rcup_flags: -fx README.md
 
-user:
-  name: b08x
-  uid: 1000
-  gid: 1000
-  group: b08x
-  shell: /bin/bash
-  email: rwpannick@gmail.com
-  home: /home/b08x
-  password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
+unix_groups:
+  - name: home
+    gid: 1040
+
+unix_users:
+  - name: b08x
+    uid: 1000
+    primary_group: b08x
+    secondary_groups: "wheel,network,docker,input,audio"
+    shell: /bin/bash
+    email: rwpannick@gmail.com
+    password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
 
 domain: simulation46a.org
 nameserver01: 192.168.36.1
