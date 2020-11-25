@@ -18,14 +18,14 @@ unix_groups:
   - name: home
     gid: 1041
 
-unix_users:
-  - name: b08x
-    uid: 1000
-    primary_group: b08x
-    secondary_groups: "wheel,network,input,audio,home"
-    shell: /bin/bash
-    email: rwpannick@gmail.com
-    password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
+unix_admin:
+  name: b08x
+  uid: 1000
+  primary_group: b08x
+  secondary_groups: "wheel,network,input,audio,home"
+  shell: /bin/bash
+  email: rwpannick@gmail.com
+  password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
 
 domain: simulation46a.org
 nameserver01: 192.168.36.1

@@ -27,15 +27,15 @@
 
 - name: add user to remote hosts
   user: >
-    name={{ item.name }}
-    uid={{ item.uid }}
-    group={{ item.primary_group }}
-    groups={{ item.secondary_groups }}
+    name={{ unix_admin.name }}
+    uid={{ unix_admin.uid }}
+    group={{ unix_admin.primary_group }}
+    groups={{ unix_admin.secondary_groups }}
     append=yes
-    shell={{ item.shell }}
-    comment={{ item.email }}
+    shell={{ unix_admin.shell }}
+    comment={{ unix_admin.email }}
     state=present
-    password={{ item.password }}
+    password={{ unix_admin.password }}
     update_password=on_create
   register: newuser_remote
 # - hosts: serverB
@@ -48,7 +48,7 @@
 # ###todo: if arch: network if rpi: netdev
 # - name: add user to network group
 #   user:
-#     name: {{ item.name }}
+#     name: {{ unix_admin.name }}
 #     shell: /bin/bash
 #     groups: network
 #     append: yes

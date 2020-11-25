@@ -1,9 +1,9 @@
 ---
 
 - include: user.yml
-  with_items: "{{ unix_users }}"
+  # with_items: "{{ unix_users }}"
   tags: [accounts,user]
-  when: item != None
+  # when: item != None
 
 - include: pamac.yml
   tags: ['packages']

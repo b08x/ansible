@@ -18,3 +18,8 @@
     name: atom
     state: present
     use: '{{ package_manager }}'
+
+- name: install plugins
+  command: apm install ruby-block
+  become: yes
+  become_user: '{{ unix_admin.name }}'
