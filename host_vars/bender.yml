@@ -7,11 +7,20 @@ make_hard: False
 docker_host: True
 docker_storage: /var/lib/docker
 
+samba_host: True
+samba_shares:
+  - /srv/archive
+  - /srv/share
+
+nfs_host:
+  enabled: True
+  subnets: {{ ansible.default_ipv4.network }}
+
 sshd_port: 22
 sshd_allow_groups: b08x
 
 sysctl_ip_forward: False
 
-netdev: eth0
+netdev: enp3s0
 
 package_manager: community.general.pacman

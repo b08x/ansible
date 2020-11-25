@@ -9,7 +9,8 @@
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:
-        var: ansible_facts
+        var: ansible_default_ipv4.network
+      tags: ['facts']
 
   roles:
      - { role: network, tags: ['network'] }

@@ -1,17 +1,4 @@
 ---
-#TODO: make it so the package name is a variable
-# - name: Install
-#   dnf: >
-#     name='https://github.com/atom/atom/releases/download/v1.27.0-beta1/atom.x86_64.rpm'
-#     state=present
-#   tags: ['atom']
-
-
-# - name: install plugins
-#   command: apm-beta install sb-atom-sonic-pi tool-bar hey-pane language-ansible ABC-notation
-#   become: yes
-#   become_user: '{{ user.name }}'
-#   tags: ['atom']
 
 - name: install atom
   package:
@@ -19,7 +6,20 @@
     state: present
     use: '{{ package_manager }}'
 
+
+#TODO: this appears to install (or reinstall) the package regardless
+# if it already exists.
 - name: install plugins
-  command: apm install ruby-block
+  command: apm install {{ item }}
   become: yes
   become_user: '{{ unix_admin.name }}'
+  with_items:
+    - ruby-block
+    - atom-beautify
+    - blocky
+    - language-docker
+    - language-dotfiles
+    - language-sfz
+    - language-ansible
+    - highlight-colors
+    - color-picker
