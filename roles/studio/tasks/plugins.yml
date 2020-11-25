@@ -1,0 +1,10 @@
+---
+
+- name: install ladspa and lv2 plugins
+  package: name={{ item }} state=present use="{{ package_manager }}"
+  with_items:
+    - ladspa
+    - swh-plugins
+    - lv2
+    - x42-plugins
+  tags: ['plugins']

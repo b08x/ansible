@@ -1,10 +1,10 @@
 ---
 
 - name: install xclip
-  dnf: name=xclip state=present
+  package: name=xclip state=present
 
 - name: install build deps
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - cmake
     - libGLEW

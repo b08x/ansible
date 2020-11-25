@@ -34,7 +34,7 @@
 #  tags: ['compton']
 
 - name: install lxappearance
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - lxappearance
     - oomox

@@ -1,5 +1,5 @@
 ---
 
 - name: install hexchat
-  dnf: name="hexchat" state="present"
+  package: name="hexchat" state="present"
   tags: ['communication']

@@ -1,14 +1,14 @@
 ---
 
 - name: enable rofi-compton repo
-  command: 'dnf -y copr enable yaroslav/i3desktop'
+  command: 'package -y copr enable yaroslav/i3desktop'
   tags: ['repos']
 
 - name: install rofi
-  dnf: name="rofi" state="present"
+  package: name="rofi" state="present"
 
 #- name: install dependencies for rofi
-  #dnf: name={{ item }} state=present
+  #package: name={{ item }} state=present use="{{ package_manager }}"
   #with_items:
     #- pango-devel
     #- cairo-devel

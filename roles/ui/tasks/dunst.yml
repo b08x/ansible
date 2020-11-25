@@ -1,4 +1,4 @@
 ---
 
 - name: install dunst
-  dnf: name=dunst  state=present
+  package: name=dunst  state=present

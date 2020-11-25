@@ -14,3 +14,8 @@ base os configuration
 # install ansible modules
 ansible-galaxy collection install community.general
 ansible-galaxy install kewlfft.aur
+
+
+# an atom search & replace
+#(package: \w+=)(\{\{ item \}\}) (state=present)
+#$1$2 $3 use="{{ package_manager }}"

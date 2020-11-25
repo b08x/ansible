@@ -1,7 +1,7 @@
 ---
 
 - name: add user to audio and jackuser group
-  user: name={{ user.name }} groups=audio,jackuser,input append=yes
+  user: name={{ unix_admin.name }} groups=realtime append=yes
 
 - name: push jack limits file
   copy: >
@@ -21,7 +21,7 @@
     mode=0644
 
 - name: install kernel-tools for cpupower service
-  dnf: name=kernel-tools state=present
+  package: name=kernel-tools state=present
 
 - name: set cpu frequency governor to performance
   command: cpupower -c all frequency-set -g performance
@@ -58,7 +58,7 @@
 # kernel argument, add it to your grub.cfg by editing /etc/default/grub as root, adding “threadirqs”
 # to the line for GRUB_CMDLINE_LINUX, then generate a new grub.cfg file.
 - name: install tuned and related packages
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - tuna
     - xauth

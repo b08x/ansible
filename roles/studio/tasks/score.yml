@@ -1,7 +1,7 @@
 ---
 
 - name: install ABC stuff
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - abcMIDI
     - abcm2ps

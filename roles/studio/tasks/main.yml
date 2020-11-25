@@ -50,6 +50,9 @@
   user: name={{ user.name }} groups=realtime append=yes
   tags: ['realtime']
 
+- include: plugins.yml
+  tags: ['plugins']
+
 # - include: sonicpi.yml
 #   tags: ['sonic']
 #
@@ -79,8 +82,8 @@
 # - include: realtime.yml
 #   tags: ['realtime']
 
-# - name: install these things
-#   dnf: name={{ item }} state=present
+# - name: install these thingsuse="{{ package_manager }}"
+#   package: name={{ item }} state=present use="{{ package_manager }}"
 #   with_items:
 #     - guitarix
 #     - hydrogen

@@ -1,12 +1,12 @@
 ---
 
 - name: install browsers
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - w3m
     - surf
 
 
 - name: install surfraw
-  dnf: name=surfraw state=present
+  package: name=surfraw state=present
   tags: ['search']

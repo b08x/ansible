@@ -10,7 +10,6 @@
 #  become_user: '{{ user.name }}'
 
 - name: install pygtksourceview
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
-    - Zim
-    - pygtksourceview
+    - zim

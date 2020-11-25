@@ -15,6 +15,7 @@
     - rofi
     - samba
     - bind
+    - zim
 
 # - aur:
 #     use: yay

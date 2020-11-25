@@ -1,7 +1,7 @@
 ---
 
 - name: install pulseaudio stuffs in another universe where i need it
-  dnf: name={{ item }} state=absent
+  package: name={{ item }} state=absent
   with_items:
     - alsa-plugins-pulseaudio
     - pulseaudio-utils

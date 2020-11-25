@@ -1,24 +1,24 @@
 ---
 
 - name: install build dependencies
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - qscintilla-devel.x86_64
 
 # - name: install planetccrma
-#   dnf: >
+#   package: >
 #     name='http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetccrma/27/x86_64/planetccrma-repo-1.1-3.fc27.ccrma.noarch.rpm'
 #     state=present
 #   tags: ['repos']
 #
 # - name: install planetcore
-#   dnf: >
+#   package: >
 #     name='http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetcore/27/x86_64/planetccrma-core-2018.01.09-1.fc27.ccrma.x86_64.rpm'
 #     state=present
 #   tags: ['repos']
 
 - name: install supercollider and friends
-  dnf: >
+  package: >
     name={{ item }}
     state=present
   with_items:
@@ -52,7 +52,7 @@
 #TODO conditional to check if sonic-pi-tool already exists. if it does, ansible fartsx.
 
 - name: install sonic-pi-tool prereqs
-  dnf: name="cargo" state="present"
+  package: name="cargo" state="present"
   tags: ['sonic']
 
 - name: install sonic-pi-tool

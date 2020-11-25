@@ -25,11 +25,11 @@
 #  ignore_errors: True
 
 - name: install hack fonts repo
-  command: 'dnf -y copr enable heliocastro/hack-fonts'
+  command: 'package -y copr enable heliocastro/hack-fonts'
   tags: ['repos']
 
 - name: install hack fonts
-  dnf: >
+  package: >
     name={{ item }}
     state=present
   with_items:
@@ -39,19 +39,19 @@
  
 
 #- name: install japanese lang support
-#  dnf: name={{ item }} state=present
+#  package: name={{ item }} state=present use="{{ package_manager }}"
 #  with_items:
 #    - langpacks-ja
 #    - vlgothic-fonts
 
 #- name: install hindi lang support
-#  dnf: name={{ item }} state=present
+#  package: name={{ item }} state=present use="{{ package_manager }}"
 #  with_items:
 #   - langpacks-hi
 #   - sarai-fonts
 
 #- name: install russian lang support
-#  dnf: name={{ item }} state=present
+#  package: name={{ item }} state=present use="{{ package_manager }}"
 #  with_items:
 #   - langpacks-ru
 #   - fonts-KOI8-R

@@ -1,33 +1,25 @@
 ---
 
-- name: install lingot tuner
-  dnf: name=lingot state=present
-  tags: ['tuner']
-
 - name: install freqtweak
-  dnf: name=freqtweak state=present
+  package: name=freqtweak state=present use="{{ package_manager }}"
   tags: ['freqtweak', 'eq']
 
 - name: install jaaa and japa
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - jaaa
     - japa
   tags: ['anal']
 
-- name: install aj-snapshot
-  dnf: name=aj-snapshot state=present
-
 - name: install mgmt and eq
-  dnf: name={{ item }} state=present
+  package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - Carla
-    - non-session-manager
     - non-mixer
     - liblo-devel
     - python3-pyliblo
     - audacity-freeworld
 
 - name: install obs
-  dnf: name=obs-studio state=present
+  package: name=obs-studio state=present use="{{ package_manager }}"
   tags: ['obs']
