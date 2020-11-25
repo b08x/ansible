@@ -2,15 +2,16 @@
 
 - name: setup
   gather_facts: yes
-  hosts: testbot
+  hosts: soundbots
   collections:
     - community.general
 
-  tasks:
-    - name: Print all available facts
-      ansible.builtin.debug:
-        var: ansible_facts
+  # tasks:
+  #   - name: Print all available facts
+  #     ansible.builtin.debug:
+  #       var: ansible_facts
 
   roles:
      - { role: network, tags: ['network'] }
-     - { role: system, tags: ['user'] }
+     - { role: system, tags: ['system'] }
+     - { role: studio, tags: ['studio'] }

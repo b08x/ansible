@@ -1,12 +1,40 @@
 ---
 
-- name: enable copr repo for deadbeef
-  command: "dnf -y copr enable yelanxin/deadbeef"
-
-- name: install deadbeef and jack plugin
-  dnf: >
-    name="{{ item }}"
-    state=present
+- name: install packages for deadbeef
+  package:
+    name: "{{ item }}"
+    state: present
+    use: '{{ package_manager }}'
   with_items:
-    - deadbeef-static
-    - deadbeef-plugin-jack
+    - deadbeef
+    - libsamplerate
+    - libvorbis
+    - libmad
+    - mpg123
+    - flac
+    - curl
+    - imlib2
+    - wavpack
+    - libsndfile
+    - libcdio
+    - libcddb
+    - faad2
+    - dbus
+    - libx11
+    - zlib
+    - libzip
+    - ffmpeg
+
+- aur:
+    use: yay
+    name:
+      - deadbeef-jack-git
+      - deadbeef-plugin-customizabletb-gtk3-git
+      - deadbeef-plugin-headerbar-gtk3-git
+      - deadbeef-plugin-medialib-git
+      - deadbeef-plugin-musical-spectrum-gtk3-git
+      - deadbeef-plugin-spectrogram-gtk3-git
+      - deadbeef-plugin-waveform-gtk3-git
+  become: yes
+  become_user: aur_builder
+  tags: ['aur']

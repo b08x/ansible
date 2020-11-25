@@ -1,0 +1,25 @@
+---
+
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: present
+    use: '{{ package_manager }}'
+  with_items:
+    - timeshift
+    - firefox
+    - bat
+    - terminator
+    - htop
+    - barrier
+    - rofi
+    - samba
+    - bind
+
+# - aur:
+#     use: yay
+#     name:
+#       -
+#   become: yes
+#   become_user: aur_builder
+#   tags: ['aur']

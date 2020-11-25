@@ -8,5 +8,6 @@
 - include: pamac.yml
   tags: ['packages']
   when: ansible_distribution == "Archlinux" and ansible_pkg_mgr == "pacman"
-# - include: rpi.yml
-#   tags: ['packages']
+
+- include: install.yml
+  tags: ['install']

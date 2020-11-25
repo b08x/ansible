@@ -38,7 +38,6 @@
     password={{ item.password }}
     update_password=on_create
   register: newuser_remote
-
 # - hosts: serverB
 #   tasks:
 #    - name: Copy Remote-To-Remote (from serverA to serverB)

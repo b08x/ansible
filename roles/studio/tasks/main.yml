@@ -1,57 +1,97 @@
 ---
 
-- include: alsa.yml
-  tags: ['alsa']
+- name: install audio packages
+  package:
+    name: "{{ item }}"
+    state: present
+    use: '{{ package_manager }}'
+  with_items:
+    - jack2
+    - a2jmidid
+    - zita-ajbridge
+    - realtime-privileges
+    - njconnect
+    - patchage
+    - jacktrip
+    - jaaa
+    - japa
+    - non-mixer
+    - non-sequencer
+    - carla
+    - lv2
+    - alsa-card-profiles
+    - alsa-firmware
+    - alsa-lib
+    - alsa-plugins
+    - alsa-tools
+    - alsa-topology-conf
+    - alsa-ucm-conf
+    - alsa-utils
+    - zita-alsa-pcmi
+    - jack_capture
 
-- include: jack.yml
-  tags: ['jack']
-
-- include: sonicpi.yml
-  tags: ['sonic']
-
-- include: patchage.yml
-  tags: ['audio']
-
-- include: utils.yml
-  tags: ['audio_tools']
-
-#- include: rosegarden.yml
-#  tags: ['rosegarden']
-
-- #include: zita.yml
-  #tags: ['zita']
-
-#- include: linuxsampler.yml
-#  tags: ['linuxsampler']
-
-- include: effects.yml
-  tags: ['effects']
-
-- include: score.yml
-  tags: ['abc']
-
-- include: synth.yml
-  tags: ['synth']
+- aur:
+    use: yay
+    name:
+      - raysession-git
+      - jalv-select
+      - jack-keyboard
+  become: yes
+  become_user: aur_builder
+  tags: ['aur']
 
 - include: deadbeef.yml
   tags: ['deadbeef']
 
-- include: realtime.yml
+- include: daw.yml
+  tags: ['daw']
+
+- name: add user to audio and jackuser group
+  user: name={{ user.name }} groups=realtime append=yes
   tags: ['realtime']
 
-- name: install these things
-  dnf: name={{ item }} state=present
-  with_items:
-    - guitarix
-    - hydrogen
-    - non-sequencer
-    - qmidiarp
-    - qsynth
-    - rakarrack
-    - sooperlooper
-    - vmpk
-    - zynaddsubfx
-    - lv2-swh-plugins
-    - python3-rdflib
-    - mixxx
-  tags: ['core']
+# - include: sonicpi.yml
+#   tags: ['sonic']
+#
+
+#
+# - include: utils.yml
+#   tags: ['audio_tools']
+
+
+#include: zita.yml
+#ptags: ['zita']
+
+#- include: linuxsampler.yml
+#  tags: ['linuxsampler']
+
+# - include: effects.yml
+#   tags: ['effects']
+#
+# - include: score.yml
+#   tags: ['abc']
+#
+# - include: synth.yml
+#   tags: ['synth']
+#
+
+#
+# - include: realtime.yml
+#   tags: ['realtime']
+
+# - name: install these things
+#   dnf: name={{ item }} state=present
+#   with_items:
+#     - guitarix
+#     - hydrogen
+#     - non-sequencer
+#     - qmidiarp
+#     - qsynth
+#     - rakarrack
+#     - sooperlooper
+#     - vmpk
+#     - zynaddsubfx
+#     - lv2-swh-plugins
+#     - python3-rdflib
+#     - mixxx
+#   tags: ['core']

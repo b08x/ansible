@@ -10,3 +10,7 @@ base os configuration
 
 
 ## dotfiles
+
+# install ansible modules
+ansible-galaxy collection install community.general
+ansible-galaxy install kewlfft.aur

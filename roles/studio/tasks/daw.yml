@@ -1,11 +1,20 @@
 ---
 
 - name: install audacity
-  dnf: name=audacity-freeworld state=present
-  tags: ['audacity']
-
-- name: install qtractor
-  dnf: name={{ item }} state=present
+  package:
+    name: "{{ item }}"
+    state: present
+    use: '{{ package_manager }}'
   with_items:
-    - qtractor
-  tags: ['qtractor']
+    - audacity
+
+- name: install reaper,sws and ocenaudio
+  aur:
+    use: yay
+    name:
+      - ocenaudio
+      - reaper-bin
+      - sws
+  become: yes
+  become_user: aur_builder
+  tags: ['aur']
