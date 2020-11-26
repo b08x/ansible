@@ -29,6 +29,7 @@
     - alsa-utils
     - zita-alsa-pcmi
     - jack_capture
+    - sox
 
 - aur:
     use: yay
@@ -53,8 +54,8 @@
 - include: plugins.yml
   tags: ['plugins']
 
-# - include: sonicpi.yml
-#   tags: ['sonic']
+- include: sonicpi.yml
+  tags: ['sonicpi']
 #
 
 #

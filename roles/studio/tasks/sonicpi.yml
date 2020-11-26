@@ -3,75 +3,72 @@
 - name: install build dependencies
   package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
-    - qscintilla-devel.x86_64
-
-# - name: install planetccrma
-#   package: >
-#     name='http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetccrma/27/x86_64/planetccrma-repo-1.1-3.fc27.ccrma.noarch.rpm'
-#     state=present
-#   tags: ['repos']
-#
-# - name: install planetcore
-#   package: >
-#     name='http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetcore/27/x86_64/planetccrma-core-2018.01.09-1.fc27.ccrma.x86_64.rpm'
-#     state=present
-#   tags: ['repos']
-
-- name: install supercollider and friends
-  package: >
-    name={{ item }}
-    state=present
-  with_items:
-    # - supercollider
-    # - supercollider-devel
-    # - supercollider-sc3-plugins
-    - jack-audio-connection-kit-devel
-    - libsndfile-devel
-    - alsa-lib-devel
-    - avahi-devel
-    - libicu-devel
-    - readline-devel
-    - fftw-devel
-    - libXt-devel
-    - libgudev-devel
+    - boost
     - cmake
-    - boost-devel
-    - qwt-qt5-devel
-    - qscintilla-qt5-devel
-    - qt5-qtsvg-devel
-    - qt-devel
-    - qt5-qttools-devel
-    - qt5-qtdeclarative-devel
-    - qt5-qtwebkit-devel
-    - qt5-qtlocation-devel
-    - qt5-qtsensors-devel
-    - aubio-devel
-    - qtchooser
-    - wkhtmltopdf
-    - systemd-devel
+    - git
+    - erlang-nox
+    - gendesk
+    - lua
+    - qt5-tools
+    - rtmidi
+  tags: ['sonicpi']
+
+- aur:
+    use: yay
+    name:
+      - wkhtmltopdf-static
+  become: yes
+  become_user: aur_builder
+  tags: ['sonicpi']
+
+- name: install runtime dependencies
+  package: name={{ item }} state=present use="{{ package_manager }}"
+  with_items:
+    - aubio
+    - gcc-libs
+    - glibc
+    - osmid
+    - qt5-base
+    - qscintilla-qt5
+    - ruby
+    - ruby-activesupport
+    - ruby-bundler
+    - ruby-ffi
+    - ruby-i18n
+    - ruby-kramdown
+    - ruby-minitest
+    - ruby-mocha
+    - ruby-multi_json
+    - ruby-rake
+    - ruby-rouge
+    - ruby-rugged
+    - ruby-sys-proctable
+    - sc3-plugins
+    - sox
+    - supercollider
+  tags: ['sonicpi']
+
+
 #TODO conditional to check if sonic-pi-tool already exists. if it does, ansible fartsx.
 
-- name: install sonic-pi-tool prereqs
-  package: name="cargo" state="present"
-  tags: ['sonic']
-
-- name: install sonic-pi-tool
-  command: "cargo install --git https://github.com/lpil/sonic-pi-tool/"
-  become: yes
-  become_user: "{{ user.name }}"
-  tags: ['sonic']
-
-
-
+# - name: install sonic-pi-tool prereqs
+#   package: name="cargo" state="present"
+#   tags: ['sonic']
 #
-#
-# - name: clone sonic pi
-#   git: >
-#     repo=https://github.com/samaaron/sonic-pi.git
-#     dest="{{ user.home }}/studio/sonic-pi"
-#     accept_hostkey=yes
-#     update=no
-#     force=no
+# - name: install sonic-pi-tool
+#   command: "cargo install --git https://github.com/lpil/sonic-pi-tool/"
 #   become: yes
 #   become_user: "{{ user.name }}"
 #   tags: ['sonic']
+
+#
+- name: clone sonic pi
+  git: >
+    repo=https://github.com/samaaron/sonic-pi.git
+    dest="{{ unix_admin.home }}/Workspace/sonic-pi"
+    accept_hostkey=yes
+    update=no
+    force=no
+  become: yes
+  become_user: "{{ user.name }}"
+  tags: ['sonicpi']

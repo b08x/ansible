@@ -20,6 +20,7 @@ unix_groups:
 
 unix_admin:
   name: b08x
+  home: /home/b08x
   uid: 1000
   primary_group: b08x
   secondary_groups: "wheel,network,input,audio,home"
