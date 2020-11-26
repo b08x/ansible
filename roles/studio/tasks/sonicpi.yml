@@ -48,20 +48,6 @@
     - supercollider
   tags: ['sonicpi']
 
-
-#TODO conditional to check if sonic-pi-tool already exists. if it does, ansible fartsx.
-
-# - name: install sonic-pi-tool prereqs
-#   package: name="cargo" state="present"
-#   tags: ['sonic']
-#
-# - name: install sonic-pi-tool
-#   command: "cargo install --git https://github.com/lpil/sonic-pi-tool/"
-#   become: yes
-#   become_user: "{{ user.name }}"
-#   tags: ['sonic']
-
-#
 - name: clone sonic pi
   git: >
     repo=https://github.com/samaaron/sonic-pi.git
@@ -72,3 +58,14 @@
   become: yes
   become_user: "{{ user.name }}"
   tags: ['sonicpi']
+
+# compile
+# link ~/Workspace/sonic-pi /opt/sonic-pi
+
+
+#TODO: sonic-pi-tool
+# pamac install python-psutil python-click
+# pip install oscpy
+# wget https://raw.githubusercontent.com/syncopatedstudios/sonic-pi-tool/master/sonic-pi-tool.py
+# make executable
+# place in /usr/local/bin
