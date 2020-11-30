@@ -1,11 +1,5 @@
 ---
 
-# - include: repos.yml
-#   tags: ['repos']
-#
-# - include: utilpkgs.yml
-#   tags: ['utilpkgs']
-
 - include: atom.yml
   tags: ['atom']
   when: workstation == true
@@ -23,11 +17,5 @@
 # - include: media.yml
 #   tags: ['media']
 #
-# - include: taskwarrior.yml
-#   tags: ['tasks']
-#
 # - include: zim.yml
 #   tags: ['zim']
-
-# - include: teiler.yml
-#   tags: ['teiler']

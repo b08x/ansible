@@ -22,7 +22,7 @@
     - vim
     - bash-completion
     - privoxy
-
+    - fd
 # - aur:
 #     use: yay
 #     name:
