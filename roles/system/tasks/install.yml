@@ -1,5 +1,6 @@
 ---
 
+# packages to install on any system
 - name: install packages
   package:
     name: "{{ item }}"
@@ -16,7 +17,8 @@
     - samba
     - bind
     - zim
-
+    - lsd
+    - ranger
 # - aur:
 #     use: yay
 #     name:

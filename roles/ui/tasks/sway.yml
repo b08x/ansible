@@ -1,0 +1,14 @@
+---
+
+
+# this will probably be redudant as this should be included with
+# in the base installation
+
+- name: install sway
+  package: >
+    name = {{ item }}
+    state = present
+  with_items:
+    sway
+    waybar
+    wofi

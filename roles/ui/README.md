@@ -1,6 +1,6 @@
-# environment
+# ui
 
-tasks related to setting up the workstation environment
+tasks related to setting up the user interface
 
 ## sddm
 

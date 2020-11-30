@@ -1,4 +1,0 @@
----
-
-- name: install dunst
-  package: name=dunst  state=present

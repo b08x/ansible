@@ -8,6 +8,7 @@
     owner=0
     group=0
     backup=yes
+  tags: [resolv]
 
 - name: copy systemd-networkd files
   copy: >
@@ -17,6 +18,7 @@
     owner=0
     group=0
     backup=yes
+  tags: [networkd]
 
 - name: enable networkd service
   systemd: enabled=yes state=started name=systemd-networkd

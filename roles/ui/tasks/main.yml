@@ -1,21 +1,11 @@
 ---
 
-- include: i3setup.yml
-  tags: ['ui','i3']
-
-- include: sddm.yml
-  tags: ['sddm']
+- include: sway.yml
+  tags: ['ui','sway']
 
 - include: fonts.yml
   tags: ['fonts']
 
-- name: check if i3blocks is already installed, if not then dont.
-  stat: path="/usr/local/bin/i3blocks"
-  register: i3blocks_bin
-
-- include: i3blocks.yml
-  when: not i3blocks_bin.stat.exists
-  tags: ['i3blocks']
 
 # - name: check if rofi is already installed, if not then dont.
 #   stat: path="/usr/local/bin/rofi"
