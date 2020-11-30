@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: soundbots
+  hosts: dev
   collections:
     - community.general
 

@@ -19,6 +19,10 @@
     - zim
     - lsd
     - ranger
+    - vim
+    - bash-completion
+    - privoxy
+
 # - aur:
 #     use: yay
 #     name:

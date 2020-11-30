@@ -1,0 +1,9 @@
+---
+
+- aur:
+    use: yay
+    name:
+      - rvm
+  become: yes
+  become_user: aur_builder
+  tags: ['aur']

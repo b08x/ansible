@@ -1,8 +1,0 @@
----
-
-- name: install taskwarrior and friends
-  package: name={{ item }} state=present use="{{ package_manager }}"
-  with_items:
-    - task
-    - bugwarrior
-    - vit

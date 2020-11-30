@@ -3,11 +3,15 @@
 - user:
     name: aur_builder
     group: wheel
+    home: /tmp/aur_builder
+    tags: [package_manager]
+
 - lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
     line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: yes
     validate: 'visudo -cf %s'
+    tags: [package_manager]
 
 - name: push pamac conf with aur enabled
   template: >
@@ -17,10 +21,12 @@
     owner=0
     group=0
     backup=yes
+  tags: [package_manager]
   # when: os = arch
 
 - name: Run the equivalent of "pacman -Syu" as a separate step
   community.general.pacman:
     update_cache: yes
     upgrade: yes
+  tags: [package_manager]    
   # when: os = arch

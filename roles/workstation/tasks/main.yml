@@ -10,6 +10,10 @@
   tags: ['atom']
   when: workstation == true
 
+- include: rvm.yml
+  tags: ['rvm']
+  when: workstation == true
+
 # - include: browsers.yml
 #   tags: ['browsers']
 #

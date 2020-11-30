@@ -15,3 +15,5 @@ sysctl_ip_forward: False
 netdev: eth0
 
 package_manager: community.general.pacman
+
+workstation: True

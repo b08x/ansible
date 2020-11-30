@@ -24,3 +24,7 @@
     - highlight-colors
     - color-picker
     - file-types
+    - open-terminal-here
+    - toolbar
+
+#TODO: push atom config.cson and styles.css from rcm
