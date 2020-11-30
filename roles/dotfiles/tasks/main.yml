@@ -6,17 +6,27 @@
     state: present
     use: '{{ package_manager }}'
 
-- name: Clone user dotfiles
-  git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=no version={{ dotfiles.branch }}
-  when: dotfiles is defined
-  become: yes
-  become_user: "{{ user.name }}"
+- block:
 
-# TODO: add condition for host tags
+  - name: Clone user dotfiles
+    git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=no version={{ dotfiles.branch }}
+    when: dotfiles is defined
 
-- name: Install user dotfiles
-  command: rcup -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
-  when: dotfiles is defined
+    # TODO: add condition for host tags
+
+  - name: push rcrc
+    template: >
+      src=rcrc.j2
+      dest="{{ unix_admin.home}}/.rcrc"
+      mode=0644
+      owner="{{ unix_admin.uid }}"
+      group="{{ unix_admin.gid }}"
+      backup=yes
+
+  - name: Install profile
+    command: rcup -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
+    when: dotfiles is defined
+
   become: yes
   become_user: "{{ user.name }}"
 

@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+COPY_ALWAYS="ssh/id_* weechat/* netrc"
+COPY_ALWAYS="*"
+DOTFILES_DIRS="{{ dotfiles.destination }}"
+EXCLUDES="irbrc *:*pycache* dotfiles:python*"
+HOSTNAME="{{ ansible_hostname }}"
+TAGS="atom gtk profile ranger development sound laptop sway"
+#SYMLINK_DIRS="zprezto texmf"
+#UNDOTTED="texmf"

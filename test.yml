@@ -15,5 +15,6 @@
   roles:
      - { role: network, tags: ['network'] }
      - { role: system, tags: ['system'] }
+     - { role: ui, tags: ['ui'] }
      - { role: studio, tags: ['studio'] }
      - { role: workstation, tags: ['workstation'] }
