@@ -19,5 +19,5 @@
     - waybar
     - wofi
     - sway-alttab-bin
-    - i3keys
+    - azote
   tags: ['sway']
