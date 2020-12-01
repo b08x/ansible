@@ -8,8 +8,5 @@ gnupg:
   enable_agent: False
   emulate_ssh: False
 
-dotfiles:
-  url: git@github.com:b08x/dotfiles.git
-  branch: Main
-  destination: "{{ user.home }}/Workspace/dotfiles"
-  rcup_flags: -fx README.md
+domain: simulation46a.org
+nameserver01: 192.168.36.3

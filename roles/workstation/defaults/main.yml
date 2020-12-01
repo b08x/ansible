@@ -1,5 +1,7 @@
 ---
 
+use_rvm: False
+
 apm_pkgs:
   - ruby-block
   - atom-beautify

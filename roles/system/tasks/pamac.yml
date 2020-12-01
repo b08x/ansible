@@ -14,7 +14,7 @@
     line: 'aurman ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: yes
     validate: 'visudo -cf %s'
-    tags: [package_manager]
+  tags: [package_manager]
 
 - name: push pamac conf with aur enabled
   template: >

@@ -13,9 +13,6 @@
     - njconnect
     - patchage
     - jacktrip
-    - jaaa
-    - japa
-    - non-mixer
     - non-sequencer
     - carla
     - lv2
@@ -30,13 +27,15 @@
     - zita-alsa-pcmi
     - jack_capture
     - sox
+    - mixxx
+    - sooperlooper
   tags: [studio,audio]
 
 - name: install visual packages
   package:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
-    use: {{ package_manager }}
+    use: "{{ package_manager }}"
   with_items:
     - gpick
   tags: [studio,visual]
@@ -44,6 +43,7 @@
 - name: install audio tools from aur
   aur: name= {{ item }} user=aurman
   with_items:
+    - studio-controls-git
     - raysession-git
     - jalv-select
     - jack-keyboard
@@ -64,7 +64,7 @@
   tags: ['daw']
 
 - name: add user to audio and jackuser group
-  user: name={{ user.name }} groups=realtime append=yes
+  user: name={{ unix_admin.name }} groups=realtime append=yes
   tags: ['realtime']
 
 - include: plugins.yml
@@ -72,12 +72,12 @@
 
 - include: sonicpi.yml
   tags: ['sonicpi']
-#
 
-#
-# - include: utils.yml
-#   tags: ['audio_tools']
+- include: utils.yml
+  tags: ['audio_tools']
 
+- include: synth.yml
+  tags: ['synth']
 
 #include: zita.yml
 #ptags: ['zita']
@@ -91,27 +91,3 @@
 # - include: score.yml
 #   tags: ['abc']
 #
-# - include: synth.yml
-#   tags: ['synth']
-#
-
-#
-# - include: realtime.yml
-#   tags: ['realtime']
-
-# - name: install these thingsuse="{{ package_manager }}"
-#   package: name={{ item }} state=present use="{{ package_manager }}"
-#   with_items:
-#     - guitarix
-#     - hydrogen
-#     - non-sequencer
-#     - qmidiarp
-#     - qsynth
-#     - rakarrack
-#     - sooperlooper
-#     - vmpk
-#     - zynaddsubfx
-#     - lv2-swh-plugins
-#     - python3-rdflib
-#     - mixxx
-#   tags: ['core']

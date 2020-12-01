@@ -7,4 +7,6 @@
     - swh-plugins
     - lv2
     - x42-plugins
+    - sfizz
+    - iemplugisuite
   tags: ['plugins']

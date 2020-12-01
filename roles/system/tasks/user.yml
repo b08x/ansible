@@ -3,41 +3,31 @@
 # add user
 # copy .ssh from user@bender:~/.ssh
 
-- name: copy sudoers file from ansible host to remote hosts....
-  copy: >
-    src=sudoers_group
-    dest=/etc/groups.tmp
-    owner=root
-    group=root
-    mode=0440
-
-- name: copy tmp sudoers file to /etc/sudoers.d/ only if it passed visudo validation
-  copy: >
-    src=/etc/groups.tmp
-    remote_src=True
-    dest=/etc/sudoers.d/groups
-    owner=root
-    group=root
-    mode=0440
-    validate='visudo -cf %s'
+- lineinfile:
+    path: /etc/sudoers.d/11-unix_admin
+    line: 'b08x ALL=(ALL) NOPASSWD: ALL'
+    create: yes
+    validate: 'visudo -cf %s'
+  tags: [package_manager]
 
 - name: create needed groups
   group: name={{ item.name }} state=present gid={{ item.gid }}
   with_items: "{{ unix_groups }}"
 
-- name: add user to remote hosts
-  user: >
-    name={{ unix_admin.name }}
-    uid={{ unix_admin.uid }}
-    group={{ unix_admin.primary_group }}
-    groups={{ unix_admin.secondary_groups }}
-    append=yes
-    shell={{ unix_admin.shell }}
-    comment={{ unix_admin.email }}
-    state=present
-    password={{ unix_admin.password }}
-    update_password=on_create
-  register: newuser_remote
+# - name: add user to remote hosts
+#   user: >
+#     name={{ unix_admin.name }}
+#     uid={{ unix_admin.uid }}
+#     group={{ unix_admin.primary_group }}
+#     groups={{ unix_admin.secondary_groups }}
+#     append=yes
+#     shell={{ unix_admin.shell }}
+#     comment={{ unix_admin.email }}
+#     state=present
+#     password={{ unix_admin.password }}
+#     update_password=on_create
+#   register: newuser_remote
+
 # - hosts: serverB
 #   tasks:
 #    - name: Copy Remote-To-Remote (from serverA to serverB)

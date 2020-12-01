@@ -26,5 +26,6 @@
     - file-types
     - open-terminal-here
     - toolbar
+    - ansible-snippets
 
 #TODO: push atom config.cson and styles.css from rcm

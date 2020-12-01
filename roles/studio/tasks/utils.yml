@@ -1,25 +1,20 @@
 ---
 
 - name: install freqtweak
-  package: name=freqtweak state=present use="{{ package_manager }}"
+  aur: name={{ item }} user=aurman
+  with_items:
+    - freqtweak
   tags: [studio,effects]
 
 - name: install jaaa and japa
-  aur: name={{ item }} state=present use="{{ package_manager }}"
+  aur: name={{ item }} user=aurman
   with_items:
     - jaaa
     - japa
   tags: [studio,analsyis]
 
-- name: install mgmt and eq
-  package: name={{ item }} state=present use="{{ package_manager }}"
+- name: install obs
+  aur: name= {{ item }} user=aurman
   with_items:
-    - Carla
-    - non-mixer
-    - liblo-devel
-    - python3-pyliblo
-    - audacity-freeworld
-
-# - name: install obs
-#   package: name=obs-studio state=present use="{{ package_manager }}"
-#   tags: ['obs']
+    - obs-studio-wayland
+  tags: [obs]

@@ -15,4 +15,5 @@
     - ocenaudio
     - reaper-bin
     - sws
+    - non-mixer-lv2-git
   tags: [studio,daw]

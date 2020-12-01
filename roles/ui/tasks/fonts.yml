@@ -15,14 +15,17 @@
 # ansible just complains because it cant
 # update the system fontcache
 
-#- name: install nerd-fonts
-#  shell: ./install.sh -A
-#  args:
-#    chdir: "{{ local_src_dir }}/nerd-fonts"
-#    executable: /bin/bash
-#  become: yes
-#  become_user: "{{ user.name }}"
-#  ignore_errors: True
+# "shell"
+#   "prefix": "shell"
+#   "body": """
+#     - name: install $1
+#       shell: $2"<scriptname.sh> --arg"
+#       args:
+#         chdir: $3"<working directory>"
+#         executable: /bin/bash
+#       become: yes
+#       become_user: "{{ unix_admin.name }}"
+#       ignore_errors: True
 
 - name: install hack fonts
   package: >
@@ -30,7 +33,7 @@
     state=present
   with_items:
     - ttf-hack
-    - '*-font-awesome'
+    - ttf-font-awesome
   tags: ['fonts']
 
 - name: install other stuff from aur

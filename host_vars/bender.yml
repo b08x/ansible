@@ -14,13 +14,11 @@ samba_shares:
 
 nfs_host:
   enabled: True
-  subnets: {{ ansible.default_ipv4.network }}
+  subnets: "{{ ansible.default_ipv4.network }}"
 
 sshd_port: 22
 sshd_allow_groups: b08x
 
-sysctl_ip_forward: False
-
-netdev: enp3s0
+sysctl_ip_forward: True
 
 package_manager: community.general.pacman

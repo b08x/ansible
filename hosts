@@ -4,8 +4,6 @@
 #soundbot01 ansible_connection=local ansible_user=b08x ansible_become=true
 #soundbot02 ansible_connection=local ansible_user=b08x ansible_become=true
 
-#[intranet]
+[intranet]
 #bender ansible_user=b08x ansible_become=true
-
-[dev]
 lapbot ansible_connection=local ansible_user=b08x ansible_become=true

@@ -19,12 +19,10 @@
       src=rcrc.j2
       dest="{{ unix_admin.home}}/.rcrc"
       mode=0644
-      owner="{{ unix_admin.uid }}"
-      group="{{ unix_admin.gid }}"
       backup=yes
 
   - name: Install profile
-    command: rcup -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
+    command: rcup -v -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
     when: dotfiles is defined
 
   become: yes

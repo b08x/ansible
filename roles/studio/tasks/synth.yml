@@ -4,6 +4,8 @@
   package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - whysynth-dssi
+    - helm-synth
+    - zynaddsubfx
   tags: ['synth']
 
 - name: install fluidsynth and soundfonts
@@ -21,7 +23,16 @@
   package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
     - qmidiarp
+    - non-sequencer
   tags: ['sequencers']
+
+- name:
+  aur: name= {{ item }} user=aurman
+  with_items:
+    - hydrogen-git
+    - hydrogen-drumkits-flac
+  tags: [hydrogen,sequencers]
+
 
 #FIXME
 # TASK [studio : install hydrogen] *************************************************************************************************************************************************************

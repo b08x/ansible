@@ -6,7 +6,13 @@
 
 - include: rvm.yml
   tags: ['rvm']
-  when: workstation == true
+  when: use_rvm == true
+
+- include: utils.yml
+  tags: ['utils']
+
+# - include: zim.yml
+#   tags: ['zim']
 
 # - include: browsers.yml
 #   tags: ['browsers']
@@ -17,5 +23,3 @@
 # - include: media.yml
 #   tags: ['media']
 #
-# - include: zim.yml
-#   tags: ['zim']

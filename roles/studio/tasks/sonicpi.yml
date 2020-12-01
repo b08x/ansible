@@ -13,13 +13,11 @@
     - rtmidi
   tags: ['sonicpi']
 
-- aur:
-    use: yay
-    name:
-      - wkhtmltopdf-static
-  become: yes
-  become_user: aur_builder
-  tags: ['sonicpi']
+- name: install wkhtmltopdf
+  aur: name= {{ item }} user=aurman
+  with_items:
+    - wkhtmltopdf-static
+  tags: [sonicpi]
 
 - name: install runtime dependencies
   package: name={{ item }} state=present use="{{ package_manager }}"

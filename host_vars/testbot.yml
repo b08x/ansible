@@ -1,19 +1,18 @@
 ---
 
 hostname: testbot
-
-make_hard: False
-
+workstation: True
+sshd_port: 22
+sshd_allow_groups: b08x
+package_manager: community.general.pacman
+use_rvm: False
 docker_host: True
 docker_storage: /var/lib/docker
 
-sshd_port: 22
-sshd_allow_groups: b08x
-
 sysctl_ip_forward: False
 
-netdev: eth0
-
-package_manager: community.general.pacman
-
-workstation: True
+dotfiles:
+  url: git@github.com:b08x/dotfiles.git
+  branch: Main
+  destination: "{{ unix_admin.home }}/Workspace/dotfiles"
+  rcup_flags: -t profile -x README.md
