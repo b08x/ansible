@@ -7,14 +7,12 @@
     use: '{{ package_manager }}'
   with_items:
     - audacity
+  tags: [studio,daw]
 
-- name: install reaper,sws and ocenaudio
-  aur:
-    use: yay
-    name:
-      - ocenaudio
-      - reaper-bin
-      - sws
-  become: yes
-  become_user: aur_builder
-  tags: ['aur']
+- name: install reaper and stuff
+  aur: name= {{ item }} user=aurman
+  with_items:
+    - ocenaudio
+    - reaper-bin
+    - sws
+  tags: [studio,daw]

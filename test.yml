@@ -18,3 +18,4 @@
      - { role: ui, tags: ['ui'] }
      - { role: studio, tags: ['studio'] }
      - { role: workstation, tags: ['workstation'] }
+     - { role: dotfiles, tags: ['dotfiles'] }

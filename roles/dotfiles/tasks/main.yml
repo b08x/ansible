@@ -1,10 +1,10 @@
 ---
 
 - name: install rcm
-  package:
-    name: rcm
-    state: present
-    use: '{{ package_manager }}'
+  aur: name= {{ item }} user=aurman
+  with_items:
+    - rcm
+  tags: [rcm]
 
 - block:
 
@@ -28,7 +28,7 @@
     when: dotfiles is defined
 
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ unix_admin.name }}"
 
-- name: correct ownership of ssh config
-  command: chmod 600 {{ user.home }}/.ssh/config
+# - name: correct ownership of ssh config
+#   command: chmod 600 {{ user.home }}/.ssh/config

@@ -20,4 +20,5 @@
     - wofi
     - sway-alttab-bin
     - azote
+    - swayout
   tags: ['sway']

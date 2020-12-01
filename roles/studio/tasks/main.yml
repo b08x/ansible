@@ -30,16 +30,32 @@
     - zita-alsa-pcmi
     - jack_capture
     - sox
+  tags: [studio,audio]
 
-- aur:
-    use: yay
-    name:
-      - raysession-git
-      - jalv-select
-      - jack-keyboard
-  become: yes
-  become_user: aur_builder
-  tags: ['aur']
+- name: install visual packages
+  package:
+    name: {{ item }}
+    state: present
+    use: {{ package_manager }}
+  with_items:
+    - gpick
+  tags: [studio,visual]
+
+- name: install audio tools from aur
+  aur: name= {{ item }} user=aurman
+  with_items:
+    - raysession-git
+    - jalv-select
+    - jack-keyboard
+    - ffmulticonverter
+    - googler
+    - mpv-plugin-excerpt-git
+    - reaper-bin
+    - sws
+    - scala-music
+    - scala-music-scales
+    - unsilence
+  tags: [studio,audio]
 
 - include: deadbeef.yml
   tags: ['deadbeef']

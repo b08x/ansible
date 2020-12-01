@@ -23,6 +23,8 @@
     - bash-completion
     - privoxy
     - fd
+    - autofs
+    - bmenu
 # - aur:
 #     use: yay
 #     name:
