@@ -4,12 +4,20 @@
 # this will probably be redudant as this should be included with
 # in the base installation
 
-- name: install sway
-  package: >
-    name = '{{ item }}'
-    state = present
-    use = '{{ package_manager }}'
+# - name: install sway
+#   package: >
+#     name = '{{ item }}'
+#     state = present
+#     use = '{{ package_manager }}'
+#   with_items:
+#     -
+
+- name: install sway stuff from aur
+  aur: name={{ item }} user=aurman
   with_items:
     - sway
     - waybar
     - wofi
+    - sway-alttab-bin
+    - i3keys
+  tags: ['sway']

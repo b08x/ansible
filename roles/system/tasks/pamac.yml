@@ -1,14 +1,17 @@
 ---
 
-- user:
-    name: aur_builder
-    group: wheel
-    home: /tmp/aur_builder
-    tags: [package_manager]
+- name: New user for AUR management
+  user:
+    name: aurman
+    comment: "AUR manager"
+    shell: /bin/nologin
+    home: /var/lib/aurman
+    system: yes
+  tags: [package_manager]
 
 - lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
-    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    line: 'aurman ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: yes
     validate: 'visudo -cf %s'
     tags: [package_manager]
@@ -28,5 +31,5 @@
   community.general.pacman:
     update_cache: yes
     upgrade: yes
-  tags: [package_manager]    
+  tags: [package_manager]
   # when: os = arch

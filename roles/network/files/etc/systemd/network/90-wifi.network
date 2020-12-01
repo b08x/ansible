@@ -3,6 +3,7 @@ Type=wlan
 
 [Network]
 DHCP=yes
+LinkLocalAddressing=ipv4
 
 [DHCP]
 RouteMetric=2048
