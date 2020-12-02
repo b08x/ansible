@@ -8,7 +8,7 @@
     use: '{{ package_manager }}'
   with_items:
     - timeshift
-    - firefox
+    - firefox-bin
     - bat
     - terminator
     - htop

@@ -1,0 +1,9 @@
+---
+
+- name: finding information
+  package: name={{ item }} use={{ package_manager }} state=present
+  with_items:
+    - arch-wiki-man
+    - surfraw
+    - most #for viewing man pages in color
+  tags: [search]
