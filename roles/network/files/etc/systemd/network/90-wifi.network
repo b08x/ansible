@@ -2,8 +2,8 @@
 Type=wlan
 
 [Network]
-DHCP=yes
-LinkLocalAddressing=ipv4
+DHCP=ipv4
+LinkLocalAddressing=no
 
 [DHCP]
 RouteMetric=2048

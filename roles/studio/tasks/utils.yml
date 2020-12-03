@@ -1,10 +1,16 @@
 ---
 
-- name: install freqtweak
-  aur: name={{ item }} user=aurman
-  with_items:
-    - freqtweak
-  tags: [studio,effects]
+# failed: [lapbot] (item=freqtweak) => {"ansible_loop_var": "item", "changed": false,
+#  "item": "freqtweak", "msg":
+#  "failed to build package freqtweak, because: error: target not found: wxgtk2.8\nerror:
+#  target not found: libsigcpp1.2\n==> ERROR: 'pacman' failed to install missing dependencies.\n==>
+#   ERROR: Could not resolve all dependencies.\n"}
+
+# - name: install freqtweak
+#   aur: name={{ item }} user=aurman
+#   with_items:
+#     - freqtweak
+#   tags: [studio,effects]
 
 - name: install jaaa and japa
   aur: name={{ item }} user=aurman

@@ -1,0 +1,15 @@
+[Unit]
+Description=Studio autojack session daemon
+
+# Runs autojack which starts Studio audio in the same way the session
+# ended as well as providing a back end for ubuntustudio-controls for
+# changing various settings.
+BindsTo=multi-user.target
+Before=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/autojack
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

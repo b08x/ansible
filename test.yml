@@ -9,7 +9,7 @@
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:
-        var: ansible
+        var: ansible_facts
       tags: ['facts']
 
   roles:

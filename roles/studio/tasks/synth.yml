@@ -3,18 +3,17 @@
 - name: install synths
   package: name={{ item }} state=present use="{{ package_manager }}"
   with_items:
-    - whysynth-dssi
     - helm-synth
     - zynaddsubfx
   tags: ['synth']
 
-- name: install fluidsynth and soundfonts
-  package: name={{ item }} state=present use="{{ package_manager }}"
-  with_items:
-    - fluid-soundfont-gs
-    - fluid-soundfont-gm
-    - fluid-soundfont-common
-  tags: ['soundfonts']
+# - name: install fluidsynth and soundfonts
+#   package: name={{ item }} state=present use="{{ package_manager }}"
+#   with_items:
+#     - fluid-soundfont-gs
+#     - fluid-soundfont-gm
+#     - fluid-soundfont-common
+#   tags: ['soundfonts']
 
 #TODO task for fantasia
 #TODO build qsamplers
@@ -24,9 +23,11 @@
   with_items:
     - qmidiarp
     - non-sequencer
+    - qsampler
+    - jsampler
   tags: ['sequencers']
 
-- name:
+- name: install hydrogen and flac drumkits
   aur: name= {{ item }} user=aurman
   with_items:
     - hydrogen-git
