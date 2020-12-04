@@ -1,0 +1,7 @@
+# enable idle mode
+exec $idle
+
+# autostart background applications
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id mako
+exec --no-startup-id $help --autostart

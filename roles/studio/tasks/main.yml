@@ -27,6 +27,9 @@
     - jack_capture
     - sox
     - mixxx
+    - polyphone
+    - jack-keyboard
+
   tags: [studio,audio]
 
 - name: install visual packages
@@ -52,6 +55,7 @@
     - scala-music-scales
     - unsilence
     - sooperlooper
+    - konfyt    
   tags: [studio,audio]
 
 - include: deadbeef.yml
@@ -66,9 +70,6 @@
 
 - include: plugins.yml
   tags: ['plugins']
-
-# - include: sonicpi.yml
-#   tags: ['sonicpi']
 
 - include: utils.yml
   tags: ['audio_tools']

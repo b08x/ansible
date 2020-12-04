@@ -1,0 +1,2 @@
+# {{ ansible managed}}
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="{{ portable.idVendor }}", ATTRS{idProduct}=="{{ portable.idProduct }}", ACTION=="add", TAGS+="systemd", ENV{SYSTEMD_WANTS}=="autosync.service"

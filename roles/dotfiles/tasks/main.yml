@@ -9,7 +9,7 @@
 - block:
 
   - name: Clone user dotfiles
-    git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=no version={{ dotfiles.branch }}
+    git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=yes version={{ dotfiles.branch }}
     when: dotfiles is defined
 
     # TODO: add condition for host tags

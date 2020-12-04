@@ -17,7 +17,7 @@
   aur: name= {{ item }} user=aurman
   with_items:
     - wkhtmltopdf-static
-  tags: [sonicpi]
+  tags: [sonicpi']
 
 - name: install runtime dependencies
   package: name={{ item }} state=present use="{{ package_manager }}"

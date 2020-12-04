@@ -22,3 +22,13 @@ sshd_allow_groups: b08x
 sysctl_ip_forward: True
 
 package_manager: community.general.pacman
+
+portable:
+  uuid: 5732DF544868E675
+  mountpoint: /mnt/autosync
+  filesystem: ntfs
+  options: users,noauto
+  checks: 0,0
+  idVendor: 0bc2
+  idProduct: ac2d
+  disklabel: mediasync

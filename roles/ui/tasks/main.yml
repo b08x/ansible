@@ -19,10 +19,9 @@
 #  when: not compton_bin.stat.exists
 #  tags: ['compton']
 
-# - name: install lxappearance
-#   package: name={{ item }} state=present use="{{ package_manager }}"
-#   with_items:
-#     - lxappearance
-#     - oomox
-#     - librsvg2-tools
-#   tags: ['utilpkgs']
+- name: install lxappearance
+  package: name={{ item }} state=present use="{{ package_manager }}"
+  with_items:
+    - oomox
+    - keyboardlayouteditor-git
+  tags: ['utilpkgs']

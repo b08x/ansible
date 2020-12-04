@@ -1,0 +1,46 @@
+---
+
+- name: edit fstab to add portable drive
+  lineinfile:
+    path: /etc/fstab
+    line: 'UUID="{{ portable.uuid }}" {{ portable.mountpoint }} {{ portable.options }} {{ portable.checks }}'
+    create: no
+    backup: yes
+    tags: [fstab]
+
+- name: push autosync script
+  copy:
+    src: autosync.sh
+    dest: /usr/local/bin/autosync.sh
+    owner: root
+    group: root
+    mode: '0755'
+    backup: yes
+  tags: [autosync]
+
+- name: push default autosync service file
+  template: >
+    src=autosync.service.j2
+    dest=/etc/systemd/system/autosync.service
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: ['portable,autosync']
+
+- name: push udev rules to detect portable drive and trigger autosync service
+  template: >
+    src=99-local.rules.j2
+    dest=/etc/udev/rules.d/99-local.rules
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: ['portable,autosync']
+  register: result
+
+- name: Restart systemd-udev, also issue daemon-reload to pick up config changes
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: systemd-udev

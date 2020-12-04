@@ -15,4 +15,4 @@ dotfiles:
   url: git@github.com:b08x/dotfiles.git
   branch: Main
   destination: "{{ unix_admin.home }}/Workspace/dotfiles"
-  rcup_flags: -t profile -x README.md
+  rcup_flags: -t profile -x README.md -x .gitignore -x manage.rb
