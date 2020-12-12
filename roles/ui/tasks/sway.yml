@@ -38,16 +38,16 @@
     backup: yes
   tags: ['profiled']
 
-- name: push global sway configs
-  copy:
-    src: etc/sway/
-    dest: /etc/sway/
-    directory_mode: yes
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  tags: ['sway']
+#- name: push global sway configs
+#  copy:
+#    src: etc/sway/
+#    dest: /etc/sway/
+#    directory_mode: yes
+#    owner: root
+#    group: root
+#    mode: '0644'
+#    backup: yes
+#  tags: ['sway']
 
 - name: push greetd configs
   copy:
