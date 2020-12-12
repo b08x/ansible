@@ -3,12 +3,12 @@
 # add user
 # copy .ssh from user@bender:~/.ssh
 
-- lineinfile:
-    path: /etc/sudoers.d/11-unix_admin
-    line: 'b08x ALL=(ALL) NOPASSWD: ALL'
-    create: yes
-    validate: 'visudo -cf %s'
-  tags: [package_manager]
+# - lineinfile:
+#     path: /etc/sudoers.d/10-unix_admin
+#     line: 'b08x ALL=(ALL) NOPASSWD: ALL'
+#     create: yes
+#     validate: 'visudo -cf %s'
+#   tags: [package_manager]
 
 - name: create needed groups
   group: name={{ item.name }} state=present gid={{ item.gid }}

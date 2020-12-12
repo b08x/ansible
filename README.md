@@ -19,3 +19,10 @@ ansible-galaxy install kewlfft.aur
 # an atom search & replace
 #(package: \w+=)(\{\{ item \}\}) (state=present)
 #$1$2 $3 use="{{ package_manager }}"
+
+
+
+
+pamac install ansible
+git clone https://github.com/b08x/ansible.git
+copy /etc/skel/.config to /home/b08x/.config

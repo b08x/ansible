@@ -5,28 +5,28 @@
   tags: [accounts,user]
   # when: item != None
 
-- include: pamac.yml
-  tags: ['packages']
-  when: ansible_distribution == "Archlinux" and ansible_pkg_mgr == "pacman"
+# - include: pamac.yml
+#   tags: ['packages']
+#   when: ansible_distribution == "Archlinux" and ansible_pkg_mgr == "pacman"
 
 - include: install.yml
   tags: ['install']
+    #TODO update grub template
+    #- name: push default grub file
+    #  template: >
+    #    src=defaultgrub.j2
+    #    dest=/etc/default/grub
+    #    owner=0
+    #    group=0
+    #    mode=0644
+    #    backup=yes
+    #  tags: ['grub']
+    #  register: result
 
-- name: push default grub file
-  template: >
-    src=defaultgrub.j2
-    dest=/etc/default/grub
-    owner=0
-    group=0
-    mode=0644
-    backup=yes
-  tags: ['grub']
-  register: result
-
-- name: remake grub configs
-  command: update-grub
-  when: result.changed == True
-  tags: ['grub']
+    #- name: remake grub configs
+    #  command: update-grub
+    #  when: result.changed == True
+    #  tags: ['grub']
 
 - name: push systemd configs
   copy:

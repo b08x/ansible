@@ -1,7 +1,7 @@
 ---
 
 - name: install deadbeef
-  aur: name= {{ item }} user=aurman
+  aur: name= {{ item }} user="{{ unix_admin.name }}"
   with_items:
     - deadbeef-jack-git
     - deadbeef-plugin-customizabletb-gtk3-git

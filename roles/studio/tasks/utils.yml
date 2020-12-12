@@ -7,20 +7,20 @@
 #   ERROR: Could not resolve all dependencies.\n"}
 
 # - name: install freqtweak
-#   aur: name={{ item }} user=aurman
+#   aur: name={{ item }} user="{{ unix_admin.name }}"
 #   with_items:
 #     - freqtweak
 #   tags: [studio,effects]
 
 - name: install jaaa and japa
-  aur: name={{ item }} user=aurman
+  aur: name={{ item }} user="{{ unix_admin.name }}"
   with_items:
     - jaaa
     - japa
   tags: [studio,analsyis]
 
-- name: install obs
-  aur: name= {{ item }} user=aurman
-  with_items:
-    - obs-studio-wayland
-  tags: [obs]
+# - name: install obs
+#   aur: name= {{ item }} user="{{ unix_admin.name }}"
+#   with_items:
+#     - obs-studio-wayland
+#   tags: [obs]

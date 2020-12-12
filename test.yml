@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: intranet
+  hosts: lapbot
   collections:
     - community.general
 
@@ -13,7 +13,8 @@
       tags: ['facts']
 
   roles:
-     - { role: network, tags: ['network'] }
+     - { role: dotfiles, tags: ['dotfiles'] }
+       #     - { role: network, tags: ['network'] }
      - { role: system, tags: ['system'] }
      - { role: ui, tags: ['ui'] }
      - { role: studio, tags: ['studio'] }

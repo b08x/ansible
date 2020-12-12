@@ -1,7 +1,10 @@
 ---
 
+- include: pamac.yml
+  tags: [package_manager]
+
 - name: install rcm
-  aur: name= {{ item }} user=aurman
+  aur: name= {{ item }} user="{{ unix_admin.name }}"
   with_items:
     - rcm
   tags: [rcm]
@@ -24,6 +27,7 @@
   - name: Install profile
     command: rcup -v -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
     when: dotfiles is defined
+    tags: [profile]
 
   become: yes
   become_user: "{{ unix_admin.name }}"

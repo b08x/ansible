@@ -14,7 +14,7 @@
   tags: ['sonicpi']
 
 - name: install wkhtmltopdf
-  aur: name= {{ item }} user=aurman
+  aur: name= {{ item }} user="{{ unix_admin.name }}"
   with_items:
     - wkhtmltopdf-static
   tags: [sonicpi']

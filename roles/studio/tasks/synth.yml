@@ -17,14 +17,14 @@
   tags: ['sequencers']
 
 - name: install hydrogen and flac drumkits
-  aur: name= {{ item }} user=aurman
+  aur: name= {{ item }} user="{{ unix_admin.name }}"
   with_items:
     - hydrogen-git
     - hydrogen-drumkits-flac
   tags: [hydrogen,sequencers]
 
 - name: install konfyt
-  aur: name= {{ item }} user=aurman
+  aur: name= {{ item }} user="{{ unix_admin.name }}"
   with_items:
     - konfyt
   tags: ['samplers']

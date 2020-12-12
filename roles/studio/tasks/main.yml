@@ -1,12 +1,13 @@
 ---
 
+#TODO:
 - name: install audio packages
   package:
     name: "{{ item }}"
     state: present
     use: '{{ package_manager }}'
   with_items:
-    - jack2
+    # - jack2
     - a2jmidid
     - zita-ajbridge
     - realtime-privileges
@@ -28,8 +29,6 @@
     - sox
     - mixxx
     - polyphone
-    - jack-keyboard
-
   tags: [studio,audio]
 
 - name: install visual packages
@@ -42,7 +41,7 @@
   tags: [studio,visual]
 
 - name: install audio tools from aur
-  aur: name= {{ item }} user=aurman
+  aur: name= {{ item }} user="{{ unix_admin.name }}"
   with_items:
     - studio-controls-git
     - raysession-git
@@ -55,7 +54,6 @@
     - scala-music-scales
     - unsilence
     - sooperlooper
-    - konfyt    
   tags: [studio,audio]
 
 - include: deadbeef.yml
@@ -64,9 +62,21 @@
 - include: daw.yml
   tags: ['daw']
 
-- name: add user to audio and jackuser group
-  user: name={{ unix_admin.name }} groups=realtime append=yes
-  tags: ['realtime']
+- name: Get list of groups
+  shell: /usr/bin/getent group | awk -F":" '{print $1}'
+  register: etc_groups
+  tags: [debug]
+
+- name: print etc_groups
+  ansible.builtin.debug:
+    var: etc_groups
+  tags: [debug]
+
+#TODO:conditioal does not work
+# - name: add user to audio and jackuser group
+#   user: name="{{ unix_admin.name }}" groups=realtime append=yes
+#   when: realtime in etc_groups.stdout_lines
+#   tags: ['realtime']
 
 - include: plugins.yml
   tags: ['plugins']

@@ -4,27 +4,28 @@
 # this will probably be redudant as this should be included with
 # in the base installation
 
-# - name: install sway
-#   package: >
-#     name = '{{ item }}'
-#     state = present
-#     use = '{{ package_manager }}'
-#   with_items:
-#     -
+- name: install sway
+  package: >
+    name = '{{ item }}'
+    state = present
+    use = '{{ package_manager }}'
+  with_items:
+    - waybar
+    - swayidle
 
 - name: install sway stuff from aur
-  aur: name={{ item }} user=aurman
+  aur: name={{ item }} user={{ unix_admin.name }}
   with_items:
     - sway
-    - waybar
     - wofi
     - azote
     - swayout
-    - swayidle
     - swaylock-blur-bin
     - wlogout
     - gtk3-nocsd-git
-  tags: ['sway']
+    - greetd
+    - greetd-tuigreet
+  tags: ['swaypkgs']
 
 - name: push system env variables to profile.d directory
   copy:
@@ -47,3 +48,18 @@
     mode: '0644'
     backup: yes
   tags: ['sway']
+
+- name: push greetd configs
+  copy:
+    src: etc/greetd/
+    dest: /etc/greetd/
+    directory_mode: yes
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: ['greetd']
+
+- name: enable greetd service
+  systemd: enabled=yes state=started name=greetd
+  tags: ['greetd']
