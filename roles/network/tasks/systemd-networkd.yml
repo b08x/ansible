@@ -20,8 +20,8 @@
     backup=yes
   tags: [networkd]
 
-- name: disabled NetworkManager service
-  systemd: enabled=no state=stopped name=NetworkManager
+    #- name: disabled NetworkManager service
+    #  systemd: enabled=no state=stopped name=NetworkManager
 
 - name: enable networkd service
   systemd: enabled=yes state=started name=systemd-networkd

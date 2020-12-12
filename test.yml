@@ -14,7 +14,7 @@
 
   roles:
      - { role: dotfiles, tags: ['dotfiles'] }
-       #     - { role: network, tags: ['network'] }
+     - { role: network, tags: ['network'] }
      - { role: system, tags: ['system'] }
      - { role: ui, tags: ['ui'] }
      - { role: studio, tags: ['studio'] }

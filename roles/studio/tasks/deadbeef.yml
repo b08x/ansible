@@ -1,8 +1,9 @@
 ---
 
-- name: install deadbeef
-  aur: name= {{ item }} user="{{ unix_admin.name }}"
+- name: install deadbeef and plugins
+  shell: "pamac install --no-confirm {{ item }}"
   with_items:
+    - deadbeef
     - deadbeef-jack-git
     - deadbeef-plugin-customizabletb-gtk3-git
     - deadbeef-plugin-headerbar-gtk3-git
@@ -10,4 +11,9 @@
     - deadbeef-plugin-musical-spectrum-gtk3-git
     - deadbeef-plugin-spectrogram-gtk3-git
     - deadbeef-plugin-waveform-gtk3-git
-  tags: [studio,deadbeef]
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [studio,packages,deadbeef]

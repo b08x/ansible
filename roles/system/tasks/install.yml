@@ -1,11 +1,37 @@
 ---
 
 # packages to install on any system
-- name: install packages
-  package:
-    name: "{{ item }}"
-    state: present
-    use: '{{ package_manager }}'
+# - name: install packages
+#   package:
+#     name: "{{ item }}"
+#     state: present
+#     use: '{{ package_manager }}'
+#   with_items:
+#     - timeshift
+#     - bat
+#     - terminator
+#     - htop
+#     - barrier
+#     - rofi
+#     - samba
+#     - bind
+#     - zim
+#     - lsd
+#     - ranger
+#     - vim
+#     - bash-completion
+#     - privoxy
+#     - fd
+#     - autofs
+#
+# - name: install rcm
+#   aur: name= {{ item }} user={{ unix_admin.name }}
+#   with_items:
+#     - lnav
+#   tags: [system]
+
+- name: install essential packages
+  shell: "pamac install --no-confirm {{item}}"
   with_items:
     - timeshift
     - bat
@@ -23,9 +49,11 @@
     - privoxy
     - fd
     - autofs
-
-- name: install rcm
-  aur: name= {{ item }} user={{ unix_admin.name }}
-  with_items:
     - lnav
-  tags: [system]
+    - googler
+    - ripgrep-all
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: true
+  become_user: "{{ansible_env.SUDO_USER}}"

@@ -12,15 +12,19 @@
 #     - freqtweak
 #   tags: [studio,effects]
 
-- name: install jaaa and japa
-  aur: name={{ item }} user="{{ unix_admin.name }}"
-  with_items:
-    - jaaa
-    - japa
-  tags: [studio,analsyis]
-
 # - name: install obs
 #   aur: name= {{ item }} user="{{ unix_admin.name }}"
 #   with_items:
 #     - obs-studio-wayland
 #   tags: [obs]
+- name:
+  shell: "pamac install --no-confirm {{ item }}"
+  with_items:
+    - jaaa
+    - japa
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [studio,packages,analsyis]

@@ -8,6 +8,15 @@
 # - include: pamac.yml
 #   tags: ['packages']
 #   when: ansible_distribution == "Archlinux" and ansible_pkg_mgr == "pacman"
+- name: push polkit nopasswd rule
+  template: >
+    src=49-nopasswd_global.rules.j2
+    dest=/etc/polkit-1/rules.d/49-nopasswd_global.rules
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: [polkit,user]
 
 - include: install.yml
   tags: ['install']

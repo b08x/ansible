@@ -1,13 +1,9 @@
 ---
 
-#TODO:
 - name: install audio packages
-  package:
-    name: "{{ item }}"
-    state: present
-    use: '{{ package_manager }}'
+  shell: "pamac install --no-confirm {{ item }}"
   with_items:
-    # - jack2
+    - jack2
     - a2jmidid
     - zita-ajbridge
     - realtime-privileges
@@ -29,32 +25,43 @@
     - sox
     - mixxx
     - polyphone
-  tags: [studio,audio]
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [studio,packages,audio]
 
-- name: install visual packages
-  package:
-    name: "{{ item }}"
-    state: present
-    use: "{{ package_manager }}"
-  with_items:
-    - gpick
-  tags: [studio,visual]
-
-- name: install audio tools from aur
-  aur: name= {{ item }} user="{{ unix_admin.name }}"
+- name: install audio packages from aur
+  shell: "pamac build --no-confirm {{ item }}"
   with_items:
     - studio-controls-git
     - raysession-git
     - jalv-select
     - jack-keyboard
     - ffmulticonverter
-    - googler
-    - mpv-plugin-excerpt-git
     - scala-music
     - scala-music-scales
     - unsilence
     - sooperlooper
-  tags: [studio,audio]
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [studio,packages,aur,audio]
+
+- name: install visual packages
+  shell: "pamac install --no-confirm {{ item }}"
+  with_items:
+    - gpick
+    - mpv-plugin-excerpt-git
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [studio,packages,visual]
 
 - include: deadbeef.yml
   tags: ['deadbeef']

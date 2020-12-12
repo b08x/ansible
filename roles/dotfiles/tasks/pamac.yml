@@ -1,21 +1,7 @@
 ---
 
-# - name: New user for AUR management
-#   user:
-#     name: "{{ unix_admin.name }}"
-#     comment: "AUR manager"
-#     shell: /bin/nologin
-#     home: /var/lib/aurman
-#     system: yes
-#   tags: [package_manager]
-#
-# - lineinfile:
-#     path: /etc/sudoers.d/11-install-aur_builder
-#     line: '"{{ unix_admin.name }}" ALL=(ALL) NOPASSWD: /usr/bin/pacman'
-#     create: yes
-#     validate: 'visudo -cf %s'
-#   tags: [package_manager]
-
+- name: ensure pamac is installed
+  pacman: name=pamac state=present
 
 - lineinfile:
     path: /etc/sudoers.d/10-unix_admin

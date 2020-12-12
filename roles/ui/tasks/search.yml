@@ -1,9 +1,13 @@
 ---
 
-- name: finding information
-  package: name={{ item }} use={{ package_manager }} state=present
+- name: install essential packages
+  shell: "yes | pamac install {{item}}"
   with_items:
     - arch-wiki-man
     - surfraw
     - most #for viewing man pages in color
-  tags: [search]
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: true
+  become_user: "{{ansible_env.USER}}"

@@ -4,18 +4,11 @@
 # this will probably be redudant as this should be included with
 # in the base installation
 
-- name: install sway
-  package: >
-    name = '{{ item }}'
-    state = present
-    use = '{{ package_manager }}'
+- name: install essential packages
+  shell: "yes | pamac install {{item}}"
   with_items:
     - waybar
     - swayidle
-
-- name: install sway stuff from aur
-  aur: name={{ item }} user={{ unix_admin.name }}
-  with_items:
     - sway
     - wofi
     - azote
@@ -25,7 +18,34 @@
     - gtk3-nocsd-git
     - greetd
     - greetd-tuigreet
-  tags: ['swaypkgs']
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: true
+  become_user: "{{ansible_env.USER}}"
+
+#- name: install sway
+#  package: >
+#    name = '{{ item }}'
+#    state = present
+#    use = '{{ package_manager }}'
+#  with_items:
+#    - waybar
+#    - swayidle
+
+#- name: install sway stuff from aur
+#  aur: name={{ item }} user={{ unix_admin.name }}
+#  with_items:
+   # - sway
+   # - wofi
+   # - azote
+   # - swayout
+   # - swaylock-blur-bin
+   # - wlogout
+   # - gtk3-nocsd-git
+   # - greetd
+   # - greetd-tuigreet
+#  tags: ['swaypkgs']
 
 - name: push system env variables to profile.d directory
   copy:
@@ -61,5 +81,5 @@
   tags: ['greetd']
 
 - name: enable greetd service
-  systemd: enabled=yes state=started name=greetd
+  systemd: enabled=yes name=greetd
   tags: ['greetd']

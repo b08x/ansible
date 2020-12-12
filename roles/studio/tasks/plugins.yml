@@ -1,7 +1,7 @@
 ---
 
-- name: install ladspa and lv2 plugins
-  package: name={{ item }} state=present use="{{ package_manager }}"
+- name: install lv2,ladspa & vst plugins
+  shell: "pamac install --no-confirm {{ item }}"
   with_items:
     - ladspa
     - swh-plugins
@@ -9,4 +9,9 @@
     - x42-plugins
     - sfizz
     - iempluginsuite
-  tags: ['plugins']
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [studio,plugins]

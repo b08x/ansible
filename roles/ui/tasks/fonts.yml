@@ -27,22 +27,22 @@
 #       become_user: "{{ unix_admin.name }}"
 #       ignore_errors: True
 
-- name: install hack fonts
-  package: >
-    name={{ item }}
-    state=present
+
+- name: install fonts
+  shell: "yes | pamac install {{item}}"
   with_items:
     - ttf-hack
     - ttf-font-awesome
-  tags: ['fonts']
-
-- name: install other stuff from aur
-  aur: name={{ item }} user="{{ unix_admin.name }}"
-  with_items:
     - ttf-devicons
     - ttf-input
-  tags: ['fonts']
-
+    - otf-font-awesome-5-free
+    - nerd-fonts-iosevka
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: true
+  become_user: "{{ansible_env.USER}}"
+  tags: [fonts]
 
 #- name: install japanese lang support
 #  package: name={{ item }} state=present use="{{ package_manager }}"
