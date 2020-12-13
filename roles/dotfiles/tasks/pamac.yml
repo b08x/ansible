@@ -1,11 +1,11 @@
 ---
 
 - name: ensure pamac is installed
-  pacman: name=pamac state=present
+  pacman: name=pacaur state=present
 
 - lineinfile:
     path: /etc/sudoers.d/10-unix_admin
-    line: "'{{ unix_admin.name }}' ALL=(ALL) NOPASSWD: ALL"
+    line: "{{ unix_admin.name }} ALL=(ALL) NOPASSWD: ALL"
     create: yes
     validate: 'visudo -cf %s'
   tags: [user]
@@ -21,9 +21,21 @@
   tags: [package_manager]
   # when: os = arch
 
-- name: Run the equivalent of "pacman -Syu" as a separate step
-  community.general.pacman:
-    update_cache: yes
-    upgrade: yes
-  tags: [package_manager]
-  # when: os = arch
+- name: push pacaur
+  template: >
+    src=pacaur.j2
+    dest=/etc/xdg/pacaur/config
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: [pacaur]
+
+- name: update using pacaur
+  shell: "pacaur -Sc && -Syu"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [pacaur]

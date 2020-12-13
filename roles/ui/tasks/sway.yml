@@ -5,7 +5,7 @@
 # in the base installation
 
 - name: install essential packages
-  shell: "yes | pamac install {{item}}"
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - waybar
     - swayidle
@@ -18,34 +18,13 @@
     - gtk3-nocsd-git
     - greetd
     - greetd-tuigreet
+    - qt5-wayland
+    - qt5ct
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+  changed_when: "'Total Installed Size' in command_result.stdout"
   become: true
-  become_user: "{{ansible_env.USER}}"
-
-#- name: install sway
-#  package: >
-#    name = '{{ item }}'
-#    state = present
-#    use = '{{ package_manager }}'
-#  with_items:
-#    - waybar
-#    - swayidle
-
-#- name: install sway stuff from aur
-#  aur: name={{ item }} user={{ unix_admin.name }}
-#  with_items:
-   # - sway
-   # - wofi
-   # - azote
-   # - swayout
-   # - swaylock-blur-bin
-   # - wlogout
-   # - gtk3-nocsd-git
-   # - greetd
-   # - greetd-tuigreet
-#  tags: ['swaypkgs']
+  become_user: "{{ansible_env.SUDO_USER}}"
 
 - name: push system env variables to profile.d directory
   copy:
@@ -69,16 +48,26 @@
 #    backup: yes
 #  tags: ['sway']
 
-- name: push greetd configs
-  copy:
-    src: etc/greetd/
-    dest: /etc/greetd/
-    directory_mode: yes
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  tags: ['greetd']
+# - name: push greetd configs
+#   copy:
+#     src: etc/greetd/
+#     dest: /etc/greetd/
+#     directory_mode: yes
+#     owner: root
+#     group: root
+#     mode: '0644'
+#     backup: yes
+#   tags: ['greetd']
+
+- name: push greetd
+  template: >
+    src=etc/greetd/config.toml.j2
+    dest=/etc/greetd/config.toml
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: [greetd]
 
 - name: enable greetd service
   systemd: enabled=yes name=greetd

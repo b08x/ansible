@@ -27,11 +27,10 @@
 #       become_user: "{{ unix_admin.name }}"
 #       ignore_errors: True
 
-
 - name: install fonts
-  shell: "yes | pamac install {{item}}"
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
-    - ttf-hack
+    - nerd-fonts-hack
     - ttf-font-awesome
     - ttf-devicons
     - ttf-input
@@ -39,25 +38,7 @@
     - nerd-fonts-iosevka
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
-  become: true
-  become_user: "{{ansible_env.USER}}"
+  changed_when: "'Total Installed Size' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [fonts]
-
-#- name: install japanese lang support
-#  package: name={{ item }} state=present use="{{ package_manager }}"
-#  with_items:
-#    - langpacks-ja
-#    - vlgothic-fonts
-
-#- name: install hindi lang support
-#  package: name={{ item }} state=present use="{{ package_manager }}"
-#  with_items:
-#   - langpacks-hi
-#   - sarai-fonts
-
-#- name: install russian lang support
-#  package: name={{ item }} state=present use="{{ package_manager }}"
-#  with_items:
-#   - langpacks-ru
-#   - fonts-KOI8-R

@@ -1,11 +1,15 @@
 ---
 
 - name: install atom
-  package:
-    name: atom
-    state: present
-    use: '{{ package_manager }}'
-
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
+  with_items:
+    - atom
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'successfully' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [workstation,packages,atom]
 
 #TODO: this appears to install (or reinstall) the package regardless
 # if it already exists.
@@ -27,5 +31,6 @@
     - open-terminal-here
     - toolbar
     - ansible-snippets
+  tags: [workstation,packages,atom]
 
 #TODO: push atom config.cson and styles.css from rcm

@@ -1,37 +1,7 @@
 ---
 
-# packages to install on any system
-# - name: install packages
-#   package:
-#     name: "{{ item }}"
-#     state: present
-#     use: '{{ package_manager }}'
-#   with_items:
-#     - timeshift
-#     - bat
-#     - terminator
-#     - htop
-#     - barrier
-#     - rofi
-#     - samba
-#     - bind
-#     - zim
-#     - lsd
-#     - ranger
-#     - vim
-#     - bash-completion
-#     - privoxy
-#     - fd
-#     - autofs
-#
-# - name: install rcm
-#   aur: name= {{ item }} user={{ unix_admin.name }}
-#   with_items:
-#     - lnav
-#   tags: [system]
-
 - name: install essential packages
-  shell: "pamac install --no-confirm {{item}}"
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - timeshift
     - bat
@@ -52,8 +22,13 @@
     - lnav
     - googler
     - ripgrep-all
+    - mousepad
+    - cmake
+    - autoconf
+    - mlocate
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+  changed_when: "'Total Installed Size' in command_result.stdout"
   become: true
   become_user: "{{ansible_env.SUDO_USER}}"
+  tags: [system,packages,syspkgs]

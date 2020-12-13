@@ -1,19 +1,19 @@
 ---
 
 - name: install synths
-  shell: "pamac install --no-confirm {{ item }}"
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - helm-synth
     - zynaddsubfx
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+  changed_when: "'Total Installed Size' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [studio,packages,synths]
 
 - name: install samplers and sequencers
-  shell: "pamac install --no-confirm {{ item }}"
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - qmidiarp
     - non-sequencer
@@ -24,7 +24,7 @@
     - konfyt
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+  changed_when: "'Total Installed Size' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [studio,packages,samplers,sequencers]
