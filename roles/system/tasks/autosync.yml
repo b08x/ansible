@@ -16,7 +16,7 @@
     group: root
     mode: '0755'
     backup: yes
-  tags: [autosync]
+  tags: [autosyncscript]
 
 - name: push default autosync service file
   template: >
