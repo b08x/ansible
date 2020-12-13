@@ -1,7 +1,11 @@
 ---
 
 - name: ensure pamac is installed
-  pacman: name=pacaur state=present
+  pacman: name={{ item }} state=present
+  with_items:
+    - pacaur
+    - octopi
+  tags: [pkg_mgmt]
 
 - lineinfile:
     path: /etc/sudoers.d/10-unix_admin

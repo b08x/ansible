@@ -14,7 +14,7 @@
     - azote
     - swayout
     - swaylock-blur-bin
-    - wlogout
+      #    - wlogout # having an issue checking package key
     - gtk3-nocsd-git
     - greetd
     - greetd-tuigreet
@@ -22,7 +22,7 @@
     - qt5ct
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+  changed_when: "'installing' in command_result.stdout"
   become: true
   become_user: "{{ansible_env.SUDO_USER}}"
 
@@ -71,4 +71,5 @@
 
 - name: enable greetd service
   systemd: enabled=yes name=greetd
+  ignore_errors: true
   tags: ['greetd']

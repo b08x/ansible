@@ -1,3 +1,4 @@
 ---
 
-window_manger: awesome
+window_manger: sway
+pkgutils: false

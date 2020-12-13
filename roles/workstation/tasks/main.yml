@@ -14,8 +14,8 @@
 # - include: zim.yml
 #   tags: ['zim']
 
-# - include: browsers.yml
-#   tags: ['browsers']
+- include: browsers.yml
+  tags: ['browsers']
 #
 # - include: comm.yml
 #   tags: ['communication']

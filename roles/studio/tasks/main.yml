@@ -1,5 +1,5 @@
 ---
-
+#TODO: jack2 and jack are in conflict....
 - name: install audio packages
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
@@ -39,7 +39,8 @@
   tags: [studio,packages,audio]
 
 - name: install
-  shell: "pacaur -Sa --noedit --noconfirm {{ item }}"
+  #shell: "pacaur -Sa --noedit --noconfirm {{ item }}"
+  shell: "yay -Sya --noconfirm --needed {{ item }}"
   with_items:
      - studio-controls-git
      - raysession-git

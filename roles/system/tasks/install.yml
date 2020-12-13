@@ -7,6 +7,7 @@
     - bat
     - terminator
     - htop
+    - iotop
     - barrier
     - rofi
     - samba

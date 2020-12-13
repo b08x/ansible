@@ -1,12 +1,12 @@
 ---
 
-- name: install browsers
-  package: name={{ item }} state=present use="{{ package_manager }}"
+- name: install firefox
+  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
-    - w3m
-    - surf
-
-
-- name: install surfraw
-  package: name=surfraw state=present
-  tags: ['search']
+    - firefox
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  tags: [workstation,packages,web]

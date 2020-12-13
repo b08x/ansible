@@ -31,14 +31,14 @@
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - nerd-fonts-hack
-    - ttf-font-awesome
+      #    - ttf-font-awesome
     - ttf-devicons
     - ttf-input
     - otf-font-awesome-5-free
     - nerd-fonts-iosevka
   register: command_result
   failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [fonts]
