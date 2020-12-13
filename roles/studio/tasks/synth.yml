@@ -4,7 +4,7 @@
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - helm-synth
-    - zynaddsubfx
+    - zyn-fusion
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'Total Installed Size' in command_result.stdout"
