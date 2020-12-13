@@ -53,6 +53,17 @@
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [studio,packages,visual]
 
+- name: push autojack service file
+  copy:
+    src: usr/lib/systemd/user/studio.service
+    dest: /usr/lib/systemd/user/studio.service
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: [autojack]
+
 - include: deadbeef.yml
   tags: ['deadbeef']
 

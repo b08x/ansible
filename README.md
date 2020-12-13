@@ -12,8 +12,8 @@ base os configuration
 ## dotfiles
 
 # install ansible modules
-ansible-galaxy collection install community.general
-ansible-galaxy install kewlfft.aur
+#ansible-galaxy collection install community.general
+#ansible-galaxy install kewlfft.aur
 
 
 # an atom search & replace
@@ -25,4 +25,9 @@ ansible-galaxy install kewlfft.aur
 
 pamac install ansible
 git clone https://github.com/b08x/ansible.git
-copy /etc/skel/.config to /home/b08x/.config
+
+
+
+# TODO
+[] wpa_supplicant ssid & passphrase
+

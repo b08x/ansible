@@ -32,7 +32,7 @@
   tags: [pacaur]
 
 - name: update using pacaur
-  shell: "pacaur -Sc && -Syu"
+  shell: "pacaur --noconfirm -Sc && pacaur -Syu"
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'successfully' in command_result.stdout"

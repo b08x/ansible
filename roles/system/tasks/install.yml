@@ -26,6 +26,7 @@
     - cmake
     - autoconf
     - mlocate
+    - most
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'Total Installed Size' in command_result.stdout"
