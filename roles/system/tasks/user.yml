@@ -1,38 +1,51 @@
 ---
-#
-# add user
-# copy .ssh from user@bender:~/.ssh
 
-# - lineinfile:
-#     path: /etc/sudoers.d/10-unix_admin
-#     line: 'b08x ALL=(ALL) NOPASSWD: ALL'
-#     create: yes
-#     validate: 'visudo -cf %s'
-#   tags: [package_manager]
+#TODO: feel good about replacing the current keys on bender
+# - name: Copy Remote-To-Remote (from serverA to serverB)
+#   synchronize: src={{ unix_admin.home }}/.ssh dest={{ unix_admin.home }}/.ssh
+#   delegate_to: bender
 
-- name: create needed groups
+- name: check if file and/or directory exists
+  stat: "path=/etc/sudoers.d/10-unix_admin"
+  register: hazifile
+
+- lineinfile:
+    path: /etc/sudoers.d/10-unix_admin
+    line: 'b08x ALL=(ALL) NOPASSWD: ALL'
+    create: yes
+    validate: 'visudo -cf %s'
+  when: not hazifile.stat.exists
+  tags: [package_manager]
+
+- name: create user group(s)
   group: name={{ item.name }} state=present gid={{ item.gid }}
-  with_items: "{{ unix_groups }}"
+  with_items: "{{ user_groups }}"
 
-# - name: add user to remote hosts
-#   user: >
-#     name={{ unix_admin.name }}
-#     uid={{ unix_admin.uid }}
-#     group={{ unix_admin.primary_group }}
-#     groups={{ unix_admin.secondary_groups }}
-#     append=yes
-#     shell={{ unix_admin.shell }}
-#     comment={{ unix_admin.email }}
-#     state=present
-#     password={{ unix_admin.password }}
-#     update_password=on_create
-#   register: newuser_remote
+- name: create system groups
+  group: name={{ item }} state=present system=yes
+  with_items:
+    - docker
+    - lp
+    - storage
 
-# - hosts: serverB
-#   tasks:
-#    - name: Copy Remote-To-Remote (from serverA to serverB)
-#      synchronize: src={{ user.home }}/.ssh dest={{ user.home }}/.ssh
-#      delegate_to: bender
+- name: ensure I'm a user and belong to groups
+  user: >
+    name={{ unix_admin.name }}
+    uid={{ unix_admin.uid }}
+    group={{ unix_admin.primary_group }}
+    groups={{ unix_admin.secondary_groups }}
+    append=yes
+    state=present
+
+- name: push polkit nopasswd rule
+  template: >
+    src=49-nopasswd_global.rules.j2
+    dest=/etc/polkit-1/rules.d/49-nopasswd_global.rules
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: [polkit,user]
 #
 #
 # ###todo: if arch: network if rpi: netdev

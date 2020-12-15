@@ -16,13 +16,13 @@
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - qmidiarp
-    - non-sequencer
+    # - non-sequencer #package conflicts with ntk-git
     - qsampler
     - jsampler
     - hydrogen-git
       #    - hydrogen-drumkits-flac # install sound files from db/bender/sonony
     - konfyt
-    - sonic-pit
+    - sonic-pi
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'Total Installed Size' in command_result.stdout"

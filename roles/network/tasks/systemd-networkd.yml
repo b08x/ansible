@@ -1,15 +1,15 @@
 ---
 
-#- name: push resolv.conf
-#  template: >
-#    src=etc/resolv.conf.j2
-#    dest=/etc/resolv.conf
-#    mode=0644
-#    owner=0
-#    group=0
-#    backup=yes
-#  tags: [resolv]
-#TODO: systemd-resolvd
+- name: push resolv.conf
+  template: >
+   src=etc/systemd/resolved.conf.j2
+   dest=/etc/systemd/resolved.conf
+   mode=0644
+   owner=0
+   group=0
+   backup=yes
+  tags: [resolved]
+
 - name: copy systemd-networkd files
   copy: >
     src=etc/systemd/network/
@@ -20,8 +20,9 @@
     backup=yes
   tags: [networkd]
 
-    #- name: disabled NetworkManager service
-    #  systemd: enabled=no state=stopped name=NetworkManager
-
 - name: enable networkd service
   systemd: enabled=yes state=started name=systemd-networkd
+
+- name: enable resolved service
+  systemd: enabled=yes state=started daemon_reload=yes name=systemd-resolved
+  tags: [resolved]

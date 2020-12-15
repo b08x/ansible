@@ -1,8 +1,5 @@
 ---
 
-- include: pamac.yml
-  tags: [package_manager]
-
 - name: install essential packages
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
@@ -16,28 +13,26 @@
   become: true
   become_user: "{{ansible_env.SUDO_USER}}"
 
-# - block:
-#
-#   - name: Clone user dotfiles
-#     git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=yes version={{ dotfiles.branch }}
-#     when: dotfiles is defined
-#
-#     # TODO: add condition for host tags
-#
-#   - name: push rcrc
-#     template: >
-#       src=rcrc.j2
-#       dest="{{ unix_admin.home}}/.rcrc"
-#       mode=0644
-#       backup=yes
-#
-#   - name: Install profile
-#     command: rcup -v -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
-#     when: dotfiles is defined
-#     tags: [profile]
-#
-#   become: yes
-#   become_user: "{{ansible_env.USER}}"
+- block:
+
+  - name: Clone user dotfiles
+    git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=yes force=yes version={{ dotfiles.branch }}
+    when: dotfiles is defined
+
+  - name: push rcrc
+    template: >
+      src=rcrc.j2
+      dest="{{ unix_admin.home}}/.rcrc"
+      mode=0644
+      backup=yes
+
+  - name: Install profile
+    command: rcup -v -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
+    when: dotfiles is defined
+    tags: [profile]
+
+  become: yes
+  become_user: "{{ansible_env.USER}}"
 
 # - name: correct ownership of ssh config
 #   command: chmod 600 {{ user.home }}/.ssh/config

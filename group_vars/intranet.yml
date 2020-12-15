@@ -7,6 +7,3 @@ temp_dir: /tmp
 gnupg:
   enable_agent: False
   emulate_ssh: False
-
-domain: simulation46a.org
-nameserver01: 192.168.36.3

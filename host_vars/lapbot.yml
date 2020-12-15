@@ -12,7 +12,7 @@ sshd_allow_groups: b08x
 
 sysctl_ip_forward: False
 
-package_manager: community.general.pacman
+# package_manager: community.general.pacman
 
 workstation: True
 

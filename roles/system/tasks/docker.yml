@@ -1,16 +1,19 @@
 ---
 
-- name: install fonts
+- name: install docker stuff
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
-    - nerd-fonts-hack
-    - otf-font-awesome
-    - ttf-devicons
-    - ttf-input
-    - nerd-fonts-iosevka
+    - docker
+    - docker-compose
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [fonts]
+  tags: [docker,packages]
+
+- name: enable and/or start docker
+  systemd: enabled=yes state=started daemon_reload=yes name={{ item }}
+  with_items:
+    - docker
+  tags: [docker,systemd]

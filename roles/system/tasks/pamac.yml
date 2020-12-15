@@ -5,14 +5,8 @@
   with_items:
     - pacaur
     - octopi
+    - pamac
   tags: [pkg_mgmt]
-
-- lineinfile:
-    path: /etc/sudoers.d/10-unix_admin
-    line: "{{ unix_admin.name }} ALL=(ALL) NOPASSWD: ALL"
-    create: yes
-    validate: 'visudo -cf %s'
-  tags: [user]
 
 - name: push pamac conf with aur enabled
   template: >

@@ -2,9 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: intranet
-  collections:
-    - community.general
+  hosts: laptops
 
   tasks:
     - name: Print all available facts

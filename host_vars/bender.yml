@@ -21,7 +21,7 @@ sshd_allow_groups: b08x
 
 sysctl_ip_forward: True
 
-package_manager: community.general.pacman
+# package_manager: community.general.pacman
 
 portable:
   uuid: 5732DF544868E675
