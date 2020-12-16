@@ -1,0 +1,20 @@
+---
+
+- name: create directory folder if it doesn't already exist
+  file:
+    path: /mnt/bender
+    state: directory
+    mode: 0755
+
+- name: push autofs configs
+  copy:
+    src: etc/autofs/
+    dest: /etc/autofs/
+    directory_mode: yes
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: enable and/or start autofs
+  systemd: enabled=yes state=started name=autofs
