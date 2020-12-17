@@ -4,6 +4,7 @@
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:
     - atom
+    - ruby-rubocop
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'successfully' in command_result.stdout"

@@ -1,0 +1,16 @@
+---
+
+- name: setup
+  gather_facts: yes
+  hosts: ninjabot
+
+  tasks:
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
+      tags: ['facts']
+
+  roles:
+     - { role: system, tags: ['system'] }
+     - { role: ui, tags: ['ui'] }
+     - { role: workstation, tags: ['workstation'] }

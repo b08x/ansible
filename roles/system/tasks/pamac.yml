@@ -1,13 +1,5 @@
 ---
 
-- name: ensure pamac is installed
-  pacman: name={{ item }} state=present
-  with_items:
-    - pacaur
-    - octopi
-    - pamac
-  tags: [packages]
-
 - name: push pamac conf with aur enabled
   template: >
     src=etc/pamac.conf.j2
@@ -28,6 +20,14 @@
     group=0
     backup=yes
   tags: [etc]
+
+- name: ensure pamac is installed
+  pacman: name={{ item }} state=present
+  with_items:
+    - pacaur
+    - octopi
+    - pamac
+  tags: [packages]
 
 - name: update using pacaur
   shell: "pacaur --noconfirm -Sc && pacaur -Syu"
