@@ -6,28 +6,28 @@
     - pacaur
     - octopi
     - pamac
-  tags: [pkg_mgmt]
+  tags: [packages]
 
 - name: push pamac conf with aur enabled
   template: >
-    src=pamac.conf.j2
+    src=etc/pamac.conf.j2
     dest=/etc/pamac.conf
     mode=0644
     owner=0
     group=0
     backup=yes
-  tags: [package_manager]
+  tags: [etc]
   # when: os = arch
 
 - name: push pacaur
   template: >
-    src=pacaur.j2
+    src=etc/xdg/pacaur.j2
     dest=/etc/xdg/pacaur/config
     mode=0644
     owner=0
     group=0
     backup=yes
-  tags: [pacaur]
+  tags: [etc]
 
 - name: update using pacaur
   shell: "pacaur --noconfirm -Sc && pacaur -Syu"
@@ -36,4 +36,4 @@
   changed_when: "'successfully' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [pacaur]
+  tags: [packages]

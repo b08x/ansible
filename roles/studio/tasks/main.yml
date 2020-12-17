@@ -31,27 +31,14 @@
     - scala-music
     - unsilence
     - sooperlooper
+    - touchosc-editor
+    # - raysession-git
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [studio,packages,audio]
-
-- name: install
-  #shell: "pacaur -Sa --noedit --noconfirm {{ item }}"
-  shell: "yay -Sya --noconfirm --needed {{ item }}"
-  with_items:
-     - studio-controls-git
-     - raysession-git
-     - touchosc-editor
-     # - scala-music-scales
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
-  become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,sessionMgmt]
 
 - name: install visual packages
   shell: "pacaur -S --noedit --noconfirm --needed {{ item }}"
@@ -66,16 +53,22 @@
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [studio,packages,visual]
 
-- name: push autojack service file
-  copy:
-    src: usr/lib/systemd/user/studio.service
-    dest: /usr/lib/systemd/user/studio.service
-    directory_mode: no
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  tags: [autojack]
+
+#TODO: the second which is in the soundbot repo...
+# - name: push soundbot systemd file
+#   copy:
+#     src: usr/lib/systemd/user/soundbot.service
+#     dest: /usr/lib/systemd/user/soundbot.service
+#     directory_mode: no
+#     owner: root
+#     group: root
+#     mode: '0644'
+#     backup: yes
+#   tags: ['soundbot']
+#
+# - name: enable and/or start soundbot.service
+#   systemd: user=yes name=soundbot enabled=yes state=started daemon_reload=yes
+#   tags: ['soundbot']
 
 - include: deadbeef.yml
   tags: ['deadbeef']
@@ -107,16 +100,3 @@
 
 - include: synth.yml
   tags: ['synth']
-
-#include: zita.yml
-#ptags: ['zita']
-
-#- include: linuxsampler.yml
-#  tags: ['linuxsampler']
-
-# - include: effects.yml
-#   tags: ['effects']
-#
-# - include: score.yml
-#   tags: ['abc']
-#

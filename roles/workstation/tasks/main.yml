@@ -11,5 +11,5 @@
 - include: browsers.yml
   tags: ['browsers']
 
-- include: autofs.yml
-  tags: ['autofs']
+- include: printer.yml
+  tags: ['printer']

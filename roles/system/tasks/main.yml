@@ -2,11 +2,11 @@
 
 - include: user.yml
   # with_items: "{{ unix_users }}"
-  tags: [accounts,user]
+  tags: ['accounts,user']
   # when: item != None
 
 - include: pamac.yml
-  tags: [packages]
+  tags: ['packages']
 
 - include: install.yml
   tags: ['install']
@@ -14,6 +14,13 @@
 - include: docker.yml
   tags: ['docker']
   when: docker_host == True
+
+- include: autofs.yml
+  tags: ['autofs']
+
+- include: autosync.yml
+  tags: ['autosync']
+  when: portable is defined
 
 - name: push default grub file
   template: >
@@ -40,8 +47,4 @@
     group: root
     mode: '0644'
     backup: yes
-  tags: [systemd,logs]
-
-- include: autosync.yml
-  tags: [autosync]
-  when: portable is defined
+  tags: ['systemd,logs']

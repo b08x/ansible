@@ -7,5 +7,5 @@
 [intranet]
 bender ansible_user=b08x ansible_become=true
 
-[laptops]
+[dev]
 lapbot ansible_connection=local ansible_user=b08x ansible_become=true

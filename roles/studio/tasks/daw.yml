@@ -13,7 +13,7 @@
   changed_when: "'Total Installed Size' in command_result.stdout"
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,daw]
+  tags: [packages,daw]
 
 #TODO: build reaper / sws seperately
 # https://github.com/reaper-oss/sws/wiki/Building-the-SWS-Extension

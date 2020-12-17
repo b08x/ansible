@@ -1,9 +1,0 @@
----
-
-local_src_dir: "{{ user.home }}/Downloads/source"
-local_bin_dir: "{{ user.home }}/bin"
-temp_dir: /tmp
-
-gnupg:
-  enable_agent: False
-  emulate_ssh: False

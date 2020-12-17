@@ -11,9 +11,7 @@ base os configuration
 
 ## dotfiles
 
-# install ansible modules
-#ansible-galaxy collection install community.general
-#ansible-galaxy install kewlfft.aur
+
 
 
 # an atom search & replace
@@ -30,4 +28,3 @@ git clone https://github.com/b08x/ansible.git
 
 # TODO
 [] wpa_supplicant ssid & passphrase
-
