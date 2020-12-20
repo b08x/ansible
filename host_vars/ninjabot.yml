@@ -17,7 +17,7 @@ rvm1_user: 'b08x'
 
 kvmhost: False
 
-docker_host: False
+docker_host: True
 docker_storage: /var/lib/docker
 
 nvidiacard: False
@@ -42,3 +42,11 @@ user:
 
 netdev: eth0
 nameservers: [ "208.67.222.222", "208.67.220.220" ]
+
+workstation: True
+
+dotfiles:
+  url: git@github.com:b08x/dotfiles.git
+  branch: main
+  destination: "{{ unix_admin.home }}/Workspace/dotfiles"
+  rcup_flags: -t profile -t atom -t ranger -t rofi -t sway -t terminator -t vim -t zim -x README.md -x rcrc -x *_bak -x manage.rb

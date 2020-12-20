@@ -4,7 +4,6 @@
 # Details may be found in the autofs(5) manpage
 
 archive		-fstype=nfs	bender:/srv/archive
-share		-fstype=nfs	bender:/srv/share
 library		-fstype=nfs	bender:/srv/library
 
 # the following entries are samples to pique your imagination

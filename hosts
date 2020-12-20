@@ -6,6 +6,6 @@
 
 [intranet]
 bender ansible_user=b08x ansible_become=true
-
+ninjabot ansible_user=b08x ansible_become=true
 [dev]
 lapbot ansible_connection=local ansible_user=b08x ansible_become=true
