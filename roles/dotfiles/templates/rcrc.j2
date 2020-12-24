@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 COPY_ALWAYS="ssh/id_* weechat/* netrc"
-COPY_ALWAYS="*"
+#COPY_ALWAYS="*"
 DOTFILES_DIRS="{{ dotfiles.destination }}"
 EXCLUDES="irbrc *:*pycache* dotfiles:python*"
 HOSTNAME="{{ ansible_hostname }}"

@@ -32,7 +32,7 @@
     tags: [profile]
 
   become: yes
-  become_user: "{{ansible_env.USER}}"
+  become_user: "{{ansible_env.SUDO_USER}}"
 
 # - name: correct ownership of ssh config
 #   command: chmod 600 {{ user.home }}/.ssh/config

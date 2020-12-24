@@ -21,6 +21,7 @@
     - qt5-wayland
     - qt5ct
     - wlrobs
+    - pywal-git
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'installing' in command_result.stdout"
