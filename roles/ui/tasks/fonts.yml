@@ -1,16 +1,10 @@
 ---
 
-- name: install fonts
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - nerd-fonts-hack
-    - otf-font-awesome
-    - ttf-devicons
-    - ttf-input
-    - nerd-fonts-iosevka
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+- name: install these fonts
+  aur:
+    use: pacaur
+    name: "{{ fonts }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [fonts]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

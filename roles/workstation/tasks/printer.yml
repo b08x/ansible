@@ -1,15 +1,15 @@
 ---
 
 - name: install printer drivers
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - epson-inkjet-printer-escpr
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+  aur:
+    use: pacaur
+    name: "{{ printer_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [packages]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['printer']
+  when: printers is defined
 
 - name: enable and/or start cups
   systemd: enabled=yes state=started name=cups
+  tags: ['printer']

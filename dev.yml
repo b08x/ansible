@@ -7,8 +7,34 @@
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:
-        var: ansible_facts
+        var: ansible_mounts
       tags: ['facts']
+
+    # - name: list mounts
+    #   ansible.builtin.debug:
+    #     msg: "Mount Point {{item.mount}} is at {{item.fstype}}"
+    #   loop: "{{ansible_mounts}}"
+    #   tags: ['mounts']
+    #
+    # - name: register filesystem types
+    #   ansible.builtin.setup:
+    #     filter: ansible_mounts
+    #   register: fstypes
+    #   tags: ['fstypes']
+
+    # - name: gather list of installed packages
+    #   shell: "pamac list --installed | awk '{print $1}'"
+    #   args:
+    #     executable: /bin/bash
+    #   become: yes
+    #   become_user: "{{ unix_admin.name }}"
+    #   register: installed_packages
+    #   tags: ['packages']
+    #
+    # - name: Print all available facts
+    #   ansible.builtin.debug:
+    #     var: installed_packages
+    #   tags: ['test']
 
   roles:
      - { role: network, tags: ['network'] }

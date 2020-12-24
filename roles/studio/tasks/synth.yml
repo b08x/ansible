@@ -1,31 +1,19 @@
 ---
 
 - name: install synths
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - helm-synth
-    - zyn-fusion
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+  aur:
+    use: pacaur
+    name: "{{ synth_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,synths]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
-- name: install samplers and sequencers
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - qmidiarp
-    # - non-sequencer #package conflicts with ntk-git
-    - qsampler
-    - jsampler
-    - hydrogen-git
-      #    - hydrogen-drumkits-flac # install sound files from db/bender/sonony
-    - konfyt
-    - sonic-pi
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+- name: install samplers & sequencers
+  aur:
+    use: pacaur
+    name: "{{ sands_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,samplers,sequencers]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

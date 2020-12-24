@@ -1,21 +1,19 @@
 ---
 
-- name: install
-  shell: "pacaur -S --noedit --noconfirm --needed {{ item }}"
-  with_items:
-    - wkhtmltopdf-static
-    - sonic-pi
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+- name: install sonic-pi
+  aur:
+    use: pacaur
+    name: "{{ sonic_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
 - name: install sonic-pi tool
   shell: cargo install --git https://github.com/syncopatedstudios/sonic-pi-tool.git --force
   args:
     executable: /bin/bash
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
+  become_user: "{{ unix_admin.name }}"
   ignore_errors: False
   tags: ['sonicpitool']

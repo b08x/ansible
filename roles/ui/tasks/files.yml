@@ -1,9 +1,0 @@
----
-
-- name: install graphical file manager
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - pcmanfm
-    - pcmanfm-hardlinkcopy
-    - xarchiver
-  tags: [file_manager]

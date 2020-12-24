@@ -21,16 +21,6 @@ docker_storage: /var/lib/docker
 sshd_port: 22
 sshd_allow_groups: b08x
 
-user:
-  name: b08x
-  uid: 1000
-  gid: 1000
-  group: b08x
-  shell: /bin/bash
-  email: rwpannick@gmail.com
-  home: /home/b08x
-  password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
-
 dotfiles:
   url: "git@github.com:b08x/dotfiles"
   branch: main

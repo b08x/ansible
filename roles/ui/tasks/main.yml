@@ -6,15 +6,14 @@
 - include: fonts.yml
   tags: ['fonts']
 
-- name: install some utils
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - oomox
-    - keyboardlayouteditor-git
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+- include: desktop.yml
+  tags: ['desktop']
+
+- name: install themes
+  aur:
+    use: pacaur
+    name: "{{ theme_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [ui,packages,utils]
-  when: pkgutils == true
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

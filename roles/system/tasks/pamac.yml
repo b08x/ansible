@@ -1,5 +1,17 @@
 ---
 
+- name: clone arch package manager plugin
+  git: >
+    repo=https://github.com/kewlfft/ansible-aur.git
+    dest={{ unix_admin.home}}/.ansible/plugins/modules/aur
+    accept_hostkey=yes
+    clone=yes
+    update=yes
+    force=yes
+  become: yes
+  become_user: "{{ unix_admin.name }}"
+  tags: ['arch_pkgs']
+
 - name: push pamac conf with aur enabled
   template: >
     src=etc/pamac.conf.j2
@@ -8,10 +20,9 @@
     owner=0
     group=0
     backup=yes
-  tags: [etc]
-  # when: os = arch
+  tags: ['arch_pkgs', 'configs']
 
-- name: push pacaur
+- name: push pacaur config
   template: >
     src=etc/xdg/pacaur.j2
     dest=/etc/xdg/pacaur/config
@@ -19,23 +30,18 @@
     owner=0
     group=0
     backup=yes
-  tags: [etc]
+  tags: ['arch_pkgs', 'configs']
 
-- name: ensure pamac is installed
-  pacman: name={{ item }} state=present
-  with_items:
-    - pacaur
-    - octopi
-    - pamac
-  tags: [packages]
-  when: initial_install == True
+- name: get list of installed packages
+  shell: "pacman -Qet | awk '{print $1}'"
+  register: installed_packages
+  tags: ['arch_pkgs']
 
-- name: update using pacaur
-  shell: "pacaur --noconfirm -Sc && pacaur -Syu"
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+- name: install these packagemanagers
+  aur:
+    use: auto
+    name: "{{ packagemanagers }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [packages]
-  when: update == True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['arch_pkgs']

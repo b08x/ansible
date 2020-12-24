@@ -1,3 +1,52 @@
 ---
 
 docker_host: False
+
+subvolumes:
+  - name: root
+    path: "/"
+  - name: home
+    path: "/home"
+
+num_of_snaps_to_keep: 20
+
+packagemanagers:
+  - pacaur
+  - octopi
+  - pamac
+
+base_packages:
+  - timeshift
+  - bat
+  - terminator
+  - htop
+  - iotop
+  - barrier
+  - rofi
+  - samba
+  - bind
+  - zim
+  - lsd
+  - ranger
+  - vim
+  - bash-completion
+  - privoxy
+  - fd
+  - autofs
+  - lnav
+  - googler
+  - ripgrep-all
+  - mousepad
+  - cmake
+  - autoconf
+  - mlocate
+  - most
+  - git-lfs
+
+snapper_pkgs:
+  - snapper
+  - snap-pac-grub
+
+docker_pkgs:
+  - docker
+  - docker-compose

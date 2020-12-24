@@ -17,14 +17,12 @@
 #   with_items:
 #     - obs-studio-wayland
 #   tags: [obs]
-- name:
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - jaaa
-    - japa
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+
+- name: install some utility/analysis packages
+  aur:
+    use: pacaur
+    name: "{{ util_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,analsyis]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

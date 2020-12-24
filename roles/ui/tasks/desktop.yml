@@ -1,9 +1,9 @@
 ---
 
-- name: install pulseaudio stuffs
+- name: install file managers
   aur:
     use: pacaur
-    name: "{{ pulse_pkgs }}"
+    name: "{{ filemanagers }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"

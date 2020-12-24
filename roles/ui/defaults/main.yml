@@ -2,3 +2,50 @@
 
 window_manger: sway
 pkgutils: false
+
+tuigreet: false
+
+# ui_pkgs:
+
+filemanagers:
+  - pcmanfm
+  - pcmanfm-hardlinkcopy
+  - xarchiver
+
+fonts:
+  - nerd-fonts-hack
+  - otf-font-awesome
+  - ttf-devicons
+  - ttf-input
+  - nerd-fonts-iosevka
+
+misc_pkgs:
+  - oomox
+  - keyboardlayouteditor-git
+
+search_pkgs:
+  - arch-wiki-man
+  - surfraw
+  - most #for viewing man pages in color
+
+sway_pkgs:
+  - waybar
+  - swayidle
+  - sway
+  - wofi
+  - azote
+  - swayout
+  - swaylock-blur-bin
+  - gtk3-nocsd-git
+  - greetd
+  - greetd-tuigreet
+  - qt5-wayland
+  - qt5ct
+  - wlrobs
+  - pywal-git
+  - wlogout
+
+theme_pkgs:
+  - vimix-icon-theme
+  - vimix-gtk-themes
+  - vimix-cursors

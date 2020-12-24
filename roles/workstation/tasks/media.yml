@@ -1,39 +1,19 @@
 ---
 
-- name: install codecs
-  package: name={{ item }} state=present use="{{ package_manager }}"
-  with_items:
-    - amrnb
-    - amrwb
-    - faac
-    - faad2
-    - flac
-    - lame
-    - libdca
-    - libmad
-    - libmatroska
-    - x264
-    - x265
-    - xvidcore
-    - ffmpeg
-    - ffmpeg-libs
-    - ffmpeg-devel
-  when: rpmfusionst.stat.exists
+- name: push bluray decoder thingy
+  copy:
+    src: config/aacs
+    dest: "{{ unix_admin.home }}/.config/aacs"
+    directory_mode: yes
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['bluray']
 
-# maybe: https://github.com/mps-youtube/mps-youtube
-
-# - name: install mpv
-#   package: name=mpv state=present
-#   tags: ['video', 'mpv']
-
-- name: install vlc
-  package: name=vlc state=present
-  tags: ['video', 'vlc']
-
-- name: install youtube-dl
-  package: name=youtube-dl state=present
-  tags: ['youtube-dl']
-
-- name: install transmission-cli
-  package: name=transmission-cli state=present
-  tags: ['transmission-cli']
+- name: install these packages
+  aur:
+    use: pacaur
+    name: {{ media_pkgs }}
+    state: present
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

@@ -1,19 +1,13 @@
 ---
 
-- name: install daw realted software
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - audacity
-    - ocenaudio
-    # - reaper-bin
-    # - sws
-    - non-mixer-git
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+- name: install digital audio workstation stuff
+  aur:
+    use: pacaur
+    name: "{{ daw_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [packages,daw]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
 #TODO: build reaper / sws seperately
 # https://github.com/reaper-oss/sws/wiki/Building-the-SWS-Extension

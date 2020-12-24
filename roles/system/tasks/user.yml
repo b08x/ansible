@@ -25,7 +25,6 @@
 - name: create system groups
   group: name={{ item }} state=present system=yes
   with_items:
-    - docker
     - lp
     - storage
   when: sysgroups is defined
@@ -49,12 +48,3 @@
     mode=0644
     backup=yes
   tags: [polkit,user]
-#
-#
-# ###todo: if arch: network if rpi: netdev
-# - name: add user to network group
-#   user:
-#     name: {{ unix_admin.name }}
-#     shell: /bin/bash
-#     groups: network
-#     append: yes

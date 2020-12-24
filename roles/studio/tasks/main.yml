@@ -1,74 +1,22 @@
 ---
 #TODO: jack2 and jack are in conflict....
-- name: install audio packages
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - jack2
-    - a2jmidid
-    - zita-ajbridge
-    - realtime-privileges
-    - njconnect
-    - patchage
-    - jacktrip
-    - carla
-    - lv2
-    - alsa-card-profiles
-    - alsa-firmware
-    - alsa-lib
-    - alsa-plugins
-    - alsa-tools
-    - alsa-topology-conf
-    - alsa-ucm-conf
-    - alsa-utils
-    - zita-alsa-pcmi
-    - jack_capture
-    - sox
-    - mixxx
-    - polyphone
-    - jalv-select
-    - jack-keyboard
-    - ffmulticonverter
-    - scala-music
-    - unsilence
-    - sooperlooper
-    - touchosc-editor
-    # - raysession-git
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+- name: install base audio
+  aur:
+    use: pacaur
+    name: "{{ audio_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,audio]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
-- name: install visual packages
-  shell: "pacaur -S --noedit --noconfirm --needed {{ item }}"
-  with_items:
-    - gpick
-    - celluloid
-    - mpv-plugin-excerpt-git
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+- name: install video stuff
+  aur:
+    use: pacaur
+    name: "{{ video_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,visual]
-
-
-#TODO: the second which is in the soundbot repo...
-# - name: push soundbot systemd file
-#   copy:
-#     src: usr/lib/systemd/user/soundbot.service
-#     dest: /usr/lib/systemd/user/soundbot.service
-#     directory_mode: no
-#     owner: root
-#     group: root
-#     mode: '0644'
-#     backup: yes
-#   tags: ['soundbot']
-#
-# - name: enable and/or start soundbot.service
-#   systemd: user=yes name=soundbot enabled=yes state=started daemon_reload=yes
-#   tags: ['soundbot']
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
 - include: deadbeef.yml
   tags: ['deadbeef']
@@ -103,3 +51,20 @@
 
 - include: sonicpi.yml
   tags: ['sonicpi']
+
+
+#TODO: the second which is in the soundbot repo...
+# - name: push soundbot systemd file
+#   copy:
+#     src: usr/lib/systemd/user/soundbot.service
+#     dest: /usr/lib/systemd/user/soundbot.service
+#     directory_mode: no
+#     owner: root
+#     group: root
+#     mode: '0644'
+#     backup: yes
+#   tags: ['soundbot']
+#
+# - name: enable and/or start soundbot.service
+#   systemd: user=yes name=soundbot enabled=yes state=started daemon_reload=yes
+#   tags: ['soundbot']

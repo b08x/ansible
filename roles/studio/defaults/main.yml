@@ -2,3 +2,89 @@
 
 user:
   name: b08x
+
+audio_pkgs:
+  - jack2
+  - a2jmidid
+  - zita-ajbridge
+  - realtime-privileges
+  - njconnect
+  - patchage
+  - jacktrip
+  - carla
+  - lv2
+  - alsa-card-profiles
+  - alsa-firmware
+  - alsa-lib
+  - alsa-plugins
+  - alsa-tools
+  - alsa-topology-conf
+  - alsa-ucm-conf
+  - alsa-utils
+  - zita-alsa-pcmi
+  - jack_capture
+  - sox
+  - mixxx
+  - polyphone
+  - jalv-select
+  - jack-keyboard
+  - ffmulticonverter
+  - scala-music
+  - unsilence
+  - sooperlooper
+  - touchosc-editor
+  - raysession-git
+
+video_pkgs:
+  - gpick
+  - celluloid
+  - mpv-plugin-excerpt-git
+
+deadbeef_pkgs:
+  - deadbeef
+  - deadbeef-jack-git
+  - deadbeef-plugin-customizabletb-gtk3-git
+  - deadbeef-plugin-headerbar-gtk3-git
+  - deadbeef-plugin-medialib-git
+  - deadbeef-plugin-musical-spectrum-gtk3-git
+  - deadbeef-plugin-spectrogram-gtk3-git
+  - deadbeef-plugin-waveform-gtk3-git
+
+daw_pkgs:
+ - audacity
+ - ocenaudio
+
+plugins:
+  - ladspa
+  - swh-plugins
+  - lv2
+  - x42-plugins
+  - sfizz
+  - iempluginsuite
+
+pulse_pkgs:
+  - pulseaudio
+  - pulseaudio-alsa
+  - pulseaudio-jack
+  - pulseaudio-modules-bt
+  - pavucontrol
+  - paprefs
+
+sonic_pkgs:
+  - sonic-pi
+  - wkhtmltopdf-static
+  - rust
+
+synth_pkgs:
+  - helm-synth
+  - zyn-fusion
+
+sands_pkgs:
+  - qmidiarp
+  - qsampler
+  - hydrogen-git
+  - konfyt
+
+util_pkgs:
+  - jaaa
+  - japa

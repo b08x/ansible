@@ -1,13 +1,10 @@
 ---
 
-- name: install firefox & qutebrowser
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - firefox
-    - qutebrowser
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+- name: install web browsers
+  aur:
+    use: pacaur
+    name: "{{ browser_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [workstation,packages,web]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

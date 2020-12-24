@@ -12,14 +12,6 @@ sshd_allow_groups: b08x
 
 sysctl_ip_forward: False
 
-# package_manager: community.general.pacman
-
 workstation: True
-
-dotfiles:
-  url: git@github.com:b08x/dotfiles.git
-  branch: main
-  destination: "{{ unix_admin.home }}/Workspace/dotfiles"
-  rcup_flags: -t profile -t ansible -x README.md -x rcrc -x *_bak -x manage.rb
 
 window_manager: sway

@@ -1,17 +1,10 @@
 ---
 
-- name: install lv2,ladspa & vst plugins
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - ladspa
-    - swh-plugins
-    - lv2
-    - x42-plugins
-    - sfizz
-    - iempluginsuite
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+- name: install audio plugins
+  aur:
+    use: pacaur
+    name: "{{ plugins }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,plugins]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

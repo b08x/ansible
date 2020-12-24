@@ -1,5 +1,1 @@
 ---
-
-- name: install hexchat
-  package: name="hexchat" state="present"
-  tags: ['communication']

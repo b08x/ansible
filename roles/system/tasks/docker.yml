@@ -1,19 +1,23 @@
 ---
 
-- name: install docker stuff
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - docker
-    - docker-compose
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
+- name: install docker stuffs
+  aur:
+    use: pacaur
+    name: "{{ docker_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [docker,packages]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
 - name: enable and/or start docker
   systemd: enabled=yes state=started daemon_reload=yes name={{ item }}
   with_items:
     - docker
   tags: [docker,systemd]
+
+- name: add this user to desired groups
+  user: >
+    name={{ unix_admin.name }}
+    groups=docker
+    append=yes
+    state=present

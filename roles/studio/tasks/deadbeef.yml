@@ -1,19 +1,10 @@
 ---
 
-- name: install deadbeef and plugins
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - deadbeef
-    - deadbeef-jack-git
-    - deadbeef-plugin-customizabletb-gtk3-git
-    - deadbeef-plugin-headerbar-gtk3-git
-    - deadbeef-plugin-medialib-git
-    - deadbeef-plugin-musical-spectrum-gtk3-git
-    - deadbeef-plugin-spectrogram-gtk3-git
-    - deadbeef-plugin-waveform-gtk3-git
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
+- name: install deadbeef stuffs
+  aur:
+    use: pacaur
+    name: "{{ deadbeef_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [studio,packages,deadbeef]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

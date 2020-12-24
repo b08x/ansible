@@ -1,6 +1,1 @@
 ---
-
-- name: install stuff
-  package: name={{ item }} state=present use="{{ package_manager }}"
-  with_items:
-    - octopi

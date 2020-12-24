@@ -2,6 +2,11 @@
 
 use_rvm: False
 
+workstation: True
+
+printers:
+  - name: epson
+
 apm_pkgs:
   - ruby-block
   - atom-beautify
@@ -12,3 +17,44 @@ apm_pkgs:
   - language-ansible
   - highlight-colors
   - color-picker
+  - open-terminal-here
+  - ansible-snippets
+
+atom_pkgs:
+  - atom
+  - ruby-rubocop
+  - zim
+
+browser_pkgs:
+  - firefox
+  - qutebrowser
+
+comm_pkgs:
+  - hexchat
+
+codec_pkgs:
+  - amrnb
+  - amrwb
+  - faac
+  - faad2
+  - flac
+  - lame
+  - libdca
+  - libmad
+  - libmatroska
+  - x264
+  - x265
+  - xvidcore
+  - ffmpeg
+  - ffmpeg-libs
+  - ffmpeg-devel
+
+media_pkgs:
+  - vlc
+  - youtube-dl
+  - qbittorrent
+  - radiotray-ng
+
+printer_pkgs:
+  - cups
+  - epson-inkjet-printer-escpr

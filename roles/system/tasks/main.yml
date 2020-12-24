@@ -1,8 +1,7 @@
 ---
 
 - include: user.yml
-  # with_items: "{{ unix_users }}"
-  tags: ['accounts,user']
+  tags: ['user']
   # when: item != None
 
 - include: pamac.yml
@@ -10,6 +9,9 @@
 
 - include: install.yml
   tags: ['install']
+
+- include: btrfs.yml
+  tags: ['btrfs']
 
 - include: docker.yml
   tags: ['docker']

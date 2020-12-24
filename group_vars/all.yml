@@ -10,8 +10,8 @@ gnupg:
 
 dotfiles:
   url: git@github.com:b08x/dotfiles.git
-  branch: Main
-  destination: "{{ user.home }}/Workspace/dotfiles"
+  branch: main
+  destination: "{{ unix_admin.home }}/Workspace/dotfiles"
   rcup_flags: -fx README.md
 
 user_groups:

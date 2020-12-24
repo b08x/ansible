@@ -1,37 +1,9 @@
 ---
 
-- name: install essential packages
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - timeshift
-    - bat
-    - terminator
-    - htop
-    - iotop
-    - barrier
-    - rofi
-    - samba
-    - bind
-    - zim
-    - lsd
-    - ranger
-    - vim
-    - bash-completion
-    - privoxy
-    - fd
-    - autofs
-    - lnav
-    - googler
-    - ripgrep-all
-    - mousepad
-    - cmake
-    - autoconf
-    - mlocate
-    - most
-    - git-lfs
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
-  become: true
-  become_user: "{{ansible_env.SUDO_USER}}"
-  tags: [system,packages,syspkgs]
+- name: install base_packages
+  aur:
+    use: pacaur
+    name: "{{ base_packages }}"
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']

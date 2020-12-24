@@ -1,37 +1,20 @@
 ---
 
-- name: install atom
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - atom
-    - ruby-rubocop
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'successfully' in command_result.stdout"
+- name: install IDE packages
+  aur:
+    use: pacaur
+    name: "{{ atom_pkgs }}"
+    state: present
   become: True
-  become_user: "{{ ansible_env.SUDO_USER }}"
-  tags: [workstation,packages,atom]
+  become_user: "{{ unix_admin.name }}"
+  tags: ['packages']
 
 #TODO: this appears to install (or reinstall) the package regardless
 # if it already exists.
 - name: install plugins
-  command: apm install {{ item }}
+  command: apm install "{{ item }}"
+  with_items: "{{ apm_pkgs }}"
   become: yes
   become_user: '{{ unix_admin.name }}'
-  with_items:
-    - ruby-block
-    - atom-beautify
-    - blocky
-    - language-docker
-    - language-dotfiles
-    - language-sfz
-    - language-ansible
-    - highlight-colors
-    - color-picker
-    - file-types
-    - open-terminal-here
-    - toolbar
-    - ansible-snippets
   tags: [workstation,packages,atom]
-
-#TODO: push atom config.cson and styles.css from rcm
+  when: apm_pkgs is defined
