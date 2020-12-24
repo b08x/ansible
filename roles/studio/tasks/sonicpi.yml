@@ -1,69 +1,21 @@
 ---
 
-- name: install build dependencies
-  package: name={{ item }} state=present use="{{ package_manager }}"
-  with_items:
-    - boost
-    - cmake
-    - git
-    - erlang-nox
-    - gendesk
-    - lua
-    - qt5-tools
-    - rtmidi
-  tags: ['sonicpi']
-
-- name: install wkhtmltopdf
-  aur: name= {{ item }} user="{{ unix_admin.name }}"
+- name: install
+  shell: "pacaur -S --noedit --noconfirm --needed {{ item }}"
   with_items:
     - wkhtmltopdf-static
-  tags: [sonicpi']
+    - sonic-pi
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
 
-- name: install runtime dependencies
-  package: name={{ item }} state=present use="{{ package_manager }}"
-  with_items:
-    - aubio
-    - gcc-libs
-    - glibc
-    - osmid
-    - qt5-base
-    - qscintilla-qt5
-    - ruby
-    - ruby-activesupport
-    - ruby-bundler
-    - ruby-ffi
-    - ruby-i18n
-    - ruby-kramdown
-    - ruby-minitest
-    - ruby-mocha
-    - ruby-multi_json
-    - ruby-rake
-    - ruby-rouge
-    - ruby-rugged
-    - ruby-sys-proctable
-    - sc3-plugins
-    - sox
-    - supercollider
-  tags: ['sonicpi']
-
-- name: clone sonic pi
-  git: >
-    repo=https://github.com/samaaron/sonic-pi.git
-    dest="{{ unix_admin.home }}/Workspace/sonic-pi"
-    accept_hostkey=yes
-    update=no
-    force=no
-  become: yes
-  become_user: "{{ user.name }}"
-  tags: ['sonicpi']
-
-# compile
-# link ~/Workspace/sonic-pi /opt/sonic-pi
-
-
-#TODO: sonic-pi-tool
-# pamac install python-psutil python-click
-# pip install oscpy
-# wget https://raw.githubusercontent.com/syncopatedstudios/sonic-pi-tool/master/sonic-pi-tool.py
-# make executable
-# place in /usr/local/bin
+- name: install sonic-pi tool
+  shell: cargo install --git https://github.com/syncopatedstudios/sonic-pi-tool.git --force
+  args:
+    executable: /bin/bash
+  become: True
+  become_user: "{{ ansible_env.SUDO_USER }}"
+  ignore_errors: False
+  tags: ['sonicpitool']

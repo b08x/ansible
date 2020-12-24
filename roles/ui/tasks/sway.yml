@@ -28,17 +28,6 @@
   become: true
   become_user: "{{ansible_env.SUDO_USER}}"
 
-- name: push system env variables to profile.d directory
-  copy:
-    src: etc/profile.d/
-    dest: /etc/profile.d/
-    directory_mode: yes
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  tags: ['profiled']
-
 #- name: push global sway configs
 #  copy:
 #    src: etc/sway/

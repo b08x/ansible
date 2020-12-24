@@ -1,34 +1,25 @@
 ---
 
 hostname: ninjabot
-
+workstation: True
 make_hard: False
 
 host_environment_paths:
-  PATH: /home/b08x/.rvm/gems/ruby-2.5.1/bin:/home/b08x/.rvm/gems/ruby-2.5.1@global/bin:/home/b08x/.rvm/rubies/ruby-2.5.1/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/b08x/.rvm/bin:/home/b08x/.local/bin:/home/b08x/bin
-  GEM_PATH: /home/b08x/.rvm/gems/ruby-2.5.1
+  PATH: /home/b08x/.rvm/gems/ruby-2.7.2/bin:/home/b08x/.rvm/gems/ruby-2.7.2@global/bin:/home/b08x/.rvm/rubies/ruby-2.7.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/b08x/.rvm/bin:/home/b08x/.local/bin:/home/b08x/bin
+  GEM_PATH: /home/b08x/.rvm/gems/ruby-2.7.2
 
 rvm1_rubies:
-  - 'ruby-2.5.1'
+  - 'ruby-2.7.2'
 
 rvm1_install_flags: '--user-install'
 
 rvm1_user: 'b08x'
 
-kvmhost: False
-
 docker_host: True
 docker_storage: /var/lib/docker
 
-nvidiacard: False
-
-selinux_policy: targeted
-selinux_state: disabled
-
 sshd_port: 22
 sshd_allow_groups: b08x
-
-sysctl_ip_forward: False
 
 user:
   name: b08x
@@ -40,13 +31,8 @@ user:
   home: /home/b08x
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
 
-netdev: eth0
-nameservers: [ "208.67.222.222", "208.67.220.220" ]
-
-workstation: True
-
 dotfiles:
-  url: "https://github.com/b08x/dotfiles.git"
+  url: "git@github.com:b08x/dotfiles"
   branch: main
   destination: "{{ unix_admin.home }}/Workspace/dotfiles"
-  rcup_flags: -t profile -t atom -t ranger -t rofi -t sway -t terminator -t vim -t zim -x README.md -x rcrc -x *_bak -x manage.rb
+  rcup_flags: -f -t profile -x README.md -x rcrc -x *_bak

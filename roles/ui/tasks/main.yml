@@ -6,19 +6,6 @@
 - include: fonts.yml
   tags: ['fonts']
 
-
-# - include: rofi.yml
-#   # when: not rofi_bin.stat.exists
-#   tags: ['rofi']
-
-#- name: check if compton is already installed, if not then dont.
-#  stat: path="/usr/bin/compton"
-#  register: compton_bin
-
-#- include: compton.yml
-#  when: not compton_bin.stat.exists
-#  tags: ['compton']
-
 - name: install some utils
   shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
   with_items:

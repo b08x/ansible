@@ -28,6 +28,7 @@
     - octopi
     - pamac
   tags: [packages]
+  when: initial_install == True
 
 - name: update using pacaur
   shell: "pacaur --noconfirm -Sc && pacaur -Syu"
@@ -37,3 +38,4 @@
   become: True
   become_user: "{{ ansible_env.SUDO_USER }}"
   tags: [packages]
+  when: update == True

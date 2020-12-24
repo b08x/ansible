@@ -100,3 +100,6 @@
 
 - include: synth.yml
   tags: ['synth']
+
+- include: sonicpi.yml
+  tags: ['sonicpi']
