@@ -18,21 +18,24 @@
   become_user: "{{ unix_admin.name }}"
   tags: ['packages']
 
+- include: pulse.yml
+  tags: ['pulse']
+
 - include: deadbeef.yml
   tags: ['deadbeef']
 
 - include: daw.yml
   tags: ['daw']
 
-- name: Get list of groups
-  shell: /usr/bin/getent group | awk -F":" '{print $1}'
-  register: etc_groups
-  tags: [debug]
-
-- name: print etc_groups
-  ansible.builtin.debug:
-    var: etc_groups
-  tags: [debug]
+# - name: Get list of groups
+#   shell: /usr/bin/getent group | awk -F":" '{print $1}'
+#   register: etc_groups
+#   tags: [debug]
+#
+# - name: print etc_groups
+#   ansible.builtin.debug:
+#     var: etc_groups
+#   tags: [debug]
 
 #TODO:conditioal does not work
 # - name: add user to audio and jackuser group

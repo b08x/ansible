@@ -12,8 +12,19 @@
 - name: install these packages
   aur:
     use: pacaur
-    name: {{ media_pkgs }}
+    name: "{{ media_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
   tags: ['packages']
+
+- name: push mpv image viewer script
+  copy:
+    src: usr/share/mpv/scripts/image.lua
+    dest: /usr/share/mpv/scripts/image.lua
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: ['mpv']

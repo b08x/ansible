@@ -19,15 +19,16 @@ user_groups:
     gid: 1041
 
 system_groups:
-  - docker
+  - lp
   - storage
 
 unix_admin:
   name: b08x
   home: /home/b08x
+  sshdir: /home/b08x/.ssh
   uid: 1000
   primary_group: b08x
-  secondary_groups: "wheel,network,input,audio,home,docker,storage"
+  secondary_groups: "wheel,network,input,audio,home,storage"
   shell: /bin/bash
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.

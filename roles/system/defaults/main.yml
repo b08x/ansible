@@ -42,6 +42,10 @@ base_packages:
   - mlocate
   - most
   - git-lfs
+  - rcm
+  - ctags
+  - ncurses
+  - curl
 
 snapper_pkgs:
   - snapper

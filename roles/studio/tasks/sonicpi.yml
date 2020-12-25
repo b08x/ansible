@@ -9,11 +9,15 @@
   become_user: "{{ unix_admin.name }}"
   tags: ['packages']
 
+- name: check if sonic-pi-tool is installed
+  stat: path="{{ unix_admin.home }}/.cargo/bin/sonic-pi-tool"
+  register: hassonictool
+
 - name: install sonic-pi tool
   shell: cargo install --git https://github.com/syncopatedstudios/sonic-pi-tool.git --force
   args:
     executable: /bin/bash
   become: True
   become_user: "{{ unix_admin.name }}"
-  ignore_errors: False
+  when: not hassonictool.stat.exists
   tags: ['sonicpitool']

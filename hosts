@@ -1,11 +1,4 @@
-#[soundbots]
-#testbot ansible_connection=local ansible_user=b08x ansible_become=true
-#testbot ansible_user=b08x ansible_become=true
-#soundbot01 ansible_connection=local ansible_user=b08x ansible_become=true
-#soundbot02 ansible_connection=local ansible_user=b08x ansible_become=true
-
-lapbot ansible_connection=local ansible_user=b08x ansible_become=true
-
-[intranet]
-bender ansible_user=b08x ansible_become=true
+[studio]
+lapbot ansible_connection=local ansible_user=b08x ansible_become=true update=false initial_install=false
+#bender ansible_user=b08x ansible_become=true update=false initial_install=false
 ninjabot ansible_user=b08x ansible_become=true update=false initial_install=false

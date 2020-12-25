@@ -13,3 +13,6 @@
 
 - include: printer.yml
   tags: ['printer']
+
+- include: media.yml
+  tags: ['media']

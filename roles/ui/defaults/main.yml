@@ -49,3 +49,4 @@ theme_pkgs:
   - vimix-icon-theme
   - vimix-gtk-themes
   - vimix-cursors
+  - pywal-git

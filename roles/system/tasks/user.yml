@@ -25,7 +25,6 @@
 - name: create system groups
   group: name={{ item }} state=present system=yes
   with_items:
-    - lp
     - storage
   when: sysgroups is defined
 
@@ -33,7 +32,6 @@
   user: >
     name={{ unix_admin.name }}
     uid={{ unix_admin.uid }}
-    group={{ unix_admin.primary_group }}
     groups={{ unix_admin.secondary_groups }}
     append=yes
     state=present

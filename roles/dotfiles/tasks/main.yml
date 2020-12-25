@@ -1,22 +1,15 @@
 ---
 
-- name: install essential packages
-  shell: "pacaur -S --noedit --noconfirm --needed {{item}}"
-  with_items:
-    - rcm
-    - ctags
-    - ncurses
-    - curl
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'Total Installed Size' in command_result.stdout"
-  become: true
-  become_user: "{{ansible_env.SUDO_USER}}"
-
 - block:
 
-  - name: Clone user dotfiles
-    git: repo={{ dotfiles.url }} dest={{ dotfiles.destination }} accept_hostkey=yes update=yes force=yes version={{ dotfiles.branch }}
+  - name: clone dotfiles
+    git: >
+      repo={{ dotfiles.url }}
+      version={{ dotfiles.branch }}
+      dest={{ dotfiles.destination }}
+      accept_hostkey=yes
+      update=yes
+      force=yes
     when: dotfiles is defined
 
   - name: push rcrc
@@ -25,14 +18,12 @@
       dest="{{ unix_admin.home}}/.rcrc"
       mode=0644
       backup=yes
+    when: dotfiles is defined
 
   - name: Install profile
     command: rcup -v -d {{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
     when: dotfiles is defined
-    tags: [profile]
+    tags: ['profile']
 
   become: yes
-  become_user: "{{ansible_env.SUDO_USER}}"
-
-# - name: correct ownership of ssh config
-#   command: chmod 600 {{ user.home }}/.ssh/config
+  become_user: "{{ unix_admin.name }}"
