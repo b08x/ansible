@@ -10,7 +10,7 @@
     force=yes
   become: yes
   become_user: "{{ unix_admin.name }}"
-  tags: ['arch_pkgs']
+  tags: ['ansible']
 
 - name: push pamac conf with aur enabled
   template: >
@@ -20,7 +20,7 @@
     owner=0
     group=0
     backup=yes
-  tags: ['arch_pkgs', 'configs']
+  tags: ['etc', 'configs']
 
 - name: push pacaur config
   template: >
@@ -30,17 +30,17 @@
     owner=0
     group=0
     backup=yes
-  tags: ['arch_pkgs', 'configs']
+  tags: ['xdg', 'configs']
 
 - name: get list of installed packages
   shell: "pacman -Qet | awk '{print $1}'"
   register: installed_packages
-  tags: ['arch_pkgs']
+  tags: ['packages']
 
 - name: install these packagemanagers
   aur:
     use: auto
-    name: "{{ packagemanagers }}"
+    name: "{{ arch_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"

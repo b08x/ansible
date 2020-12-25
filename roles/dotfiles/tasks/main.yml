@@ -10,7 +10,7 @@
       accept_hostkey=yes
       update=yes
       force=yes
-    when: dotfiles is defined
+    when: isayso == True
 
   - name: push rcrc
     template: >
@@ -29,4 +29,5 @@
   become_user: "{{ unix_admin.name }}"
 
 - include: rcup.yml
+  when: isayso == True
   tags: ['rcm']

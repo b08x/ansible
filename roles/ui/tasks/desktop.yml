@@ -3,8 +3,17 @@
 - name: install file managers
   aur:
     use: pacaur
-    name: "{{ filemanagers }}"
+    name: "{{ filemanager_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['filemanager_pkgs']
+
+- name: install misc packages
+  aur:
+    use: auto
+    name: "{{ misc_pkgs }}"
+    state: present
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['misc_pkgs']

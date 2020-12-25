@@ -16,10 +16,10 @@
 
   - name: install rvm
     shell: '\curl -sSL https://get.rvm.io | bash -s stable --ruby'
-  # 
+  #
   # - name: install ruby documentation
   #   command: rvm docs generate --no-rdoc
 
   become: yes
   become_user: "{{ unix_admin.name }}"
-  tags: [rvm]
+  tags: ['rvm']

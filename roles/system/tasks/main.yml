@@ -49,4 +49,4 @@
     group: root
     mode: '0644'
     backup: yes
-  tags: ['systemd,logs']
+  tags: ['systemd', 'logs']

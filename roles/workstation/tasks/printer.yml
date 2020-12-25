@@ -7,7 +7,7 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['printer']
+  tags: ['printer_pkgs']
   when: printers is defined
 
 - name: enable and/or start cups

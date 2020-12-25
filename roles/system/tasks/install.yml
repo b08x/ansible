@@ -3,7 +3,8 @@
 - name: install base_packages
   aur:
     use: pacaur
-    name: "{{ base_packages }}"
+    name: "{{ base_pkgs }}"
+    state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['base_pkgs']

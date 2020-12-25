@@ -7,7 +7,7 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['sway_pkgs']
 
 - name: push greetd
   template: >
@@ -17,7 +17,7 @@
     owner=0
     group=0
     backup=yes
-  tags: [greetd]
+  tags: ['greetd']
   when: tuigreet == True
 
 - name: enable greetd service

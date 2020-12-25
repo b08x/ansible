@@ -22,18 +22,18 @@
       use: pacaur
       name: "{{ media_pkgs }}"
       state: present
-    tags: ['packages']
+    tags: ['media_pkgs']
 
   become: True
   become_user: "{{ unix_admin.name }}"
 
-- name: push mpv image viewer script
-  copy:
-    src: usr/share/mpv/scripts/image.lua
-    dest: /usr/share/mpv/scripts/image.lua
-    directory_mode: no
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  tags: ['mpv']
+# - name: push mpv image viewer script
+#   copy:
+#     src: usr/share/mpv/scripts/image.lua
+#     dest: /usr/share/mpv/scripts/image.lua
+#     directory_mode: no
+#     owner: root
+#     group: root
+#     mode: '0644'
+#     backup: yes
+#   tags: ['mpv']

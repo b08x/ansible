@@ -29,7 +29,7 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['snapper_pkgs']
   when: btrfs_exists
 
 - name: push snapper configs

@@ -19,10 +19,12 @@ apm_pkgs:
   - color-picker
   - open-terminal-here
   - ansible-snippets
+  - ruby-solargraph
 
 atom_pkgs:
   - atom
   - ruby-rubocop
+  - ruby-solargraph
   - zim
 
 browser_pkgs:

@@ -7,17 +7,14 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['docker_pkgs']
 
 - name: enable and/or start docker
   systemd: enabled=yes state=started daemon_reload=yes name={{ item }}
   with_items:
     - docker
-  tags: [docker,systemd]
+  tags: ['docker','systemd']
 
 - name: add this user to desired groups
-  user: >
-    name={{ unix_admin.name }}
-    groups=docker
-    append=yes
-    state=present
+  user: name={{ unix_admin.name }} groups=docker append=yes
+  tags: ['docker']

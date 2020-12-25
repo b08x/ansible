@@ -8,7 +8,7 @@
    owner=0
    group=0
    backup=yes
-  tags: [resolvd]
+  tags: ['resolvd']
 
 - name: push resolv.conf
   template: >
@@ -18,7 +18,7 @@
    owner=0
    group=0
    backup=yes
-  tags: [resolv]
+  tags: ['resolv']
 
 - name: copy systemd-networkd files
   copy: >
@@ -28,7 +28,7 @@
     owner=0
     group=0
     backup=yes
-  tags: [networkd]
+  tags: ['networkd']
 
 - name: disable NetworkManager service
   systemd: enabled=no state=stopped name=NetworkManager
@@ -39,4 +39,4 @@
 
 - name: enable resolved service
   systemd: enabled=no state=stopped daemon_reload=yes name=systemd-resolved
-  tags: [resolvd]
+  tags: ['resolvd']

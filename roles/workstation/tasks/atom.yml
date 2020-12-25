@@ -7,7 +7,7 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['atom_pkgs']
 
 #TODO: this appears to install (or reinstall) the package regardless
 # if it already exists.
@@ -16,5 +16,5 @@
   with_items: "{{ apm_pkgs }}"
   become: yes
   become_user: '{{ unix_admin.name }}'
-  tags: [workstation,packages,atom]
+  tags: ['apm_pkgs']
   when: apm_pkgs is defined

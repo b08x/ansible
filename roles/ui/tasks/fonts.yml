@@ -3,8 +3,8 @@
 - name: install these fonts
   aur:
     use: pacaur
-    name: "{{ fonts }}"
+    name: "{{ font_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['font_pkgs']

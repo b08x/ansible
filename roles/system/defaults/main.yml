@@ -10,19 +10,18 @@ subvolumes:
 
 num_of_snaps_to_keep: 20
 
-packagemanagers:
+arch_pkgs:
   - pacaur
   - octopi
   - pamac
 
-base_packages:
+base_pkgs:
   - timeshift
   - bat
   - terminator
   - htop
   - iotop
   - barrier
-  - rofi
   - samba
   - bind
   - zim
@@ -34,8 +33,6 @@ base_packages:
   - fd
   - autofs
   - lnav
-  - googler
-  - ripgrep-all
   - mousepad
   - cmake
   - autoconf

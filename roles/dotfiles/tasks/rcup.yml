@@ -1,10 +1,11 @@
 ---
-
+#TODO: add check to make sure any local changes aren't lost
 - block:
 
   - name: install dotfiles by tag
     command: rcup -vf -t {{ item }} -x rcrc -x .gitignore
     with_items: "{{ rcm_tags }}"
+    when: isayso == True
     tags: ['rcm']
 
   become: yes

@@ -16,4 +16,4 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['theme_pkgs']

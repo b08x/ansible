@@ -7,12 +7,13 @@ tuigreet: false
 
 # ui_pkgs:
 
-filemanagers:
+filemanager_pkgs:
   - pcmanfm
   - pcmanfm-hardlinkcopy
   - xarchiver
-
-fonts:
+  - ripgrep-all
+  
+font_pkgs:
   - nerd-fonts-hack
   - otf-font-awesome
   - ttf-devicons
@@ -27,6 +28,7 @@ search_pkgs:
   - arch-wiki-man
   - surfraw
   - most #for viewing man pages in color
+  - googler
 
 sway_pkgs:
   - waybar
@@ -44,6 +46,7 @@ sway_pkgs:
   - wlrobs
   - pywal-git
   - wlogout
+  - mako
 
 theme_pkgs:
   - vimix-icon-theme
