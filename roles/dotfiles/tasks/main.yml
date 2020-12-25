@@ -27,3 +27,6 @@
 
   become: yes
   become_user: "{{ unix_admin.name }}"
+
+- include: rcup.yml
+  tags: ['rcm']

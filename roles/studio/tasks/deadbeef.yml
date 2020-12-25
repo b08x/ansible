@@ -2,9 +2,9 @@
 
 - name: install deadbeef stuffs
   aur:
-    use: pacaur
+    use: yay
     name: "{{ deadbeef_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['deadbeef']

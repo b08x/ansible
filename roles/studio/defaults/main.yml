@@ -33,7 +33,7 @@ audio_pkgs:
   - unsilence
   - sooperlooper
   - touchosc-editor
-  - raysession-git
+  # - raysession-git
 
 video_pkgs:
   - gpick

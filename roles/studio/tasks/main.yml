@@ -21,7 +21,10 @@
 - include: pulse.yml
   tags: ['pulse']
 
+
+#TODO: medailib plugin fails during build
 - include: deadbeef.yml
+  ignore_errors: yes
   tags: ['deadbeef']
 
 - include: daw.yml

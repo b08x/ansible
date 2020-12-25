@@ -1,0 +1,11 @@
+---
+
+- block:
+
+  - name: install dotfiles by tag
+    command: rcup -vf -t {{ item }} -x rcrc -x .gitignore
+    with_items: "{{ rcm_tags }}"
+    tags: ['rcm']
+
+  become: yes
+  become_user: "{{ unix_admin.name }}"

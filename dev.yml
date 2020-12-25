@@ -10,32 +10,6 @@
         var: ansible_mounts
       tags: ['facts']
 
-    - name: ensure ssh directory exists and set perms
-      file: >
-        path="{{ unix_admin.sshdir }}"
-        state=directory
-        recurse=yes
-        owner="{{ unix_admin.primary_group }}"
-        group="{{ unix_admin.primary_group }}"
-        mode=0700
-      tags: ['keys']
-
-    - name: check if ssh private key exists
-      stat: path="{{ unix_admin.sshdir }}/id_rsa"
-      register: haskeys
-      tags: ['keys']
-
-    - name: copy ssh keys unless a private key already exists
-      synchronize:
-          src: "{{ unix_admin.sshdir }}"
-          dest: "{{ unix_admin.home }}"
-          perms: yes
-      become: yes
-      become_user: "{{ unix_admin.name }}"
-      # delegate_to: bender
-      when: not haskeys.stat.exists
-      tags: ['keys']
-
     # - name: register filesystem types
     #   ansible.builtin.setup:
     #     filter: ansible_mounts

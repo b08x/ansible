@@ -5,10 +5,36 @@
 #   synchronize: src={{ unix_admin.home }}/.ssh dest={{ unix_admin.home }}/.ssh
 #   delegate_to: bender
 
+- name: ensure ssh directory exists and set perms
+  file: >
+    path="{{ unix_admin.sshdir }}"
+    state=directory
+    recurse=yes
+    owner="{{ unix_admin.primary_group }}"
+    group="{{ unix_admin.primary_group }}"
+    mode=0700
+  tags: ['keys']
+
+- name: check if ssh private key exists
+  stat: path="{{ unix_admin.sshdir }}/id_rsa"
+  register: haskeys
+  tags: ['keys']
+
+- name: copy ssh keys unless a private key already exists
+  synchronize:
+      src: "{{ unix_admin.sshdir }}"
+      dest: "{{ unix_admin.home }}"
+      perms: yes
+  become: yes
+  become_user: "{{ unix_admin.name }}"
+  # delegate_to: bender
+  when: not haskeys.stat.exists
+  tags: ['keys']
+
 - name: check if file and/or directory exists
   stat: "path=/etc/sudoers.d/10-unix_admin"
   register: hazifile
-  tags: [sudoers]
+  tags: ['sudoers']
 
 - lineinfile:
     path: /etc/sudoers.d/10-unix_admin
@@ -16,7 +42,7 @@
     create: yes
     validate: 'visudo -cf %s'
   when: not hazifile.stat.exists
-  tags: [sudoers]
+  tags: ['sudoers']
 
 - name: create user group(s)
   group: name={{ item.name }} state=present gid={{ item.gid }}
@@ -45,4 +71,4 @@
     group=0
     mode=0644
     backup=yes
-  tags: [polkit,user]
+  tags: ['polkit','user']

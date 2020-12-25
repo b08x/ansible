@@ -54,6 +54,7 @@ media_pkgs:
   - youtube-dl
   - qbittorrent
   - radiotray-ng
+  - libbluray
 
 printer_pkgs:
   - cups
