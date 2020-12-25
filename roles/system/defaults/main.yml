@@ -43,6 +43,11 @@ base_pkgs:
   - ctags
   - ncurses
   - curl
+  - ranger
+  - mediainfo
+  - highlight
+  - python-ueberzug
+  - atool
 
 snapper_pkgs:
   - snapper
