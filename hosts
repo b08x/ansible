@@ -1,3 +1,6 @@
+[localhost]
+ninjabot ansible_connection=local ansible_user=b08x ansible_become=true update=false initial_install=false
+
 [studio]
 lapbot ansible_connection=local ansible_user=b08x ansible_become=true update=false initial_install=false
 #bender ansible_user=b08x ansible_become=true update=false initial_install=false

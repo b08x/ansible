@@ -1,7 +1,7 @@
 [Match]
-#Type=wlan
+Type=wlan
 #TODO: account for more than one wireless card
-Name=wlp0*
+#Name=wlp0*
 
 [Network]
 DHCP=ipv4

@@ -1,10 +1,10 @@
 ---
 
 - include: udev-rules.yml
-  tags: [network]
+  tags: ['network', 'udev']
 
 - include: systemd-networkd.yml
-  tags: [network]
+  tags: ['systemdnetwork']
 
 - include: wpa_supplicant.yml
-  tags: [network, wireless]
+  tags: ['network', 'wireless']

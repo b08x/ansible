@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: all
+  hosts: localhost
 
   tasks:
     - name: Print all available facts
