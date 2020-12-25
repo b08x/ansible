@@ -10,8 +10,19 @@
 - include: install.yml
   tags: ['install']
 
+- include: snapper.yml
+  tags: ['snapper']
+
+# if ansible facts contain a btrfs filssystem, ensure scrub enabled and start it
+- name: check if the btrfs filesystem is being used
+  set_fact:
+    btrfs_exists: true
+  loop: "{{ansible_mounts}}"
+  when: "'btrfs' in item.fstype"
+
 - include: btrfs.yml
   tags: ['btrfs']
+  when: btrfs_exists
 
 - include: docker.yml
   tags: ['docker']
