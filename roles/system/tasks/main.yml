@@ -12,6 +12,7 @@
 
 - include: snapper.yml
   tags: ['snapper']
+  when: usesnapper is defined
 
 # if ansible facts contain a btrfs filssystem, ensure scrub enabled and start it
 - name: check if the btrfs filesystem is being used

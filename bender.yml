@@ -2,12 +2,12 @@
 
 - name: setup
   gather_facts: yes
-  hosts: bender
+  hosts: localhost
 
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:
-        var: ansible_facts
+        var: ansible_hostname
       tags: ['facts']
 
   roles:
