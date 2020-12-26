@@ -61,3 +61,7 @@
     mode: '0644'
     backup: yes
   tags: ['systemd', 'logs']
+
+- include: fileshare.yml
+  tags: ['fileshare']
+  when: file_share is defined

@@ -5,7 +5,9 @@ pkgutils: false
 
 tuigreet: false
 
-# ui_pkgs:
+ui_pkgs:
+  - nasa-wallpaper
+  - pywal-git
 
 filemanager_pkgs:
   - pcmanfm
@@ -52,4 +54,3 @@ theme_pkgs:
   - vimix-icon-theme
   - vimix-gtk-themes
   - vimix-cursors
-  - pywal-git

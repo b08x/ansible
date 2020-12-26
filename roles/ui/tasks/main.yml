@@ -9,6 +9,9 @@
 - include: desktop.yml
   tags: ['desktop']
 
+- include: search.yml
+  tags: ['search']
+
 - name: install themes
   aur:
     use: pacaur
@@ -17,3 +20,12 @@
   become: True
   become_user: "{{ unix_admin.name }}"
   tags: ['theme_pkgs']
+
+- name: install ui_pkgs
+  aur:
+    use: pacaur
+    name: "{{ ui_pkgs }}"
+    state: present
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['ui_pkgs']

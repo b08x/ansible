@@ -8,20 +8,18 @@ docker_host: True
 docker_storage: /var/lib/docker
 
 samba_host: True
-samba_shares:
-  - /srv/archive
-  - /srv/share
 
-nfs_host:
-  enabled: True
+file_shares:
   subnets: "{{ ansible.default_ipv4.network }}"
+  mounts:
+    - /srv/archive
+    - /srv/share
 
 sshd_port: 22
 sshd_allow_groups: b08x
 
 sysctl_ip_forward: True
 
-# package_manager: community.general.pacman
 
 portable:
   uuid: 5732DF544868E675

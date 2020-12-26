@@ -1,1 +1,10 @@
 ---
+
+- name: install search_pkgs
+  aur:
+    use: pacaur
+    name: "{{ search_pkgs }}"
+    state: present
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['search_pkgs']
