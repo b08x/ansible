@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: bender
+  hosts: localhost
 
   tasks:
     - name: Print all available facts
