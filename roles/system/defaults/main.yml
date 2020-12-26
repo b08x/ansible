@@ -50,6 +50,7 @@ base_pkgs:
   - atool
   - lsof
   - net-tools
+  - iftop
 
 snapper_pkgs:
   - snapper
