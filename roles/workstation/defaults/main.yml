@@ -62,3 +62,6 @@ media_pkgs:
 printer_pkgs:
   - cups
   - epson-inkjet-printer-escpr
+
+gpg_pkgs:
+  - seahorse
