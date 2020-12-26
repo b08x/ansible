@@ -26,4 +26,4 @@
   tags: ['autofs']
 
 - name: enable and/or start autofs
-  systemd: enabled=yes state=restart name=autofs
+  systemd: enabled=yes state=restarted name=autofs
