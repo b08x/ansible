@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: bender
+  hosts: ninjabot
 
   tasks:
     - name: Print all available facts
@@ -10,6 +10,7 @@
         var: ansible_facts
       tags: ['facts']
 
- roles:
-    - { role: system, tags: ['system'] }
-    - { role: dotfiles, tags: ['dotfiles'] }
+  roles:
+     # - { role: network, tags: ['network'] }
+     - { role: system, tags: ['system'] }
+     - { role: dotfiles, tags: ['dotfiles'] }
