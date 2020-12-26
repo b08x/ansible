@@ -15,3 +15,27 @@ sysctl_ip_forward: False
 workstation: True
 
 window_manager: sway
+
+autofs:
+  host: bender
+  shares:
+    - b08x
+
+# autofs:
+#   host: ninjabot
+#   shares:
+#     - share
+
+rcm_tags:
+  - atom
+  - deadbeef
+  - hexchat
+  - mpv
+  - qute
+  - ranger
+  - soundbot
+  - sway
+  - terminator
+  - vim
+  - zim
+  - git
