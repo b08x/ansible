@@ -14,10 +14,10 @@ file_shares:
   mounts:
     - /mnt/b08x
 
-# autofs:
-#   host: ninjabot
-#   mounts:
-#   - share
+autofs:
+  host: ninjabot
+  mounts:
+  - share
 
 sshd_port: 22
 sshd_allow_groups: b08x
