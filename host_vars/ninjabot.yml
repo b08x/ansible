@@ -26,3 +26,30 @@ dotfiles:
   branch: main
   destination: "{{ unix_admin.home }}/Workspace/dotfiles"
   rcup_flags: -f -t profile -x README.md -x rcrc -x *_bak
+
+samba_host: True
+
+# folders to make available
+file_share:
+  subnet: "{{ ansible.default_ipv4.network }}"
+  folders:
+    - /mnt/share
+
+# showmount -e autofs.host
+autofs:
+  host: bender
+  shares:
+    - b08x
+
+rcm_tags:
+  - atom
+  - deadbeef
+  - hexchat
+  - mpv
+  - qute
+  - ranger
+  - soundbot
+  - sway
+  - terminator
+  - vim
+  - zim

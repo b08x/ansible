@@ -30,6 +30,7 @@
 
 - include: autofs.yml
   tags: ['autofs']
+  when: autofs is defined
 
 - include: autosync.yml
   tags: ['autosync']

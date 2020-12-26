@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: localhost
+  hosts: ninjabot
 
   tasks:
     - name: Print all available facts
@@ -25,10 +25,10 @@
     #   register: installed_packages
     #   tags: ['packages']
     #
-    # - name: Print all available facts
-    #   ansible.builtin.debug:
-    #     var: installed_packages
-    #   tags: ['test']
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: initial_install
+      tags: ['test']
 
   roles:
      - { role: network, tags: ['network'] }

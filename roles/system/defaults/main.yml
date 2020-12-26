@@ -48,6 +48,8 @@ base_pkgs:
   - highlight
   - python-ueberzug
   - atool
+  - lsof
+  - net-tools
 
 snapper_pkgs:
   - snapper

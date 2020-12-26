@@ -1,4 +1,7 @@
-[studio]
-lapbot ansible_connection=local ansible_user=b08x ansible_become=true update=false initial_install=false
-bender ansible_connection=local ansible_user=b08x ansible_become=true update=false initial_install=false
-ninjabot ansible_connection=local ansible_user=b08x ansible_become=true update=false initial_install=false
+[localhost]
+lapbot ansible_connection=local ansible_user=b08x ansible_become=true
+bender ansible_connection=local ansible_user=b08x ansible_become=true
+ninjabot ansible_connection=local ansible_user=b08x ansible_become=true
+
+[localhost:vars]
+update=false initial_install=false

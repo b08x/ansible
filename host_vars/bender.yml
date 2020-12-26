@@ -12,8 +12,12 @@ samba_host: True
 file_shares:
   subnets: "{{ ansible.default_ipv4.network }}"
   mounts:
-    - /srv/archive
-    - /srv/share
+    - /mnt/b08x
+
+# autofs:
+#   host: ninjabot
+#   mounts:
+#   - share
 
 sshd_port: 22
 sshd_allow_groups: b08x

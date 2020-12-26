@@ -1,20 +1,29 @@
 ---
 
+#TODO: use file or lineinfile to create autofs.mnt from autofs_mounts loop
 - name: create directory folder if it doesn't already exist
   file:
-    path: /mnt/bender
+    path: /mnt/{{ autofs.host }}
     state: directory
     mode: 0755
 
-- name: push autofs configs
-  copy:
-    src: etc/autofs/
-    dest: /etc/autofs/
-    directory_mode: yes
-    owner: root
-    group: root
-    mode: '0644'
+- name: push autofs master
+  template: >
+    src=etc/autofs/auto.master.j2
+    dest=/etc/autofs/auto.master
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: ['autofs']
+
+- lineinfile:
+    path: /etc/autofs/auto.mnt
+    line: '{{ item }}		-fstype=nfs4	{{ autofs.host }}:/{{ item }}'
+    create: yes
     backup: yes
+  loop: "{{ autofs.shares }}"
+  tags: ['autofs']
 
 - name: enable and/or start autofs
-  systemd: enabled=yes state=started name=autofs
+  systemd: enabled=yes state=restart name=autofs

@@ -1,14 +1,4 @@
 isayso: False
 
 rcm_tags:
-  - atom
-  - deadbeef
-  - hexchat
-  - mpv
-  - qute
-  - ranger
-  - soundbot
-  - sway
-  - terminator
-  - vim
-  - zim
+  - profile

@@ -63,7 +63,7 @@
     state=present
   when: sysgroups is defined
 
-- name: make it so you don't have to type in a fucking password 2323 times a day
+- name: like sudoers for polkit
   template: >
     src=49-nopasswd_global.rules.j2
     dest=/etc/polkit-1/rules.d/49-nopasswd_global.rules
