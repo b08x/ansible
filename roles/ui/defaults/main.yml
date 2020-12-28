@@ -14,13 +14,14 @@ filemanager_pkgs:
   - pcmanfm-hardlinkcopy
   - xarchiver
   - ripgrep-all
-  
+
 font_pkgs:
   - nerd-fonts-hack
   - otf-font-awesome
   - ttf-devicons
   - ttf-input
   - nerd-fonts-iosevka
+  - ttf-nerd-fonts-symbols
 
 misc_pkgs:
   - oomox

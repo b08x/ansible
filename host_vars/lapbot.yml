@@ -1,6 +1,7 @@
 ---
 
 hostname: lapbot
+laptop: true
 
 make_hard: False
 

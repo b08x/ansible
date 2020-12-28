@@ -51,6 +51,7 @@ base_pkgs:
   - lsof
   - net-tools
   - iftop
+  - brightnessctl
 
 snapper_pkgs:
   - snapper
