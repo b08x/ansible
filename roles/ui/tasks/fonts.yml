@@ -2,7 +2,7 @@
 
 - name: install these fonts
   aur:
-    use: pacaur
+    use: yay
     name: "{{ font_pkgs }}"
     state: present
   become: True

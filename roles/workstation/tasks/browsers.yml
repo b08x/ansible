@@ -2,7 +2,7 @@
 
 - name: install web browsers
   aur:
-    use: pacaur
+    use: yay
     name: "{{ browser_pkgs }}"
     state: present
   become: True

@@ -1,20 +1,9 @@
 ---
 
 hostname: soundbot01
-
-make_hard: False
-
+workstation: False
 docker_host: False
 docker_storage: /var/lib/docker
-
-sshd_port: 22
-sshd_allow_groups: b08x
-
-sysctl_ip_forward: False
-
-netdev: eth0
-
-package_manager: apt
 
 voicecard:
   url: https://github.com/respeaker/seeed-voicecard.git

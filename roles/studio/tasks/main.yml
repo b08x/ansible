@@ -2,7 +2,7 @@
 #TODO: jack2 and jack are in conflict....
 - name: install base audio
   aur:
-    use: pacaur
+    use: yay
     name: "{{ audio_pkgs }}"
     state: present
   become: True
@@ -11,7 +11,7 @@
 
 - name: install video stuff
   aur:
-    use: pacaur
+    use: yay
     name: "{{ video_pkgs }}"
     state: present
   become: True

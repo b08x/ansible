@@ -2,7 +2,7 @@
 
 - name: install docker stuffs
   aur:
-    use: pacaur
+    use: yay
     name: "{{ docker_pkgs }}"
     state: present
   become: True

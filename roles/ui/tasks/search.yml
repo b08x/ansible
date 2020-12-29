@@ -2,7 +2,7 @@
 
 - name: install search_pkgs
   aur:
-    use: pacaur
+    use: yay
     name: "{{ search_pkgs }}"
     state: present
   become: True

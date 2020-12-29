@@ -19,7 +19,7 @@
 
   - name: install these packages
     aur:
-      use: pacaur
+      use: yay
       name: "{{ media_pkgs }}"
       state: present
     tags: ['media_pkgs']

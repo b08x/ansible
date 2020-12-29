@@ -3,6 +3,9 @@
 - include: sway.yml
   tags: ['ui','sway']
 
+- include: themes.yml
+  tags: ['themes']
+
 - include: fonts.yml
   tags: ['fonts']
 
@@ -14,7 +17,7 @@
 
 - name: install themes
   aur:
-    use: pacaur
+    use: yay
     name: "{{ theme_pkgs }}"
     state: present
   become: True
@@ -23,7 +26,7 @@
 
 - name: install ui_pkgs
   aur:
-    use: pacaur
+    use: yay
     name: "{{ ui_pkgs }}"
     state: present
   become: True

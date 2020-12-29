@@ -10,9 +10,10 @@ subvolumes:
 
 num_of_snaps_to_keep: 20
 
+#FIXME:
+#ERROR: octopi is not available for the 'aarch64' architecture."
 arch_pkgs:
-  - pacaur
-  - octopi
+  - yay
   - pamac
 
 base_pkgs:
@@ -24,16 +25,13 @@ base_pkgs:
   - barrier
   - samba
   - bind
-  - zim
   - lsd
   - ranger
-  - vim
+  - neovim
   - bash-completion
   - privoxy
-  - fd
   - autofs
   - lnav
-  - mousepad
   - cmake
   - autoconf
   - mlocate

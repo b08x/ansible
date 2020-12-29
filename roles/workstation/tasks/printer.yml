@@ -2,7 +2,7 @@
 
 - name: install printer drivers
   aur:
-    use: pacaur
+    use: yay
     name: "{{ printer_pkgs }}"
     state: present
   become: True

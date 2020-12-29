@@ -2,12 +2,12 @@
 
 - name: install IDE packages
   aur:
-    use: pacaur
-    name: "{{ atom_pkgs }}"
+    use: yay
+    name: "{{ editor_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['atom_pkgs']
+  tags: ['editor_pkgs']
 
 #TODO: this appears to install (or reinstall) the package regardless
 # if it already exists.

@@ -6,8 +6,8 @@
     dest={{ unix_admin.home}}/.ansible/plugins/modules/aur
     accept_hostkey=yes
     clone=yes
-    update=yes
-    force=yes
+    update=no
+    force=no
   become: yes
   become_user: "{{ unix_admin.name }}"
   tags: ['ansible']
@@ -22,21 +22,6 @@
     backup=yes
   tags: ['etc', 'configs']
 
-- name: push pacaur config
-  template: >
-    src=etc/xdg/pacaur.j2
-    dest=/etc/xdg/pacaur/config
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  tags: ['xdg', 'configs']
-
-- name: get list of installed packages
-  shell: "pacman -Qet | awk '{print $1}'"
-  register: installed_packages
-  tags: ['packages']
-
 - name: install these packagemanagers
   aur:
     use: auto
@@ -45,3 +30,18 @@
   become: True
   become_user: "{{ unix_admin.name }}"
   tags: ['arch_pkgs']
+
+# - name: push pacaur config
+  # template: >
+    # src=etc/xdg/pacaur.j2
+    # dest=/etc/xdg/pacaur/config
+    # mode=0644
+    # owner=0
+    # group=0
+    # backup=yes
+  # tags: ['xdg', 'configs']
+
+- name: get list of installed packages
+  shell: "pacman -Qet | awk '{print $1}'"
+  register: installed_packages
+  tags: ['packages']

@@ -1,7 +1,10 @@
 ---
 
-local_src_dir: "{{ user.home }}/Downloads/source"
+local_src_dir: "{{ user.home }}/Workspace/source"
 local_bin_dir: "{{ user.home }}/bin"
+themes_dir: "{{ user.home }}/.themes"
+icons_dir: "{{ user.home }}/.icons"
+
 temp_dir: /tmp
 
 gnupg:
@@ -27,6 +30,7 @@ unix_admin:
   home: /home/b08x
   sshdir: /home/b08x/.ssh
   uid: 1000
+  gid: 1000
   primary_group: b08x
   secondary_groups: "wheel,network,input,audio,home,storage"
   shell: /bin/bash

@@ -2,7 +2,7 @@
 
 - name: install synths
   aur:
-    use: pacaur
+    use: yay
     name: "{{ synth_pkgs }}"
     state: present
   become: True
@@ -11,7 +11,7 @@
 
 - name: install samplers & sequencers
   aur:
-    use: pacaur
+    use: yay
     name: "{{ sands_pkgs }}"
     state: present
   become: True

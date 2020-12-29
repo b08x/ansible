@@ -10,7 +10,7 @@
       accept_hostkey=yes
       update=yes
       force=yes
-    when: isayso == True
+    # when: isayso == True
 
   - name: push rcrc
     template: >
@@ -28,6 +28,6 @@
   become: yes
   become_user: "{{ unix_admin.name }}"
 
-- include: rcup.yml
-  when: isayso == True
-  tags: ['rcm']
+# - include: rcup.yml
+#   when: isayso == True
+#   tags: ['rcm']

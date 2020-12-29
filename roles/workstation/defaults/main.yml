@@ -21,12 +21,13 @@ apm_pkgs:
   - ansible-snippets
   - ruby-solargraph
 
-atom_pkgs:
+editor_pkgs:
   - atom
   - ruby-rubocop
   - ruby-solargraph
   - zim
   - meld
+  - mousepad
 
 browser_pkgs:
   - firefox

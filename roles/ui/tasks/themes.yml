@@ -1,0 +1,30 @@
+---
+
+- name: copy
+  copy: >
+    src=themes/oomox-equilibrium-gray-dark.tar.gz
+    dest="{{ temp_dir }}"
+    owner="{{ unix_admin.uid }}"
+    group="{{ unix_admin.gid }}"
+
+- name: extract tarball
+  command: "tar -xf oomox-equilibrium-gray-dark.tar.gz -C '{{ themes_dir }}'"
+  args:
+    chdir: "{{ temp_dir }}"
+  become: yes
+  become_user: "{{ unix_admin.name }}"
+
+- name: push
+  copy:
+    src: icons/oomox-equilibrium-gray-icons.tar.gz
+    dest: "{{ temp_dir }}"
+    directory_mode: no
+    owner: "{{ unix_admin.gid }}"
+    group: "{{ unix_admin.gid }}"
+
+- name: extract tarball
+  command: "tar -xf oomox-equilibrium-gray-dark-icons.tar.gz -C '{{ icons_dir }}'"
+  args:
+    chdir: "{{ temp_dir }}"
+  become: yes
+  become_user: "{{ unix_admin.name }}"

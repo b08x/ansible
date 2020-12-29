@@ -2,7 +2,7 @@
 
 - name: install file managers
   aur:
-    use: pacaur
+    use: yay
     name: "{{ filemanager_pkgs }}"
     state: present
   become: True

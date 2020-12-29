@@ -5,3 +5,9 @@ ninjabot ansible_connection=local ansible_user=b08x ansible_become=true
 
 [localhost:vars]
 update=false initial_install=false
+
+[soundbots]
+soundbot01 ansible_user=b08x ansible_become=true
+
+[soundbots:vars]
+pi=yes

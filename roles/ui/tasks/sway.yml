@@ -2,26 +2,9 @@
 
 - name: install sway stuffs
   aur:
-    use: pacaur
+    use: yay
     name: "{{ sway_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
   tags: ['sway_pkgs']
-
-- name: push greetd
-  template: >
-    src=etc/greetd/config.toml.j2
-    dest=/etc/greetd/config.toml
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  tags: ['greetd']
-  when: tuigreet == True
-
-- name: enable greetd service
-  systemd: enabled=yes name=greetd
-  ignore_errors: true
-  tags: ['greetd']
-  when: tuigreet == True

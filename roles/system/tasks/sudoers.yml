@@ -1,0 +1,24 @@
+---
+
+- name: check if file and/or directory exists
+  stat: "path=/etc/sudoers.d/10-unix_admin"
+  register: hazifile
+  tags: ['sudoers']
+
+- lineinfile:
+    path: /etc/sudoers.d/10-unix_admin
+    line: '{{ unix_admin.name }} ALL=(ALL) NOPASSWD: ALL'
+    create: yes
+    validate: 'visudo -cf %s'
+  when: not hazifile.stat.exists
+  tags: ['sudoers']
+
+- name: like sudoers for polkit
+  template: >
+    src=49-nopasswd_global.rules.j2
+    dest=/etc/polkit-1/rules.d/49-nopasswd_global.rules
+    owner=0
+    group=0
+    mode=0644
+    backup=yes
+  tags: ['polkit','sudoers']

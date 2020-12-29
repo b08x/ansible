@@ -2,7 +2,7 @@
 
 - name: install snapper stuff
   aur:
-    use: pacaur
+    use: yay
     name: "{{ snapper_pkgs }}"
     state: present
   become: True

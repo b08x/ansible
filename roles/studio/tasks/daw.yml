@@ -2,7 +2,7 @@
 
 - name: install digital audio workstation stuff
   aur:
-    use: pacaur
+    use: yay
     name: "{{ daw_pkgs }}"
     state: present
   become: True

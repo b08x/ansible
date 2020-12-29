@@ -20,7 +20,7 @@
 
 - name: install some utility/analysis packages
   aur:
-    use: pacaur
+    use: yay
     name: "{{ util_pkgs }}"
     state: present
   become: True
