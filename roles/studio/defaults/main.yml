@@ -40,12 +40,16 @@ video_pkgs:
   - celluloid
   - mpv-plugin-excerpt-git
 
+obs_pkgs:
+  - wlrobs
+  # - obs-studio
+
 deadbeef_pkgs:
   - deadbeef
   - deadbeef-jack-git
   - deadbeef-plugin-customizabletb-gtk3-git
   - deadbeef-plugin-headerbar-gtk3-git
-  - deadbeef-plugin-medialib-git
+  # - deadbeef-plugin-medialib-git
   - deadbeef-plugin-musical-spectrum-gtk3-git
   - deadbeef-plugin-spectrogram-gtk3-git
   - deadbeef-plugin-waveform-gtk3-git
@@ -82,7 +86,7 @@ synth_pkgs:
 sands_pkgs:
   - qmidiarp
   - qsampler
-  - hydrogen-git
+  - hydrogen
   - konfyt
 
 util_pkgs:

@@ -7,7 +7,7 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['studio_pkgs']
 
 - name: install video stuff
   aur:
@@ -16,7 +16,7 @@
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['packages']
+  tags: ['studio_pkgs']
 
 - include: pulse.yml
   tags: ['pulse']
@@ -28,6 +28,7 @@
   tags: ['deadbeef']
 
 - include: daw.yml
+  ignore_errors: yes
   tags: ['daw']
 
 # - name: Get list of groups
@@ -58,7 +59,14 @@
 - include: sonicpi.yml
   tags: ['sonicpi']
 
-
+- name: install obs stuffs
+  aur:
+    use: yay
+    name: "{{ obs_pkgs }}"
+    state: present
+  become: True
+  become_user: "{{ unix_admin.name }}"
+  tags: ['obs_pkgs']
 #TODO: the second which is in the soundbot repo...
 # - name: push soundbot systemd file
 #   copy:

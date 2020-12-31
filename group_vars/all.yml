@@ -1,9 +1,9 @@
 ---
 
-local_src_dir: "{{ user.home }}/Workspace/source"
-local_bin_dir: "{{ user.home }}/bin"
-themes_dir: "{{ user.home }}/.themes"
-icons_dir: "{{ user.home }}/.icons"
+local_src_dir: "{{ unix_admin.home }}/Workspace/source"
+local_bin_dir: "{{ unix_admin.home }}/bin"
+themes_dir: "{{ unix_admin.home }}/.themes"
+icons_dir: "{{ unix_admin.home }}/.icons"
 
 temp_dir: /tmp
 
@@ -36,3 +36,8 @@ unix_admin:
   shell: /bin/bash
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
+
+
+font: Hack Nerd Font Regular
+git_name: b08x
+git_mail: rwpannick@gmail.com

@@ -8,3 +8,14 @@
   become: True
   become_user: "{{ unix_admin.name }}"
   tags: ['deadbeef']
+
+- name: push deadbeef plugins
+  copy:
+    src: usr/lib/deadbeef/
+    dest: /usr/lib/deadbeef/
+    directory_mode: yes
+    owner: root
+    group: root
+    mode: '0755'
+    backup: yes
+  tags: ['deadbeef_plugins']

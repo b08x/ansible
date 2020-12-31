@@ -1,0 +1,8 @@
+---
+
+- name: reload mako
+  shell: makoctl reload
+  when: ansible_virtualization_role == "host"
+  ignore_errors: yes
+  become: yes
+  become_user: "{{ unix_admin.name }}"

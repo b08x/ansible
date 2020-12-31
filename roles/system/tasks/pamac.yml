@@ -12,34 +12,34 @@
   become_user: "{{ unix_admin.name }}"
   tags: ['ansible']
 
-- name: push pamac conf with aur enabled
-  template: >
-    src=etc/pamac.conf.j2
-    dest=/etc/pamac.conf
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  tags: ['etc', 'configs']
+# - name: push pamac conf with aur enabled
+#   template: >
+#     src=etc/pamac.conf.j2
+#     dest=/etc/pamac.conf
+#     mode=0644
+#     owner=0
+#     group=0
+#     backup=yes
+#   tags: ['etc', 'configs']
 
-- name: install these packagemanagers
-  aur:
-    use: auto
-    name: "{{ arch_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ unix_admin.name }}"
-  tags: ['arch_pkgs']
+# - name: install these packagemanagers
+#   aur:
+#     use: yay
+#     name: "{{ arch_pkgs }}"
+#     state: present
+#   become: True
+#   become_user: "{{ unix_admin.name }}"
+#   tags: ['arch_pkgs']
 
 # - name: push pacaur config
-  # template: >
-    # src=etc/xdg/pacaur.j2
-    # dest=/etc/xdg/pacaur/config
-    # mode=0644
-    # owner=0
-    # group=0
-    # backup=yes
-  # tags: ['xdg', 'configs']
+#   template: >
+#     src=etc/xdg/pacaur.j2
+#     dest=/etc/xdg/pacaur/config
+#     mode=0644
+#     owner=0
+#     group=0
+#     backup=yes
+#   tags: ['xdg', 'configs']
 
 - name: get list of installed packages
   shell: "pacman -Qet | awk '{print $1}'"

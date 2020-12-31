@@ -1,7 +1,6 @@
 [localhost]
-lapbot ansible_connection=local ansible_user=b08x ansible_become=true
 bender ansible_connection=local ansible_user=b08x ansible_become=true
-ninjabot ansible_connection=local ansible_user=b08x ansible_become=true
+lapbot ansible_connection=local ansible_user=b08x ansible_become=true
 
 [localhost:vars]
 update=false initial_install=false
@@ -11,3 +10,6 @@ soundbot01 ansible_user=b08x ansible_become=true
 
 [soundbots:vars]
 pi=yes
+
+[ninjabot]
+ninjabot ansible_user=b08x ansible_become=true

@@ -3,8 +3,8 @@
 - name: install these fonts
   aur:
     use: yay
-    name: "{{ font_pkgs }}"
+    name: "{{ theme_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
-  tags: ['font_pkgs']
+  tags: ['theme_pkgs']

@@ -2,7 +2,7 @@
 
 - name: setup
   gather_facts: yes
-  hosts: soundbots
+  hosts: all
 
   tasks:
     - name: Print all available facts
@@ -14,6 +14,6 @@
      # - { role: network, tags: ['network'] }
      - { role: system, tags: ['system'] }
      - { role: ui, tags: ['ui'] }
-     # - { role: studio, tags: ['studio'] }
+     - { role: studio, tags: ['studio'] }
      - { role: workstation, tags: ['workstation'] }
      - { role: dotfiles, tags: ['dotfiles'] }

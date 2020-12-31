@@ -1,5 +1,13 @@
 ---
 
+- name: create directory folder if it doesn't already exist
+  file:
+    path: "{{ themes_dir }}"
+    state: directory
+    mode: 0744
+    owner: "{{ unix_admin.gid }}"
+    group: "{{ unix_admin.gid }}"
+
 - name: copy
   copy: >
     src=themes/oomox-equilibrium-gray-dark.tar.gz
@@ -14,9 +22,17 @@
   become: yes
   become_user: "{{ unix_admin.name }}"
 
+- name: create directory folder if it doesn't already exist
+  file:
+    path: "{{ icons_dir }}"
+    state: directory
+    mode: 0744
+    owner: "{{ unix_admin.gid }}"
+    group: "{{ unix_admin.gid }}"
+
 - name: push
   copy:
-    src: icons/oomox-equilibrium-gray-icons.tar.gz
+    src: icons/oomox-equilibrium-gray-dark-icons.tar.gz
     dest: "{{ temp_dir }}"
     directory_mode: no
     owner: "{{ unix_admin.gid }}"

@@ -3,11 +3,10 @@
 window_manger: sway
 pkgutils: false
 
-tuigreet: false
+tuigreet: True
 
 ui_pkgs:
-  - nasa-wallpaper
-  - pywal-git
+  - silver
 
 filemanager_pkgs:
   - pcmanfm
@@ -15,23 +14,31 @@ filemanager_pkgs:
   - xarchiver
   - ripgrep-all
 
-font_pkgs:
-  - nerd-fonts-hack
-  - otf-font-awesome
-  - ttf-devicons
-  - ttf-input
-  - nerd-fonts-iosevka
-  - ttf-nerd-fonts-symbols
-
 misc_pkgs:
   - oomox
   - keyboardlayouteditor-git
+  - nasa-wallpaper
+  - pywal-git
 
 search_pkgs:
   - arch-wiki-man
   - surfraw
   - most #for viewing man pages in color
   - googler
+
+#FIXME: :: Downloaded PKGBUILD (1/1): wlogout
+#   1 wlogout                          (Build Files Exist)
+# ==> Diffs to show?
+# ==> [N]one [A]ll [Ab]ort [I]nstalled [No]tInstalled or (1 2 3, 1-3, ^4)
+# ==>
+# :: (1/1) Parsing SRCINFO: wlogout
+#
+# :: PGP keys need importing:
+#  -> F4FDB18A9937358364B276E9E25D679AF73C6D2F, required by: wlogout
+# ==> Import? [Y/n] y
+# :: Importing keys with gpg...
+# gpg: keyserver receive failed: General error
+# problem importing keys
 
 sway_pkgs:
   - waybar
@@ -46,12 +53,16 @@ sway_pkgs:
   - greetd-tuigreet
   - qt5-wayland
   - qt5ct
-  - wlrobs
-  - pywal-git
-  - wlogout
+  # - wlogout
   - mako
 
 theme_pkgs:
   - vimix-icon-theme
   - vimix-gtk-themes
   - vimix-cursors
+  - nerd-fonts-hack
+  - otf-font-awesome
+  - ttf-devicons
+  - ttf-input
+  - nerd-fonts-iosevka
+  - ttf-nerd-fonts-symbols

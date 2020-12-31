@@ -3,8 +3,14 @@
 - name: install base_packages
   aur:
     use: yay
-    name: "{{ base_pkgs }}"
+    name: "{{ aur_pkgs }}"
     state: present
   become: True
   become_user: "{{ unix_admin.name }}"
+  tags: ['aur_pkgs,base_pkgs']
+
+- name: install base_pkgs
+  pacman:
+    name: "{{ base_pkgs }}"
+    state: present
   tags: ['base_pkgs']

@@ -3,11 +3,8 @@
 - include: sway.yml
   tags: ['ui','sway']
 
-- include: themes.yml
-  tags: ['themes']
-
-- include: fonts.yml
-  tags: ['fonts']
+- include: ui_pkgs.yml
+  tags: ['ui_pkgs']
 
 - include: desktop.yml
   tags: ['desktop']
@@ -15,20 +12,11 @@
 - include: search.yml
   tags: ['search']
 
-- name: install themes
-  aur:
-    use: yay
-    name: "{{ theme_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ unix_admin.name }}"
-  tags: ['theme_pkgs']
+- include: tuigreet.yml
+  tags: ['tuigreet']
 
-- name: install ui_pkgs
-  aur:
-    use: yay
-    name: "{{ ui_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ unix_admin.name }}"
-  tags: ['ui_pkgs']
+- include: custom_themes.yml
+  tags: ['oomox']
+
+- include: mako.yml
+  tags: ['mako']

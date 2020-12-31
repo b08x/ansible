@@ -2,19 +2,15 @@
 
 docker_host: False
 
-subvolumes:
-  - name: root
-    path: "/"
-  - name: home
-    path: "/home"
-
-num_of_snaps_to_keep: 20
-
 #FIXME:
 #ERROR: octopi is not available for the 'aarch64' architecture."
 arch_pkgs:
-  - yay
-  - pamac
+  - pacaur
+
+aur_pkgs:
+  - rcm
+  - lnav
+  - silver
 
 base_pkgs:
   - timeshift
@@ -31,13 +27,11 @@ base_pkgs:
   - bash-completion
   - privoxy
   - autofs
-  - lnav
   - cmake
   - autoconf
   - mlocate
   - most
   - git-lfs
-  - rcm
   - ctags
   - ncurses
   - curl
