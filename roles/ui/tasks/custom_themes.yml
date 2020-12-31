@@ -1,46 +1,55 @@
 ---
 
-- name: create directory folder if it doesn't already exist
-  file:
-    path: "{{ themes_dir }}"
-    state: directory
-    mode: 0744
-    owner: "{{ unix_admin.gid }}"
-    group: "{{ unix_admin.gid }}"
+- block:
 
-- name: copy
-  copy: >
-    src=themes/oomox-equilibrium-gray-dark.tar.gz
-    dest="{{ temp_dir }}"
-    owner="{{ unix_admin.uid }}"
-    group="{{ unix_admin.gid }}"
+  - name: create directory folder if it doesn't already exist
+    file:
+      path: "{{ themes_dir }}"
+      state: directory
+      mode: 0744
+      owner: "{{ unix_admin.gid }}"
+      group: "{{ unix_admin.gid }}"
 
-- name: extract tarball
-  command: "tar -xf oomox-equilibrium-gray-dark.tar.gz -C '{{ themes_dir }}'"
-  args:
-    chdir: "{{ temp_dir }}"
+  - name: copy
+    copy: >
+      src=themes/oomox-equilibrium-gray-dark.tar.gz
+      dest="{{ temp_dir }}"
+      owner="{{ unix_admin.uid }}"
+      group="{{ unix_admin.gid }}"
+
+  - name: extract tarball
+    command: "tar -xf oomox-equilibrium-gray-dark.tar.gz -C '{{ themes_dir }}'"
+    args:
+      chdir: "{{ temp_dir }}"
+
+  - name: create directory folder if it doesn't already exist
+    file:
+      path: "{{ icons_dir }}"
+      state: directory
+      mode: 0744
+      owner: "{{ unix_admin.gid }}"
+      group: "{{ unix_admin.gid }}"
+
+  - name: push
+    copy:
+      src: icons/oomox-equilibrium-gray-dark-icons.tar.gz
+      dest: "{{ temp_dir }}"
+      directory_mode: no
+      owner: "{{ unix_admin.gid }}"
+      group: "{{ unix_admin.gid }}"
+
+  - name: extract tarball
+    command: "tar -xf oomox-equilibrium-gray-dark-icons.tar.gz -C '{{ icons_dir }}'"
+    args:
+      chdir: "{{ temp_dir }}"
+
   become: yes
   become_user: "{{ unix_admin.name }}"
 
-- name: create directory folder if it doesn't already exist
-  file:
-    path: "{{ icons_dir }}"
-    state: directory
-    mode: 0744
-    owner: "{{ unix_admin.gid }}"
-    group: "{{ unix_admin.gid }}"
-
-- name: push
+- name: push background
   copy:
-    src: icons/oomox-equilibrium-gray-dark-icons.tar.gz
-    dest: "{{ temp_dir }}"
-    directory_mode: no
-    owner: "{{ unix_admin.gid }}"
-    group: "{{ unix_admin.gid }}"
-
-- name: extract tarball
-  command: "tar -xf oomox-equilibrium-gray-dark-icons.tar.gz -C '{{ icons_dir }}'"
-  args:
-    chdir: "{{ temp_dir }}"
-  become: yes
-  become_user: "{{ unix_admin.name }}"
+    src: usr/share/backgrounds/
+    dest: /usr/share/backgrounds/
+    directory_mode: yes
+    mode: 0644
+  tags: ['backgrounds']
