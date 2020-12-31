@@ -56,6 +56,8 @@ sway_pkgs:
   - qt5ct
   # - wlogout
   - mako
+  - wf-recorder
+  - grimshot
 
 theme_pkgs:
   - vimix-icon-theme
