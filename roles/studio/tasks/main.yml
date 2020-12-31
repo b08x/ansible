@@ -77,8 +77,8 @@
   become_user: "{{ unix_admin.name }}"
   tags: ['neovim_pkgs']
 
-  - include: pulse.yml
-    tags: ['pulse']
+- include: pulse.yml
+  tags: ['pulse']
 #TODO: the second which is in the soundbot repo...
 # - name: push soundbot systemd file
 #   copy:
