@@ -3,7 +3,9 @@ include /etc/sway/inputs/*
 include /etc/sway/outputs/*
 set $theme /sway/themes/matcha-green
 include $theme/definitions
-
+#even though this is set in $theme/definitions which is suppose to be
+#included, setting this here;
+set $background /usr/share/backgrounds/732.jpg
 set $mod Mod4
 
 # enable wlogout theme

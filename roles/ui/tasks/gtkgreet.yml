@@ -1,5 +1,7 @@
 ---
 
+#install greetd-gtkgreet
+
 - name: push greetd configs
   copy:
     src: etc/greetd/

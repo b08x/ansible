@@ -52,6 +52,7 @@ sway_pkgs:
   - gtk3-nocsd-git
   - greetd
   - greetd-tuigreet
+  - greetd-gtkgreet-git
   - qt5-wayland
   - qt5ct
   # - wlogout

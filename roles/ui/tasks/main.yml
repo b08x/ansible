@@ -14,11 +14,11 @@
 
 - include: tuigreet.yml
   tags: ['tuigreet']
-  when: tuigreet == True
+  when: tuigreet == true
 
 - include: gtkgreet.yml
   tags: ['gtkgreet']
-  when: gtkgreet == True
+  when: gtkgreet == true
 
 - include: custom_themes.yml
   tags: ['oomox']
