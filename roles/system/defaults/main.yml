@@ -44,6 +44,7 @@ base_pkgs:
   - net-tools
   - iftop
   - brightnessctl
+  - guake
 
 snapper_pkgs:
   - snapper
