@@ -15,7 +15,7 @@ aur_pkgs:
 base_pkgs:
   - timeshift
   - bat
-  - terminator
+  # - terminator
   - htop
   - iotop
   - barrier

@@ -8,3 +8,36 @@
   become: True
   become_user: "{{ unix_admin.name }}"
   tags: ['sway_pkgs']
+
+
+- name: push main sway dir to etc
+  copy:
+    src: etc/sway/
+    dest: /etc/sway/
+    directory_mode: yes
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: ['sway_etc']
+
+# - name: create sway config dir
+#   file:
+#     path: ~/.config/sway/
+#     state: directory
+#
+# - name: copy configuration file
+#   template:
+#     src: config.j2
+#     dest: ~/.config/sway/config
+#
+# - name: copy gsettings importer
+#   copy:
+#     src: import-gsettings
+#     dest: ~/.config/sway/
+#     mode: 0755
+#
+# - name: copy config user.dirs
+#   copy:
+#     src: user-dirs.dirs
+#     dest: ~/.config/

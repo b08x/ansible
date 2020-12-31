@@ -59,6 +59,8 @@ media_pkgs:
   - qbittorrent
   - radiotray-ng
   - libbluray
+  - feh
+  - viewnior
 
 printer_pkgs:
   - cups

@@ -3,7 +3,8 @@
 window_manger: sway
 pkgutils: false
 
-tuigreet: True
+tuigreet: false
+gtkgreet: true
 
 ui_pkgs:
   - silver

@@ -1,0 +1,17 @@
+---
+
+- name: push greetd configs
+  copy:
+    src: etc/greetd/
+    dest: /etc/greetd/
+    directory_mode: yes
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: ['greetd']
+
+- name: enable greetd service
+  systemd: enabled=yes name=greetd
+  ignore_errors: true
+  tags: ['greetd']
