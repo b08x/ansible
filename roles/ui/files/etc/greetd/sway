@@ -2,12 +2,13 @@
 include /etc/sway/definitions
 include /etc/sway/inputs/*
 include /etc/sway/outputs/*
+include $theme/definitions
 
 # enable wlogout theme
-#exec_always 'mkdir -p /tmp/gtkgreet && ln -sf $theme/theme.css /tmp/gtkgreet/'
+exec_always 'mkdir -p /tmp/gtkgreet && ln -sf $theme/theme.css /tmp/gtkgreet/'
 
 # start gtkgreeter
-exec "GTK_THEME=$gtk-theme gtkgreet -l -c sway; swaymsg exit"
+exec "GTK_THEME=$gtk-theme gtkgreet -l -b $background -c sway; swaymsg exit"
 
 # offer shutdown options
 bindsym $mod+Shift+e exec $shutdown --layout /etc/greetd/wlogout --css /etc/greetd/style.css

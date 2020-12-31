@@ -4,8 +4,6 @@
 set $mod Mod4
 set $alt Mod1
 
-set $font pango: Monospace 10
-
 # Home row direction keys, like vim
 set $left h
 set $down j
