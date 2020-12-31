@@ -2,7 +2,7 @@
 # Author: Appelgriebsch
 
 # some global theme specific variables
-set $background /usr/share/backgrounds/volitare__by_vyrosk_de8fbk0.png
+set $background /usr/share/backgrounds/2.png
 set $gtk-theme oomox-equilibrium-gray-dark
 set $icon-theme oomox-equilibrium-gray-dark
 set $cursor-theme Vimix

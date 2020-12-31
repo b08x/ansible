@@ -1,8 +1,10 @@
 # global variables
-include /etc/sway/definitions
 include /etc/sway/inputs/*
 include /etc/sway/outputs/*
+set $theme /sway/themes/matcha-green
 include $theme/definitions
+
+set $mod Mod4
 
 # enable wlogout theme
 exec_always 'mkdir -p /tmp/gtkgreet && ln -sf $theme/theme.css /tmp/gtkgreet/'
