@@ -1,13 +1,18 @@
 # global variables
-include /etc/sway/definitions
 include /etc/sway/inputs/*
 include /etc/sway/outputs/*
+set $theme /sway/themes/matcha-green
+include $theme/definitions
+#even though this is set in $theme/definitions which is suppose to be
+#included, setting this here;
+set $background /usr/share/backgrounds/732.jpg
+set $mod Mod4
 
 # enable wlogout theme
 exec_always 'mkdir -p /tmp/gtkgreet && ln -sf $theme/theme.css /tmp/gtkgreet/'
 
 # start gtkgreeter
-exec "GTK_THEME=$gtk-theme tuigreet -c sway; swaymsg exit"
+exec "GTK_THEME=$gtk-theme gtkgreet -l -b $background -c sway; swaymsg exit"
 
 # offer shutdown options
 bindsym $mod+Shift+e exec $shutdown --layout /etc/greetd/wlogout --css /etc/greetd/style.css

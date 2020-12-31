@@ -3,7 +3,8 @@
 window_manger: sway
 pkgutils: false
 
-tuigreet: True
+tuigreet: false
+gtkgreet: true
 
 ui_pkgs:
   - silver
@@ -51,10 +52,13 @@ sway_pkgs:
   - gtk3-nocsd-git
   - greetd
   - greetd-tuigreet
+  - greetd-gtkgreet-git
   - qt5-wayland
   - qt5ct
   # - wlogout
   - mako
+  - wf-recorder
+  - grimshot
 
 theme_pkgs:
   - vimix-icon-theme

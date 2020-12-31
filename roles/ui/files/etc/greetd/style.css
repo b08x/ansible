@@ -2,10 +2,10 @@
 @import url("/tmp/gtkgreet/theme.css");
 
 * {
-    background-image: none;
+    background-image: image(url("/usr/share/backgrounds/2.png");
 }
 window {
-    background-color: @transparent_background_color;
+    background-color: @background_color;
 }
 button {
     color: @text_color;
