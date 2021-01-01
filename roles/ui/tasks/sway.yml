@@ -9,16 +9,22 @@
   become_user: "{{ unix_admin.name }}"
   tags: ['sway_pkgs']
 
-
-- name: push main sway dir to etc
-  copy:
-    src: etc/sway/
-    dest: /etc/sway/
-    directory_mode: yes
+- name: create directory folder if it doesn't already exist
+  file:
+    path: /etc/sway
+    state: directory
+    mode: 0755
     owner: root
     group: root
-    mode: '0644'
-    backup: yes
+  tags: ['sway_etc']
+
+- name: push main sway dir to etc
+  synchronize:
+    src: etc/sway
+    dest: /etc/
+    recursive: yes
+    mode: push
+    delete: yes
   tags: ['sway_etc']
 
 # - name: create sway config dir

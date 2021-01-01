@@ -6,39 +6,52 @@
 
   tasks:
 
-    - debug:
-        msg:
-          - " Data type of 'ansible_architecture'  is {{ ansible_architecture | type_debug }} "
-          - " Data type of 'ansible_apparmor' is {{ ansible_apparmor | type_debug }} "
-          - " Data type of 'ansible_all_ipv4_addresses' is {{ ansible_all_ipv4_addresses |   type_debug }} "
+    # - debug:
+    #     msg:
+    #       - " Data type of 'ansible_architecture'  is {{ ansible_architecture | type_debug }} "
+    #       - " Data type of 'ansible_apparmor' is {{ ansible_apparmor | type_debug }} "
+    #       - " Data type of 'ansible_all_ipv4_addresses' is {{ ansible_all_ipv4_addresses |   type_debug }} "
+    #
+    # # Simply printing the value of fact which is Ansible UnSafe Text type
+    # - debug:
+    #     msg: "{{ ansible_default_ipv4.interface }}"
+    #
+    # - debug:
+    #     msg: "{{ ansible_default_ipv4.interface }}"
+    #
+    # - name: Execute the command only mwiapp01 server
+    #   become: yes
+    #   become_user: root
+    #   command: "lsmod | grep r8168"
+    #   register: r8168_module
+    #   ignore_errors: true
+    #
+    # # Accessing an element of dictionary
+    # - debug:
+    #     msg: "it exists"
+    #   when: r8168_module.rc == 0
+    #
+    # # Accessing the list
+    # - debug:
+    #     msg: "{{ansible_all_ipv4_addresses}}"
+    #
+    # # Accessing the Second Element of the list
+    # - debug:
+    #     msg: "{{ansible_all_ipv4_addresses[1]}}"
 
-    # Simply printing the value of fact which is Ansible UnSafe Text type
-    - debug:
-        msg: "{{ ansible_default_ipv4.interface }}"
+    - name: check if file and/or directory exists
+      stat: path="/mnt/bender/b08x"
+      register: bender_mounted
 
-    - debug:
-        msg: "{{ ansible_default_ipv4.interface }}"
-
-    - name: Execute the command only mwiapp01 server
+    - name: push main sway dir to etc
+      synchronize:
+        src: /home/b08x/tmp/
+        dest: /mnt/bender/b08x/tmp/
+        recursive: yes
+        mode: pull
+      tags: ['backup_test']
       become: yes
-      become_user: root
-      command: "lsmod | grep r8168"
-      register: r8168_module
-      ignore_errors: true
-
-    # Accessing an element of dictionary
-    - debug:
-        msg: "it exists"
-      when: r8168_module.rc == 0
-
-    # Accessing the list
-    - debug:
-        msg: "{{ansible_all_ipv4_addresses}}"
-
-    # Accessing the Second Element of the list
-    - debug:
-        msg: "{{ansible_all_ipv4_addresses[1]}}"
-
+      become_user: b08x
     # - name: Print all available facts
     #   ansible.builtin.debug:
     #     var: ansible_facts
