@@ -2,13 +2,47 @@
 
 - name: setup
   gather_facts: yes
-  hosts: ninjabot
+  hosts: all
 
   tasks:
-    - name: Print all available facts
-      ansible.builtin.debug:
-        var: ansible_mounts
-      tags: ['facts']
+
+    - debug:
+        msg:
+          - " Data type of 'ansible_architecture'  is {{ ansible_architecture | type_debug }} "
+          - " Data type of 'ansible_apparmor' is {{ ansible_apparmor | type_debug }} "
+          - " Data type of 'ansible_all_ipv4_addresses' is {{ ansible_all_ipv4_addresses |   type_debug }} "
+
+    # Simply printing the value of fact which is Ansible UnSafe Text type
+    - debug:
+        msg: "{{ ansible_default_ipv4.interface }}"
+
+    - debug:
+        msg: "{{ ansible_default_ipv4.interface }}"
+
+    - name: Execute the command only mwiapp01 server
+      become: yes
+      become_user: root
+      command: "lsmod | grep r8168"
+      register: r8168_module
+      ignore_errors: true
+
+    # Accessing an element of dictionary
+    - debug:
+        msg: "it exists"
+      when: r8168_module.rc == 0
+
+    # Accessing the list
+    - debug:
+        msg: "{{ansible_all_ipv4_addresses}}"
+
+    # Accessing the Second Element of the list
+    - debug:
+        msg: "{{ansible_all_ipv4_addresses[1]}}"
+
+    # - name: Print all available facts
+    #   ansible.builtin.debug:
+    #     var: ansible_facts
+    #   tags: ['facts']
 
     # - name: register filesystem types
     #   ansible.builtin.setup:
@@ -25,15 +59,26 @@
     #   register: installed_packages
     #   tags: ['packages']
     #
-    - name: Print all available facts
-      ansible.builtin.debug:
-        var: initial_install
-      tags: ['test']
-
-  roles:
-     - { role: network, tags: ['network'] }
-     - { role: system, tags: ['system'] }
-     - { role: ui, tags: ['ui'] }
-     - { role: studio, tags: ['studio'] }
-     - { role: workstation, tags: ['workstation'] }
-     - { role: dotfiles, tags: ['dotfiles'] }
+    # - name: get info on the default ipv4 interfact
+    #   ansible.builtin.setup:
+    #     filter:
+    #   register: default_interface
+    #   tags: ['test']
+    #
+    # - name: print the info gathered above
+    #   ansible.builtin.debug:
+    #     var: '{{ ansible_default_ipv4.address }}'
+    #   register: this
+    #   tags: ['test']
+    #
+    # - name: print the info gathered above
+    #   ansible.builtin.debug:
+    #     var: this
+    #   tags: ['test']
+  # roles:
+  #    - { role: network, tags: ['network'] }
+  #    - { role: system, tags: ['system'] }
+  #    - { role: ui, tags: ['ui'] }
+  #    - { role: studio, tags: ['studio'] }
+  #    - { role: workstation, tags: ['workstation'] }
+  #    - { role: dotfiles, tags: ['dotfiles'] }

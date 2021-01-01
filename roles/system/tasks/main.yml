@@ -28,3 +28,23 @@
 - include: fileshare.yml
   tags: ['fileshare']
   when: file_share is defined
+
+- name: check if the r8168 network card module is loaded
+  become: yes
+  become_user: root
+  shell: "lsmod | grep r8168"
+  register: r8168_module
+  ignore_errors: true
+
+# Accessing an element of dictionary
+- name: push modprobe.d options file to enable wol on the r8168 module
+  copy:
+    src: etc/modprobe.d/10-r8168_options.conf
+    dest: /etc/modprobe.d/10-r8168_options.conf
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: no
+  tags: ['modprobe']
+  when: r8168_module.rc == 0
