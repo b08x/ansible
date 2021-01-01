@@ -22,6 +22,3 @@
 
 - include: custom_themes.yml
   tags: ['oomox']
-
-- include: mako.yml
-  tags: ['mako']
