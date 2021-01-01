@@ -27,6 +27,8 @@ search_pkgs:
   - most #for viewing man pages in color
   - googler
 
+zim_stuff:
+  - scrot
 #FIXME: :: Downloaded PKGBUILD (1/1): wlogout
 #   1 wlogout                          (Build Files Exist)
 # ==> Diffs to show?
