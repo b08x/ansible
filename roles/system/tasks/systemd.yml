@@ -1,15 +1,5 @@
 ---
 
-# - name: push systemd configs
-#   copy:
-#     src: etc/systemd/
-#     dest: /etc/systemd/
-#     directory_mode: yes
-#     owner: root
-#     group: root
-#     mode: '0644'
-#     backup: yes
-#   tags: ['systemd', 'logs']
 - block:
 
   - name: push systemd configs
