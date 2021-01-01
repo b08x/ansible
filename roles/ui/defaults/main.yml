@@ -7,25 +7,24 @@ tuigreet: false
 gtkgreet: true
 
 ui_pkgs:
-  - silver
-
-filemanager_pkgs:
-  - pcmanfm
-  - pcmanfm-hardlinkcopy
-  - xarchiver
-  - ripgrep-all
+  filemanager:
+    - pcmanfm
+    - pcmanfm-hardlinkcopy
+    - xarchiver
+    - ripgrep-all
+  terminal:
+    - silver
+  search:
+    - arch-wiki-man
+    - surfraw
+    - most #for viewing man pages in color
+    - googler
 
 misc_pkgs:
   - oomox
   - keyboardlayouteditor-git
   - nasa-wallpaper
   - pywal-git
-
-search_pkgs:
-  - arch-wiki-man
-  - surfraw
-  - most #for viewing man pages in color
-  - googler
 
 zim_stuff:
   - scrot

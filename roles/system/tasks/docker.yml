@@ -1,20 +1,6 @@
 ---
 
-- name: install docker stuffs
-  aur:
-    use: yay
-    name: "{{ docker_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ unix_admin.name }}"
-  tags: ['docker_pkgs']
-
-- name: enable and/or start docker
-  systemd: enabled=yes state=started daemon_reload=yes name={{ item }}
-  with_items:
-    - docker
-  tags: ['docker','systemd']
-
 - name: add this user to desired groups
-  user: name={{ unix_admin.name }} groups=docker append=yes
+  user: name="{{ sudoname }}" groups=docker append=yes
+  notify: reload docker
   tags: ['docker']

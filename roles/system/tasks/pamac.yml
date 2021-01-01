@@ -1,47 +1,45 @@
 ---
 
-- name: clone arch package manager plugin
-  git: >
-    repo=https://github.com/kewlfft/ansible-aur.git
-    dest={{ unix_admin.home}}/.ansible/plugins/modules/aur
-    accept_hostkey=yes
-    clone=yes
-    update=no
-    force=no
+- name: push pacman conf
+  template: >
+    src=etc/pacman.conf.j2
+    dest=/etc/pacman.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: ['pacman']
+
+- name: install pamac with aur
+  command: yay -S --noconfirm --needed pamac
   become: yes
-  become_user: "{{ unix_admin.name }}"
-  tags: ['ansible']
+  become_user: "{{ sudoname }}"
+  ignore_errors: False
+  tags: ['pamac']
 
-# - name: push pamac conf with aur enabled
-#   template: >
-#     src=etc/pamac.conf.j2
-#     dest=/etc/pamac.conf
-#     mode=0644
-#     owner=0
-#     group=0
-#     backup=yes
-#   tags: ['etc', 'configs']
+- name: push pamac conf with aur enabled
+  template: >
+    src=etc/pamac.conf.j2
+    dest=/etc/pamac.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: ['pamac']
 
-# - name: install these packagemanagers
-#   aur:
-#     use: yay
-#     name: "{{ arch_pkgs }}"
-#     state: present
-#   become: True
-#   become_user: "{{ unix_admin.name }}"
-#   tags: ['arch_pkgs']
+- block:
+  - name: get list of installed packages
+    shell: "pamac list --installed | grep -v AUR | awk '{print $1}'"
+    register: installed_arch_pkgs
 
-# - name: push pacaur config
-#   template: >
-#     src=etc/xdg/pacaur.j2
-#     dest=/etc/xdg/pacaur/config
-#     mode=0644
-#     owner=0
-#     group=0
-#     backup=yes
-#   tags: ['xdg', 'configs']
+  - name: get list of installed aur packages
+    shell: "pamac list --installed | grep AUR | awk '{print $1}'"
+    register: installed_aur_pkgs
 
-- name: get list of installed packages
-  shell: "pacman -Qet | awk '{print $1}'"
-  register: installed_packages
-  tags: ['packages']
+  - debug:
+      msg: "{{ installed_aur_pkgs  }}"
+      msg: "{{ installed_arch_pkgs }}"
+
+  become: yes
+  become_user: "{{ sudoname }}"
+  tags: ['test']

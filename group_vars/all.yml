@@ -37,6 +37,7 @@ unix_admin:
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
 
+sudoname: "{{ unix_admin.name }}"
 
 font: Hack Nerd Font Regular
 git_name: b08x

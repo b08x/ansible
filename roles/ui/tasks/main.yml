@@ -3,14 +3,14 @@
 - include: sway.yml
   tags: ['ui','sway']
 
-- include: ui_pkgs.yml
-  tags: ['ui_pkgs']
+# - include: ui_pkgs.yml
+#   tags: ['ui_pkgs']
 
-- include: desktop.yml
-  tags: ['desktop']
+# - include: desktop.yml
+#   tags: ['desktop']
 
-- include: search.yml
-  tags: ['search']
+# - include: search.yml
+#   tags: ['search']
 
 - include: tuigreet.yml
   tags: ['tuigreet']
@@ -22,3 +22,16 @@
 
 - include: custom_themes.yml
   tags: ['oomox']
+
+#https://docs.ansible.com/ansible/2.4/playbooks_loops.html#nested-loops
+
+# - name: install ui packages
+#   shell: "pamac --no-confirm {{ item }}"
+#   with_items:
+#     - "{{ ui_pkgs }}"
+#   register: command_result
+#   failed_when: command_result.rc != 0
+#   changed_when: "'installing' in command_result.stdout"
+#   become: True
+#   become_user: "{{ sudoname }}"
+#   tags: ['ui_pkgs']

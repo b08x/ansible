@@ -6,7 +6,6 @@
     line: 'UUID="{{ portable.uuid }}" {{ portable.mountpoint }} {{ portable.options }} {{ portable.checks }}'
     create: no
     backup: yes
-    tags: [fstab]
 
 - name: push autosync script
   copy:
@@ -16,7 +15,6 @@
     group: root
     mode: '0755'
     backup: yes
-  tags: [autosyncscript]
 
 - name: push default autosync service file
   template: >
@@ -26,7 +24,6 @@
     group=0
     mode=0644
     backup=yes
-  tags: ['portable,autosync']
 
 - name: push udev rules to detect portable drive and trigger autosync service
   template: >
@@ -36,7 +33,6 @@
     group=0
     mode=0644
     backup=yes
-  tags: ['portable,autosync']
   register: result
 
 - name: Restart systemd-udev, also issue daemon-reload to pick up config changes

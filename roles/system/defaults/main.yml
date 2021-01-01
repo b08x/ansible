@@ -4,16 +4,9 @@ docker_host: False
 
 #FIXME:
 #ERROR: octopi is not available for the 'aarch64' architecture."
-arch_pkgs:
-  - pamac
 
-aur_pkgs:
+system_pkgs:
   - rcm
-  - lnav
-  - silver
-
-base_pkgs:
-  - timeshift
   - bat
   - terminator
   - htop
@@ -47,10 +40,7 @@ base_pkgs:
   - guake
   - exa
   - tldr
-
-snapper_pkgs:
-  - snapper
-
-docker_pkgs:
   - docker
   - docker-compose
+  - lnav
+  - silver

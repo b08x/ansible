@@ -26,7 +26,7 @@
       dest: "{{ unix_admin.home }}"
       perms: yes
   become: yes
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"
   # delegate_to: bender
   when: not haskeys.stat.exists
   tags: ['keys']
@@ -43,7 +43,7 @@
 
 - name: add this user to desired groups
   user: >
-    name={{ unix_admin.name }}
+    name="{{ sudoname }}"
     uid={{ unix_admin.uid }}
     groups={{ unix_admin.secondary_groups }}
     append=yes

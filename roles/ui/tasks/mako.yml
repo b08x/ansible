@@ -14,4 +14,4 @@
     notify: reload mako
 
   become: yes
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"

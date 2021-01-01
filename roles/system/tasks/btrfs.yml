@@ -4,7 +4,7 @@
 - name: check if the btrfs filesystem is being used
   set_fact:
     btrfs_exists: true
-  loop: "{{ansible_mounts}}"
+  loop: "{{ ansible_mounts }}"
   when: "'btrfs' in item.fstype"
 
 - name: enable and/or start btrfs-scrub@-.timer

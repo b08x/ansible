@@ -6,7 +6,7 @@
     name: "{{ editor_pkgs }}"
     state: present
   become: True
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"
   tags: ['editor_pkgs']
 
 #TODO: this appears to install (or reinstall) the package regardless
@@ -15,6 +15,6 @@
   command: apm install "{{ item }}"
   with_items: "{{ apm_pkgs }}"
   become: yes
-  become_user: '{{ unix_admin.name }}'
+  become_user: '"{{ sudoname }}"'
   tags: ['apm_pkgs']
   when: apm_pkgs is defined

@@ -6,7 +6,7 @@
     name: "{{ deadbeef_pkgs }}"
     state: present
   become: True
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"
   tags: ['deadbeef']
 
 - name: push deadbeef plugins

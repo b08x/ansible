@@ -10,3 +10,13 @@
     mode: '0644'
     backup: yes
   tags: ['systemd', 'logs']
+
+- name: push main sway dir to etc
+  synchronize:
+    src: etc/systemd/
+    dest: /etc/systemd/
+    recursive: yes
+    mode: push
+    delete: no
+  # delagate_to: localhost
+  tags: ['systemd']

@@ -6,7 +6,7 @@
     name: "{{ synth_pkgs }}"
     state: present
   become: True
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"
   tags: ['studio_pkgs']
 
 - name: install samplers & sequencers
@@ -15,5 +15,5 @@
     name: "{{ sands_pkgs }}"
     state: present
   become: True
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"
   tags: ['studio_pkgs']

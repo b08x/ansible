@@ -68,7 +68,7 @@
     #   args:
     #     executable: /bin/bash
     #   become: yes
-    #   become_user: "{{ unix_admin.name }}"
+    #   become_user: "{{ sudoname }}"
     #   register: installed_packages
     #   tags: ['packages']
     #

@@ -15,15 +15,15 @@
     owner=0
     group=0
     backup=yes
-  tags: ['autofs']
 
-- lineinfile:
+- name: set autofs mount options in autofs.mnt
+  lineinfile:
     path: /etc/autofs/auto.mnt
     line: '{{ item }}		-fstype=nfs4	{{ autofs.host }}:/{{ item }}'
     create: yes
     backup: yes
   loop: "{{ autofs.shares }}"
-  tags: ['autofs']
 
 - name: enable and/or start autofs
   systemd: enabled=yes state=restarted name=autofs
+  #when aboved changed == true

@@ -6,7 +6,7 @@
     name: "{{ sway_pkgs }}"
     state: present
   become: True
-  become_user: "{{ unix_admin.name }}"
+  become_user: "{{ sudoname }}"
   tags: ['sway_pkgs']
 
 - name: create directory folder if it doesn't already exist

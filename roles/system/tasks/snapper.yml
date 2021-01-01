@@ -1,14 +1,5 @@
 ---
 
-- name: install snapper stuff
-  aur:
-    use: yay
-    name: "{{ snapper_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ unix_admin.name }}"
-  tags: ['snapper_pkgs']
-
 - name: push snapper configs
   template: >
     src=etc/snapper/configs/config.j2
