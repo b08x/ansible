@@ -35,6 +35,12 @@ audio_pkgs:
   - touchosc-editor
   # - raysession-git
 
+studio_pkgs:
+  audio:
+    - jack2
+  visual:
+    - darktable
+
 video_pkgs:
   - gpick
   - celluloid
