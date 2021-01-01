@@ -12,6 +12,9 @@
 - include: grub.yml
   tags: ['grub']
 
+- include: systemd.yml
+  tags: ['logging']
+
 - include: modprobe.yml
   tags: ['modprobe']
 

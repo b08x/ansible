@@ -1,22 +1,43 @@
 ---
 
-- name: push systemd configs
-  copy:
-    src: etc/systemd/
-    dest: /etc/systemd/
-    directory_mode: yes
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  tags: ['systemd', 'logs']
+# - name: push systemd configs
+#   copy:
+#     src: etc/systemd/
+#     dest: /etc/systemd/
+#     directory_mode: yes
+#     owner: root
+#     group: root
+#     mode: '0644'
+#     backup: yes
+#   tags: ['systemd', 'logs']
+- block:
 
-- name: push main sway dir to etc
-  synchronize:
-    src: etc/systemd/
-    dest: /etc/systemd/
-    recursive: yes
-    mode: push
-    delete: no
-  # delagate_to: localhost
-  tags: ['systemd']
+  - name: push systemd configs
+    synchronize:
+      src: etc/systemd/
+      dest: /etc/systemd/
+      recursive: yes
+      mode: push
+      delete: no
+    # delagate_to: localhost
+    notify: reload systemd
+
+  - name: push system log level config
+    template: >
+      src=etc/systemd/system.conf.j2
+      dest=/etc/systemd/system.conf
+      mode=0644
+      owner=0
+      group=0
+      backup=yes
+    notify: reload systemd
+
+  - name: push user log level config
+    template: >
+      src=etc/systemd/user.conf.j2
+      dest=/etc/systemd/user.conf
+      mode=0644
+      owner=0
+      group=0
+      backup=yes
+    notify: reload systemd
