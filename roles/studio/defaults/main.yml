@@ -85,9 +85,10 @@ sonic_pkgs:
   - wkhtmltopdf-static
   - rust
 
-neovim_pkgs:  
+neovim_pkgs:
   - neovim
   - neovim-plug
+  - neovim-symlinks
 
 synth_pkgs:
   - helm-synth
