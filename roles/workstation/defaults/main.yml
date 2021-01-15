@@ -20,6 +20,7 @@ apm_pkgs:
   - open-terminal-here
   - ansible-snippets
   - ruby-solargraph
+  - file-types
 
 editor_pkgs:
   - atom

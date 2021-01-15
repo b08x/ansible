@@ -10,7 +10,7 @@
       owner: "{{ unix_admin.gid }}"
       group: "{{ unix_admin.gid }}"
 
-  - name: copy
+  - name: push theme
     copy: >
       src=themes/oomox-equilibrium-gray-dark.tar.gz
       dest="{{ temp_dir }}"
@@ -30,13 +30,11 @@
       owner: "{{ unix_admin.gid }}"
       group: "{{ unix_admin.gid }}"
 
-  - name: push
+  - name: push icons
     copy:
       src: icons/oomox-equilibrium-gray-dark-icons.tar.gz
       dest: "{{ temp_dir }}"
       directory_mode: no
-      owner: "{{ unix_admin.gid }}"
-      group: "{{ unix_admin.gid }}"
 
   - name: extract tarball
     command: "tar -xf oomox-equilibrium-gray-dark-icons.tar.gz -C '{{ icons_dir }}'"

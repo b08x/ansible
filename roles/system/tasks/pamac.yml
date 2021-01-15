@@ -9,7 +9,7 @@
     group=0
     backup=yes
   tags: ['pacman']
-
+#TODO: insert task to yay -SC
 - name: install pamac with aur
   command: yay -S --noconfirm --needed pamac
   become: yes

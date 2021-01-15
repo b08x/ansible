@@ -30,9 +30,9 @@ unix_admin:
   home: /home/b08x
   sshdir: /home/b08x/.ssh
   uid: 1000
-  gid: 1000
-  primary_group: b08x
-  secondary_groups: "wheel,network,input,audio,home,storage"
+  gid: 995
+  primary_group: audio
+  secondary_groups: "wheel,network,input,home,storage"
   shell: /bin/bash
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.

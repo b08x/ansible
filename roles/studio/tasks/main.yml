@@ -1,5 +1,6 @@
 ---
 #TODO: jack2 and jack are in conflict....
+#group applications into smaller groups
 - name: install base audio
   aur:
     use: yay
