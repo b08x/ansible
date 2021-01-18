@@ -1,5 +1,16 @@
 ---
 
+- name: install system packages
+  shell: "pamac install --no-confirm {{ item }}"
+  with_items:
+    - "{{ theme_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['theme_pkgs']
+
 - include: sway.yml
   tags: ['ui','sway']
 
@@ -33,5 +44,5 @@
 #   failed_when: command_result.rc != 0
 #   changed_when: "'installing' in command_result.stdout"
 #   become: True
-#   become_user: "{{ sudoname }}"
+#   become_user: "{{ user.name }}"
 #   tags: ['ui_pkgs']

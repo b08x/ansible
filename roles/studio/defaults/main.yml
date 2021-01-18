@@ -1,9 +1,6 @@
 ---
 
-user:
-  name: b08x
-
-audio_pkgs:
+studio_pkgs:
   - jack2
   - a2jmidid
   - zita-ajbridge
@@ -33,15 +30,7 @@ audio_pkgs:
   - unsilence
   - sooperlooper
   - touchosc-editor
-  # - raysession-git
-
-studio_pkgs:
-  audio:
-    - jack2
-  visual:
-    - darktable
-
-video_pkgs:
+  - darktable
   - gpick
   - celluloid
   - mpv-plugin-excerpt-git
@@ -84,11 +73,6 @@ sonic_pkgs:
   - sonic-pi
   - wkhtmltopdf-static
   - rust
-
-neovim_pkgs:
-  - neovim
-  - neovim-plug
-  - neovim-symlinks
 
 synth_pkgs:
   - helm-synth

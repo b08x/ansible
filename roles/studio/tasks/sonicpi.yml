@@ -6,11 +6,11 @@
     name: "{{ sonic_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['studio_pkgs']
 
 - name: check if sonic-pi-tool is installed
-  stat: path="{{ unix_admin.home }}/.cargo/bin/sonic-pi-tool"
+  stat: path="{{ user.home }}/.cargo/bin/sonic-pi-tool"
   register: hassonictool
 
 - name: install sonic-pi tool
@@ -18,6 +18,6 @@
   args:
     executable: /bin/bash
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   when: not hassonictool.stat.exists
   tags: ['sonicpitool']

@@ -15,7 +15,7 @@
   - name: push rcrc
     template: >
       src=rcrc.j2
-      dest="{{ unix_admin.home}}/.rcrc"
+      dest="{{ user.home}}/.rcrc"
       mode=0644
       backup=yes
     when: dotfiles is defined
@@ -26,7 +26,7 @@
     tags: ['profile']
 
   become: yes
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
 
 # - include: rcup.yml
 #   when: isayso == True

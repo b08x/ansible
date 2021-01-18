@@ -14,5 +14,5 @@ sysctl_ip_forward: False
 dotfiles:
   url: git@github.com:b08x/dotfiles.git
   branch: Main
-  destination: "{{ unix_admin.home }}/Workspace/dotfiles"
+  destination: "{{ user.home }}/Workspace/dotfiles"
   rcup_flags: -t profile -x README.md -x .gitignore -x manage.rb

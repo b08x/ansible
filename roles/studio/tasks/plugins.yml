@@ -6,5 +6,5 @@
     name: "{{ plugins }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['studio_pkgs']

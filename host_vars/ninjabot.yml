@@ -24,7 +24,7 @@ sshd_allow_groups: b08x
 dotfiles:
   url: "git@github.com:b08x/dotfiles"
   branch: main
-  destination: "{{ unix_admin.home }}/Workspace/dotfiles"
+  destination: "{{ user.home }}/Workspace/dotfiles"
   rcup_flags: -f -t profile -x README.md -x rcrc -x *_bak
 
 samba_host: True

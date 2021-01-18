@@ -6,7 +6,7 @@
     name: "{{ filemanager_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['filemanager_pkgs']
 
 # - name: install misc packages
@@ -15,5 +15,5 @@
 #     name: "{{ misc_pkgs }}"
 #     state: present
 #   become: True
-#   become_user: "{{ sudoname }}"
+#   become_user: "{{ user.name }}"
 #   tags: ['misc_pkgs']

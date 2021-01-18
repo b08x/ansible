@@ -13,7 +13,7 @@
 - name: install pamac with aur
   command: yay -S --noconfirm --needed pamac
   become: yes
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   ignore_errors: False
   tags: ['pamac']
 
@@ -41,5 +41,5 @@
       msg: "{{ installed_arch_pkgs }}"
 
   become: yes
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['test']

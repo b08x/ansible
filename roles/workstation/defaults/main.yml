@@ -7,6 +7,8 @@ workstation: True
 printers:
   - name: epson
 
+install_apm_pkgs: False
+
 apm_pkgs:
   - ruby-block
   - atom-beautify
@@ -29,10 +31,14 @@ editor_pkgs:
   - zim
   - meld
   - mousepad
+  - bash-language-server
+  - neovim
+  - neovim-plug
+  - neovim-symlinks
 
 browser_pkgs:
   - firefox
-  - qutebrowser
+  - opera
 
 comm_pkgs:
   - hexchat

@@ -1,6 +1,6 @@
 ---
 
 - name: add this user to desired groups
-  user: name="{{ sudoname }}" groups=docker append=yes
+  user: name="{{ user.name }}" groups=docker append=yes
   notify: reload docker
   tags: ['docker']

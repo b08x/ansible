@@ -6,5 +6,5 @@
     name: "{{ theme_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['theme_pkgs']

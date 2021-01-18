@@ -5,6 +5,7 @@ docker_host: False
 #FIXME:
 #ERROR: octopi is not available for the 'aarch64' architecture."
 journal_level: debug
+
 system_pkgs:
   - rcm
   - bat
@@ -44,3 +45,11 @@ system_pkgs:
   - docker-compose
   - lnav
   - silver
+
+virt_pkgs:
+  - libvirt
+  - virt-manager
+  - qemu
+  - dnsmasq
+  - ebtables
+  - edk2-ovmf

@@ -5,10 +5,10 @@
   register: hazifile
   tags: ['sudoers']
 
-- name: add unix_admin.name to sudoers
+- name: add user to sudoers
   lineinfile:
-    path: /etc/sudoers.d/10-unix_admin
-    line: '"{{ sudoname }}" ALL=(ALL) NOPASSWD: ALL'
+    path: /etc/sudoers.d/10-user_admin
+    line: '"{{ user.name }}" ALL=(ALL) NOPASSWD: ALL'
     create: yes
     validate: 'visudo -cf %s'
   when: not hazifile.stat.exists

@@ -7,7 +7,7 @@
     name: "{{ audio_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['studio_pkgs']
 
 - name: install video stuff
@@ -16,7 +16,7 @@
     name: "{{ video_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['studio_pkgs']
 
 - include: pulse.yml
@@ -44,7 +44,7 @@
 
 #TODO:conditioal does not work
 # - name: add user to audio and jackuser group
-#   user: name="{{ sudoname }}" groups=realtime append=yes
+#   user: name="{{ user.name }}" groups=realtime append=yes
 #   when: realtime in etc_groups.stdout_lines
 #   tags: ['realtime']
 
@@ -66,7 +66,7 @@
     name: "{{ obs_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['obs_pkgs']
 
 - name: install neovim packages
@@ -75,7 +75,7 @@
     name: "{{ neovim_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['neovim_pkgs']
 
 - include: pulse.yml

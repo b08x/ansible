@@ -6,7 +6,7 @@
     name: "{{ printer_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['printer_pkgs']
   when: printers is defined
 

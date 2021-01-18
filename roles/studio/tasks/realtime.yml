@@ -1,7 +1,7 @@
 ---
 
 - name: add user to audio and jackuser group
-  user: name="{{ sudoname }}" groups=realtime append=yes
+  user: name="{{ user.name }}" groups=realtime append=yes
 
 - name: push jack limits file
   copy: >

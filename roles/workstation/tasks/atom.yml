@@ -6,15 +6,13 @@
     name: "{{ editor_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['editor_pkgs']
 
-#TODO: this appears to install (or reinstall) the package regardless
-# if it already exists.
 - name: install plugins
   command: apm install "{{ item }}"
   with_items: "{{ apm_pkgs }}"
   become: yes
-  become_user: '"{{ sudoname }}"'
+  become_user: '"{{ user.name }}"'
   tags: ['apm_pkgs']
-  when: apm_pkgs is defined
+  when: install_apm_pkgs == True

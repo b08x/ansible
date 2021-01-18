@@ -7,18 +7,15 @@ tuigreet: false
 gtkgreet: true
 
 ui_pkgs:
-  filemanager:
-    - pcmanfm
-    - pcmanfm-hardlinkcopy
-    - xarchiver
-    - ripgrep-all
-  terminal:
-    - silver
-  search:
-    - arch-wiki-man
-    - surfraw
-    - most #for viewing man pages in color
-    - googler
+  - pcmanfm
+  - pcmanfm-hardlinkcopy
+  - xarchiver
+  - ripgrep-all
+  - arch-wiki-man
+  - surfraw
+  - most #for viewing man pages in color
+  - googler
+  - scrot
 
 misc_pkgs:
   - oomox
@@ -26,8 +23,6 @@ misc_pkgs:
   - nasa-wallpaper
   - pywal-git
 
-zim_stuff:
-  - scrot
 #FIXME: :: Downloaded PKGBUILD (1/1): wlogout
 #   1 wlogout                          (Build Files Exist)
 # ==> Diffs to show?

@@ -6,7 +6,7 @@
     name: "{{ daw_pkgs }}"
     state: present
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
   tags: ['studio_pkgs']
 
 #TODO: build reaper / sws seperately

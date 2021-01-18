@@ -2,10 +2,10 @@
 
 - name: Create a directory if it does not exist
   file:
-    path: "{{ unix_admin.home }}/.config/aacs"
+    path: "{{ user.home }}/.config/aacs"
     state: directory
-    owner: "{{ sudoname }}"
-    group: "{{ unix_admin.primary_group }}"
+    owner: "{{ user.name }}"
+    group: "{{ user.primary_group }}"
     mode: '0755'
   tags: ['bluray']
 
@@ -14,7 +14,7 @@
   - name: push bluray decoder thingy
     copy:
       src: config/aacs/KEYDB.cfg
-      dest: "{{ unix_admin.home }}/.config/aacs/KEYDB.cfg"
+      dest: "{{ user.home }}/.config/aacs/KEYDB.cfg"
     tags: ['bluray']
 
   - name: install these packages
@@ -25,7 +25,7 @@
     tags: ['media_pkgs']
 
   become: True
-  become_user: "{{ sudoname }}"
+  become_user: "{{ user.name }}"
 
 # - name: push mpv image viewer script
 #   copy:
