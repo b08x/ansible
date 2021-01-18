@@ -44,7 +44,7 @@ system_pkgs:
   - docker
   - docker-compose
   - lnav
-  - silver
+  - zsh-theme-powerlevel10k-git 
 
 virt_pkgs:
   - libvirt

@@ -66,3 +66,5 @@ theme_pkgs:
   - ttf-input
   - nerd-fonts-iosevka
   - ttf-nerd-fonts-symbols
+  - nerd-fonts-noto-sans-mono
+  - gnu-free-fonts
