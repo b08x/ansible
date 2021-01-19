@@ -22,6 +22,12 @@
 - include: modprobe.yml
   tags: ['modprobe']
 
+- include: audio.yml
+- include: apm.yml
+- include: media.yml
+- include: visual.yml
+- include: printer.yml
+
 - include: docker.yml
   tags: ['docker']
   when: docker_host == True

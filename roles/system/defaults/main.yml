@@ -2,46 +2,22 @@
 
 docker_host: False
 kvm_host: False
+use_rvm: False
 
 #FIXME:
 #ERROR: octopi is not available for the 'aarch64' architecture."
 journal_level: debug
 
 system_pkgs:
-  - rcm
   - bat
   - terminator
   - htop
   - iotop
-  - barrier
   - samba
   - bind
-  - lsd
-  - ranger
-  - neovim
   - bash-completion
   - privoxy
-  - autofs
-  - cmake
-  - autoconf
-  - mlocate
-  - most
-  - git-lfs
-  - ctags
-  - ncurses
-  - curl
-  - ranger
-  - mediainfo
-  - highlight
-  - python-ueberzug
-  - atool
-  - lsof
-  - net-tools
-  - iftop
-  - brightnessctl
   - guake
-  - exa
-  - tldr
   - lnav
   - zsh-theme-powerlevel10k-git
 
@@ -56,3 +32,68 @@ kvm_pkgs:
   - dnsmasq
   - ebtables
   - edk2-ovmf
+  - dmidecode
+
+audio_pkgs:
+  - ocenaudio
+  - jalv-select
+  - jack-keyboard
+  - ffmulticonverter
+  - scala-music
+  - unsilence
+  - sooperlooper
+  - konfyt
+  - musikcube
+
+visual_pkgs:
+  - touchosc-editor
+  - darktable
+  - gpick
+
+install_apm_pkgs: False
+apm_pkgs:
+  - ruby-block
+  - atom-beautify
+  - blocky
+  - language-docker
+  - language-dotfiles
+  - language-sfz
+  - language-ansible
+  - highlight-colors
+  - color-picker
+  - open-terminal-here
+  - ansible-snippets
+  - ruby-solargraph
+  - file-types
+
+editor_pkgs:
+  - atom
+  - zim
+  - mousepad
+  - ruby-rubocop
+  - ruby-solargraph
+  - meld
+  - neovim-plug
+  - neovim-symlinks
+  - hexchat
+  
+media_pkgs:
+  - mpv-full
+  - mpv-plugin-excerpt-git
+  - celluloid
+  - vlc
+  - youtube-dl
+  - qbittorrent
+  - radiotray-ng
+  - libbluray
+  - libaacs
+  - feh
+  - viewnior
+  - musikcube
+
+printer_pkgs:
+  - cups
+  - epson-inkjet-printer-escpr
+
+gpg_pkgs:
+  - seahorse

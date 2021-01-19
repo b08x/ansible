@@ -1,5 +1,16 @@
 ---
 
+- name: install workstation packages
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ workstation_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['workstation_pkgs']
+
 - include: editors.yml
   tags: ['editors']
   when: workstation == true

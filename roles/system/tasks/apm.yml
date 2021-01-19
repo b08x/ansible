@@ -1,0 +1,9 @@
+---
+
+- name: install plugins
+  command: apm install "{{ item }}"
+  with_items: "{{ apm_pkgs }}"
+  become: yes
+  become_user: '"{{ user.name }}"'
+  tags: ['apm_pkgs']
+  when: install_apm_pkgs == True

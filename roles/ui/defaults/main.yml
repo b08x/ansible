@@ -1,19 +1,17 @@
 ---
 
 window_manger: sway
-pkgutils: false
+pkgutils: False
 
-tuigreet: false
-gtkgreet: true
+tuigreet: True
+gtkgreet: False
 
 ui_pkgs:
-  - pcmanfm
   - pcmanfm-hardlinkcopy
   - xarchiver
   - ripgrep-all
   - arch-wiki-man
   - surfraw
-  - most #for viewing man pages in color
   - googler
   - scrot
 
@@ -38,23 +36,10 @@ misc_pkgs:
 # problem importing keys
 
 sway_pkgs:
-  - waybar
-  - swayidle
-  - sway
   - wofi
   - azote
-  - swayout
   - swaylock-blur-bin
   - gtk3-nocsd-git
-  - greetd
-  - greetd-tuigreet
-  - greetd-gtkgreet-git
-  - qt5-wayland
-  - qt5ct
-  # - wlogout
-  - mako
-  - wf-recorder
-  - grimshot
 
 theme_pkgs:
   - vimix-icon-theme

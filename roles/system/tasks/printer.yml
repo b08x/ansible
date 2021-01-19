@@ -1,0 +1,17 @@
+---
+
+- name: install printer drivers
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ printer_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['printer_pkgs']
+  when: printers is defined
+
+- name: enable and/or start cups
+  systemd: enabled=yes state=started name=cups
+  tags: ['printer']

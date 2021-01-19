@@ -1,0 +1,25 @@
+---
+
+- name: install audio packages
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ audio_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['audio_pkgs']
+
+- name: check if sonic-pi-tool is installed
+  stat: path="{{ user.home }}/.cargo/bin/sonic-pi-tool"
+  register: hassonictool
+
+- name: install sonic-pi tool
+  shell: cargo install --git https://github.com/syncopatedstudios/sonic-pi-tool.git --force
+  args:
+    executable: /bin/bash
+  become: True
+  become_user: "{{ user.name }}"
+  when: not hassonictool.stat.exists
+  tags: ['sonicpitool']

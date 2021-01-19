@@ -1,0 +1,16 @@
+---
+
+- name: install yadm
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - yadm
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['yadm']
+
+# yadm clone
+
+# logout
