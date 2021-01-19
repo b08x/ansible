@@ -41,10 +41,12 @@ system_pkgs:
   - guake
   - exa
   - tldr
+  - lnav
+  - zsh-theme-powerlevel10k-git
+
+docker_pkgs:
   - docker
   - docker-compose
-  - lnav
-  - zsh-theme-powerlevel10k-git 
 
 virt_pkgs:
   - libvirt

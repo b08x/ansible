@@ -35,12 +35,6 @@
   group: name={{ item.name }} state=present gid={{ item.gid }}
   with_items: "{{ user_groups }}"
 
-- name: create system groups
-  group: name={{ item }} state=present system=yes
-  with_items:
-    - storage
-  when: sysgroups is defined
-
 - name: add this user to desired groups
   user: >
     name="{{ user.name }}"
@@ -48,4 +42,3 @@
     groups={{ user.secondary_groups }}
     append=yes
     state=present
-  when: sysgroups is defined

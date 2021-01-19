@@ -1,5 +1,16 @@
 ---
 
+- name: install docker packages
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ docker_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['docker_pkgs']
+
 - name: add this user to desired groups
   user: name="{{ user.name }}" groups=docker append=yes
   notify: reload docker

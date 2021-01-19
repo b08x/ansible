@@ -18,11 +18,13 @@
 #     - obs-studio-wayland
 #   tags: [obs]
 
-- name: install some utility/analysis packages
-  aur:
-    use: yay
-    name: "{{ util_pkgs }}"
-    state: present
+- name: install audio utility packages
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ util_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
-  tags: ['studio_pkgs']
+  tags: ['util_pkgs']

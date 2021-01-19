@@ -5,7 +5,10 @@
   hosts: all
 
   tasks:
-
+    - debug:
+        msg: "{{ installed_aur_pkgs  }}"
+    - debug:
+        msg: "{{ installed_arch_pkgs }}"
     # - debug:
     #     msg:
     #       - " Data type of 'ansible_architecture'  is {{ ansible_architecture | type_debug }} "

@@ -1,10 +1,12 @@
 ---
 
-- name: install IDE packages
-  aur:
-    use: yay
-    name: "{{ editor_pkgs }}"
-    state: present
+- name: install editor packages
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ editor_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
   tags: ['editor_pkgs']

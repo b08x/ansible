@@ -1,0 +1,23 @@
+---
+
+- name: push system log level config
+  template: >
+    src=etc/systemd/system.conf.j2
+    dest=/etc/systemd/system.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: ['system_logs']
+  notify: reload systemd
+
+- name: push user log level config
+  template: >
+    src=etc/systemd/user.conf.j2
+    dest=/etc/systemd/user.conf
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+  tags: ['user_logs']
+  notify: reload systemd

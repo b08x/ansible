@@ -2,6 +2,7 @@
 
 studio_pkgs:
   - jack2
+  - jack_capture
   - a2jmidid
   - zita-ajbridge
   - realtime-privileges
@@ -9,7 +10,6 @@ studio_pkgs:
   - patchage
   - jacktrip
   - carla
-  - lv2
   - alsa-card-profiles
   - alsa-firmware
   - alsa-lib
@@ -19,7 +19,6 @@ studio_pkgs:
   - alsa-ucm-conf
   - alsa-utils
   - zita-alsa-pcmi
-  - jack_capture
   - sox
   - mixxx
   - polyphone
@@ -32,8 +31,6 @@ studio_pkgs:
   - touchosc-editor
   - darktable
   - gpick
-  - celluloid
-  - mpv-plugin-excerpt-git
 
 obs_pkgs:
   - wlrobs
@@ -74,11 +71,8 @@ sonic_pkgs:
   - wkhtmltopdf-static
   - rust
 
-synth_pkgs:
+sss_pkgs:
   - helm-synth
-  - zyn-fusion
-
-sands_pkgs:
   - qmidiarp
   - qsampler
   - hydrogen

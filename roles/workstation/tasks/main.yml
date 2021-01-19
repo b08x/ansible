@@ -1,18 +1,18 @@
 ---
 
-- include: atom.yml
-  tags: ['atom']
+- include: editors.yml
+  tags: ['editors']
   when: workstation == true
+
+- include: media.yml
+  tags: ['media']
+
+- include: browsers.yml
+  tags: ['browsers']
 
 - include: rvm.yml
   tags: ['rvm']
   when: use_rvm == true
 
-- include: browsers.yml
-  tags: ['browsers']
-
 - include: printer.yml
   tags: ['printer']
-
-- include: media.yml
-  tags: ['media']

@@ -1,19 +1,12 @@
 ---
 
-- name: install synths
-  aur:
-    use: yay
-    name: "{{ synth_pkgs }}"
-    state: present
+- name: install samplers sequencers and synths
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ sss_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
-  tags: ['studio_pkgs']
-
-- name: install samplers & sequencers
-  aur:
-    use: yay
-    name: "{{ sands_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ user.name }}"
-  tags: ['studio_pkgs']
+  tags: ['sss_pkgs']

@@ -7,8 +7,10 @@ workstation: True
 printers:
   - name: epson
 
-install_apm_pkgs: False
+workstation_pkgs:
+  - hexchat
 
+install_apm_pkgs: False
 apm_pkgs:
   - ruby-block
   - atom-beautify
@@ -61,11 +63,15 @@ codec_pkgs:
   - ffmpeg-devel
 
 media_pkgs:
+  - mpv-full
+  - mpv-plugin-excerpt-git
+  - celluloid
   - vlc
   - youtube-dl
   - qbittorrent
   - radiotray-ng
   - libbluray
+  - libaacs
   - feh
   - viewnior
 

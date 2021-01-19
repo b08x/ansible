@@ -1,33 +1,11 @@
 ---
 
-- block:
-
-  - name: push systemd configs
-    synchronize:
-      src: etc/systemd/
-      dest: /etc/systemd/
-      recursive: yes
-      mode: push
-      delete: no
-    # delagate_to: localhost
-    notify: reload systemd
-
-  - name: push system log level config
-    template: >
-      src=etc/systemd/system.conf.j2
-      dest=/etc/systemd/system.conf
-      mode=0644
-      owner=0
-      group=0
-      backup=yes
-    notify: reload systemd
-
-  - name: push user log level config
-    template: >
-      src=etc/systemd/user.conf.j2
-      dest=/etc/systemd/user.conf
-      mode=0644
-      owner=0
-      group=0
-      backup=yes
-    notify: reload systemd
+- name: push systemd configs
+  synchronize:
+    src: etc/systemd/
+    dest: /etc/systemd/
+    recursive: yes
+    mode: push
+    delete: no
+  # delagate_to: localhost
+  notify: reload systemd

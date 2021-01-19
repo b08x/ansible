@@ -9,7 +9,12 @@
     group=0
     backup=yes
   tags: ['pacman']
-#TODO: insert task to yay -SC
+
+- name: clean and update repo db
+  command: yay -Sc --noconfirm
+  become: yes
+  become_user: "{{ user.name }}"
+
 - name: install pamac with aur
   command: yay -S --noconfirm --needed pamac
   become: yes
@@ -36,10 +41,5 @@
     shell: "pamac list --installed | grep AUR | awk '{print $1}'"
     register: installed_aur_pkgs
 
-  - debug:
-      msg: "{{ installed_aur_pkgs  }}"
-      msg: "{{ installed_arch_pkgs }}"
-
   become: yes
   become_user: "{{ user.name }}"
-  tags: ['test']

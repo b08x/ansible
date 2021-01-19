@@ -1,13 +1,15 @@
 ---
 
-- name: install sonic-pi
-  aur:
-    use: yay
-    name: "{{ sonic_pkgs }}"
-    state: present
+- name: install sonic pi
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ sonic_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
-  tags: ['studio_pkgs']
+  tags: ['sonic_pkgs']
 
 - name: check if sonic-pi-tool is installed
   stat: path="{{ user.home }}/.cargo/bin/sonic-pi-tool"

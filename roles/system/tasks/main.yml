@@ -2,7 +2,7 @@
 
 - include: sudoers.yml
   tags: ['sudoers']
-  # when: item != None
+
 - include: pamac.yml
   tags: ['packages']
 
@@ -13,7 +13,11 @@
   tags: ['grub']
 
 - include: systemd.yml
+  tags: ['systemd']
+
+- include: logging.yml
   tags: ['logging']
+  notify: reload systemd
 
 - include: modprobe.yml
   tags: ['modprobe']

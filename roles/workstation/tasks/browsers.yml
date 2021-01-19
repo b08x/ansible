@@ -1,10 +1,12 @@
 ---
 
-- name: install web browsers
-  aur:
-    use: yay
-    name: "{{ browser_pkgs }}"
-    state: present
+- name: install browsers
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ browser_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
   tags: ['browser_pkgs']

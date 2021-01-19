@@ -1,27 +1,17 @@
 ---
-#TODO: jack2 and jack are in conflict....
-#group applications into smaller groups
-- name: install base audio
-  aur:
-    use: yay
-    name: "{{ audio_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ user.name }}"
-  tags: ['studio_pkgs']
-
-- name: install video stuff
-  aur:
-    use: yay
-    name: "{{ video_pkgs }}"
-    state: present
+- name: install studio packages
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ studio_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
   tags: ['studio_pkgs']
 
 - include: pulse.yml
   tags: ['pulse']
-
 
 #TODO: medailib plugin fails during build
 - include: deadbeef.yml
@@ -31,22 +21,6 @@
 - include: daw.yml
   ignore_errors: yes
   tags: ['daw']
-
-# - name: Get list of groups
-#   shell: /usr/bin/getent group | awk -F":" '{print $1}'
-#   register: etc_groups
-#   tags: [debug]
-#
-# - name: print etc_groups
-#   ansible.builtin.debug:
-#     var: etc_groups
-#   tags: [debug]
-
-#TODO:conditioal does not work
-# - name: add user to audio and jackuser group
-#   user: name="{{ user.name }}" groups=realtime append=yes
-#   when: realtime in etc_groups.stdout_lines
-#   tags: ['realtime']
 
 - include: plugins.yml
   tags: ['plugins']
@@ -59,39 +33,3 @@
 
 - include: sonicpi.yml
   tags: ['sonicpi']
-
-- name: install obs stuffs
-  aur:
-    use: yay
-    name: "{{ obs_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ user.name }}"
-  tags: ['obs_pkgs']
-
-- name: install neovim packages
-  aur:
-    use: yay
-    name: "{{ neovim_pkgs }}"
-    state: present
-  become: True
-  become_user: "{{ user.name }}"
-  tags: ['neovim_pkgs']
-
-- include: pulse.yml
-  tags: ['pulse']
-#TODO: the second which is in the soundbot repo...
-# - name: push soundbot systemd file
-#   copy:
-#     src: usr/lib/systemd/user/soundbot.service
-#     dest: /usr/lib/systemd/user/soundbot.service
-#     directory_mode: no
-#     owner: root
-#     group: root
-#     mode: '0644'
-#     backup: yes
-#   tags: ['soundbot']
-#
-# - name: enable and/or start soundbot.service
-#   systemd: user=yes name=soundbot enabled=yes state=started daemon_reload=yes
-#   tags: ['soundbot']
