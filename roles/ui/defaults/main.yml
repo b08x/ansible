@@ -14,6 +14,7 @@ ui_pkgs:
   - surfraw
   - googler
   - scrot
+  - guake
 
 misc_pkgs:
   - oomox

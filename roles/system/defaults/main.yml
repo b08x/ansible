@@ -3,21 +3,9 @@
 docker_host: False
 kvm_host: False
 use_rvm: False
-
-#FIXME:
-#ERROR: octopi is not available for the 'aarch64' architecture."
 journal_level: debug
 
 system_pkgs:
-  - bat
-  - terminator
-  - htop
-  - iotop
-  - samba
-  - bind
-  - bash-completion
-  - privoxy
-  - guake
   - lnav
   - zsh-theme-powerlevel10k-git
 
@@ -76,7 +64,7 @@ editor_pkgs:
   - neovim-plug
   - neovim-symlinks
   - hexchat
-  
+
 media_pkgs:
   - mpv-full
   - mpv-plugin-excerpt-git
@@ -94,6 +82,3 @@ media_pkgs:
 printer_pkgs:
   - cups
   - epson-inkjet-printer-escpr
-
-gpg_pkgs:
-  - seahorse
