@@ -33,6 +33,7 @@ audio_pkgs:
   - sooperlooper
   - konfyt
   - musikcube
+  - iempluginsuite
 
 visual_pkgs:
   - touchosc-editor

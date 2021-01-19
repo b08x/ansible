@@ -27,6 +27,7 @@
 - include: media.yml
 - include: visual.yml
 - include: printer.yml
+- include: reaper.yml
 
 - include: docker.yml
   tags: ['docker']
