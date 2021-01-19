@@ -10,7 +10,7 @@
   become: True
   become_user: "{{ user.name }}"
   tags: ['printer_pkgs']
-  when: printers is defined
+  when: cups == True
 
 - name: enable and/or start cups
   systemd: enabled=yes state=started name=cups

@@ -25,7 +25,8 @@
   tags: ['gtkgreet']
   when: gtkgreet == true
 
-- include: custom_themes.yml
-  tags: ['oomox']
+#TODO: put these in image or package or add another conditional....
+# - include: custom_themes.yml
+#   tags: ['oomox']
 
 #https://docs.ansible.com/ansible/2.4/playbooks_loops.html#nested-loops

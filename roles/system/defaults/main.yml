@@ -4,6 +4,7 @@ docker_host: False
 kvm_host: False
 use_rvm: False
 journal_level: debug
+cups: False
 
 system_pkgs:
   - lnav

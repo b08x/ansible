@@ -1,21 +1,12 @@
 ---
 
 hostname: lapbot
-laptop: true
-
-make_hard: False
 
 docker_host: True
 docker_storage: /var/lib/docker
 
 sshd_port: 22
 sshd_allow_groups: b08x
-
-sysctl_ip_forward: False
-
-workstation: True
-
-window_manager: sway
 
 autofs:
   host: bender
@@ -26,42 +17,3 @@ autofs:
 #   host: ninjabot
 #   shares:
 #     - share
-
-rcm_tags:
-  - atom
-  - deadbeef
-  - hexchat
-  - mpv
-  - qute
-  - ranger
-  - soundbot
-  - sway
-  - terminator
-  - vim
-  - zim
-  - git
-
-# Black + DarkGrey
-color0:  '#282a36'
-color8:  '#686868'
-# DarkRed + Red
-color1:  '#ff5c57'
-color9:  '#ff5c57'
-# DarkGreen + Green
-color2:  '#5af78e'
-color10: '#5af78e'
-# DarkYellow + Yellow
-color3:  '#f3f99d'
-color11: '#f3f99d'
-# DarkBlue + Blue
-color4:  '#57c7ff'
-color12: '#57c7ff'
-# DarkMagenta + Magenta
-color5:  '#ff6ac1'
-color13: '#ff6ac1'
-# DarkCyan + Cyan
-color6:  '#9aedfe'
-color14: '#9aedfe'
-# LightGrey + White
-color7:  '#eff0eb'
-color15: '#f1f1f0'
