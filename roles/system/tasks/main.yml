@@ -26,6 +26,10 @@
   tags: ['docker']
   when: docker_host == True
 
+- include: kvm.yml
+  tags: ['kvm']
+  when: kvm_host == True
+
 - include: autofs.yml
   tags: ['autofs']
   when: autofs is defined

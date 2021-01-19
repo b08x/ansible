@@ -18,6 +18,8 @@ rvm1_user: 'b08x'
 docker_host: True
 docker_storage: /var/lib/docker
 
+kvm_host: True
+
 sshd_port: 22
 sshd_allow_groups: b08x
 
@@ -40,19 +42,6 @@ autofs:
   host: bender
   shares:
     - b08x
-
-rcm_tags:
-  - atom
-  - deadbeef
-  - hexchat
-  - mpv
-  - qute
-  - ranger
-  - soundbot
-  - sway
-  - terminator
-  - vim
-  - zim
 
 # Black + DarkGrey
 color0:  '#282a36'
