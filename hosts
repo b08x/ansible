@@ -2,7 +2,7 @@
 bender
 lapbot
 ninjabot
-
+testbot
 [localhost:vars]
 update=false initial_install=false ansible_connection=local ansible_user=b08x ansible_become=true
 
