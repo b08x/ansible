@@ -1,10 +1,15 @@
 ---
 
 window_manger: sway
-pkgutils: False
+
+terminal: kitty
 
 tuigreet: True
 gtkgreet: False
+
+terminal_pkgs:
+  - kitty
+  - guake
 
 ui_pkgs:
   - pcmanfm-hardlinkcopy
@@ -14,27 +19,12 @@ ui_pkgs:
   - surfraw
   - googler
   - scrot
-  - guake
 
 misc_pkgs:
   - oomox
   - keyboardlayouteditor-git
   - nasa-wallpaper
   - pywal-git
-
-#FIXME: :: Downloaded PKGBUILD (1/1): wlogout
-#   1 wlogout                          (Build Files Exist)
-# ==> Diffs to show?
-# ==> [N]one [A]ll [Ab]ort [I]nstalled [No]tInstalled or (1 2 3, 1-3, ^4)
-# ==>
-# :: (1/1) Parsing SRCINFO: wlogout
-#
-# :: PGP keys need importing:
-#  -> F4FDB18A9937358364B276E9E25D679AF73C6D2F, required by: wlogout
-# ==> Import? [Y/n] y
-# :: Importing keys with gpg...
-# gpg: keyserver receive failed: General error
-# problem importing keys
 
 sway_pkgs:
   - wofi
@@ -46,6 +36,8 @@ theme_pkgs:
   - vimix-icon-theme
   - vimix-gtk-themes
   - vimix-cursors
+
+font_pkgs:
   - nerd-fonts-hack
   - otf-font-awesome
   - ttf-devicons
@@ -54,3 +46,4 @@ theme_pkgs:
   - ttf-nerd-fonts-symbols
   - nerd-fonts-noto-sans-mono
   - gnu-free-fonts
+  - ttf-nerd-fonts-symbols

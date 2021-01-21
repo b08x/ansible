@@ -1,15 +1,5 @@
 ---
 
-- name: push systemd-resolvd config
-  template: >
-   src=etc/systemd/resolved.conf.j2
-   dest=/etc/systemd/resolved.conf
-   mode=0644
-   owner=0
-   group=0
-   backup=yes
-  tags: ['resolvd']
-
 - name: push resolv.conf
   template: >
    src=etc/resolv.conf.j2
@@ -30,6 +20,16 @@
     backup=yes
   tags: ['networkd']
 
+- name: push systemd-networkd wireless config
+  template: >
+   src=etc/systemd/network/90-wifi.network.j2
+   dest=/etc/systemd/network/90-wifi.network
+   mode=0644
+   owner=0
+   group=0
+   backup=yes
+  tags: ['networkd']
+
 - name: disable NetworkManager service
   systemd: enabled=no state=stopped name=NetworkManager
   ignore_errors: yes
@@ -37,6 +37,6 @@
 - name: enable networkd service
   systemd: enabled=yes state=started name=systemd-networkd
 
-- name: enable resolved service
-  systemd: enabled=no state=stopped daemon_reload=yes name=systemd-resolved
-  tags: ['resolvd']
+#- name: enable resolved service
+#  systemd: enabled=no state=stopped daemon_reload=yes name=systemd-resolved
+#  tags: ['resolvd']

@@ -5,6 +5,8 @@ hostname: lapbot
 docker_host: True
 docker_storage: /var/lib/docker
 
+wlan: wlp0s20f0u3
+
 sshd_port: 22
 sshd_allow_groups: b08x
 

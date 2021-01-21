@@ -9,6 +9,8 @@ cups: False
 system_pkgs:
   - lnav
   - zsh-theme-powerlevel10k-git
+  - guake
+  - go
 
 docker_pkgs:
   - docker
@@ -32,7 +34,6 @@ audio_pkgs:
   - unsilence
   - sooperlooper
   - konfyt
-  - musikcube
   - iempluginsuite
 
 visual_pkgs:
@@ -40,7 +41,7 @@ visual_pkgs:
   - darktable
   - gpick
 
-install_apm_pkgs: False
+install_apm_pkgs: True
 apm_pkgs:
   - ruby-block
   - atom-beautify

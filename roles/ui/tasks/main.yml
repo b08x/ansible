@@ -1,15 +1,23 @@
 ---
 
-- name: install theme packages
+- name: install font packages
   shell: "pamac install --no-confirm {{ item }}"
   with_items:
-    - "{{ theme_pkgs }}"
+    - "{{ font_pkgs }}"
   register: command_result
   failed_when: command_result.rc != 0
   changed_when: "'installing' in command_result.stdout"
   become: True
   become_user: "{{ user.name }}"
-  tags: ['theme_pkgs']
+  tags: ['font_pkgs']
+
+- name: push background
+  copy:
+    src: usr/share/backgrounds/
+    dest: /usr/share/backgrounds/
+    directory_mode: yes
+    mode: 0644
+  tags: ['backgrounds']
 
 - include: sway.yml
   tags: ['ui','sway']

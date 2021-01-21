@@ -20,13 +20,33 @@
     group: root
   tags: ['sway_etc']
 
-- name: push main sway dir to etc
+- name: push sway etc dir
   synchronize:
     src: etc/sway
     dest: /etc/
     recursive: yes
     mode: push
     delete: yes
+  tags: ['sway_etc']
+
+- name: push sway share dir
+  synchronize:
+    src: usr/share/sway
+    dest: /usr/share/
+    recursive: yes
+    mode: push
+    delete: yes
+  tags: ['sway_etc']
+
+
+- name: push sway definitions
+  template: >
+    src=etc/sway/definitions.j2
+    dest=/etc/sway/definitions
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
   tags: ['sway_etc']
 
 # - name: create sway config dir

@@ -43,11 +43,3 @@
 
   become: yes
   become_user: "{{ user.name }}"
-
-- name: push background
-  copy:
-    src: usr/share/backgrounds/
-    dest: /usr/share/backgrounds/
-    directory_mode: yes
-    mode: 0644
-  tags: ['backgrounds']
