@@ -34,6 +34,7 @@ sway_pkgs:
   - kanshi
   - flashfocus
   - wlsunset
+  - light
 
 theme_pkgs:
   - vimix-icon-theme
