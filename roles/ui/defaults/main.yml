@@ -31,6 +31,9 @@ sway_pkgs:
   - azote
   - swaylock-blur-bin
   - gtk3-nocsd-git
+  - kanshi
+  - flashfocus
+  - wlsunset
 
 theme_pkgs:
   - vimix-icon-theme
