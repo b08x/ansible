@@ -39,15 +39,15 @@
   tags: ['sway_etc']
 
 
-- name: push sway definitions
-  template: >
-    src=etc/sway/definitions.j2
-    dest=/etc/sway/definitions
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  tags: ['sway_etc']
+# - name: push sway definitions
+#   template: >
+#     src=etc/sway/definitions.j2
+#     dest=/etc/sway/definitions
+#     mode=0644
+#     owner=0
+#     group=0
+#     backup=yes
+#   tags: ['sway_etc']
 
 # - name: create sway config dir
 #   file:

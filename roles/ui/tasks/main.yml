@@ -25,13 +25,13 @@
 - include: ui_pkgs.yml
   tags: ['ui_pkgs']
 
-- include: tuigreet.yml
-  tags: ['tuigreet']
-  when: tuigreet == true
-
-- include: gtkgreet.yml
-  tags: ['gtkgreet']
-  when: gtkgreet == true
+# - include: tuigreet.yml
+#   tags: ['tuigreet']
+#   when: tuigreet == true
+#
+# - include: gtkgreet.yml
+#   tags: ['gtkgreet']
+#   when: gtkgreet == true
 
 #TODO: put these in image or package or add another conditional....
 # - include: custom_themes.yml
