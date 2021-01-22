@@ -1,4 +1,6 @@
 ---
+- include: user.yml
+  tags: ['users']
 
 - include: sudoers.yml
   tags: ['sudoers']

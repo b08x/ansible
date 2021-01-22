@@ -5,31 +5,31 @@
 #   synchronize: src={{ user.home }}/.ssh dest={{ user.home }}/.ssh
 #   delegate_to: bender
 
-- name: ensure ssh directory exists and set perms
-  file: >
-    path="{{ user.sshdir }}"
-    state=directory
-    recurse=yes
-    owner="{{ user.primary_group }}"
-    group="{{ user.primary_group }}"
-    mode=0700
-  tags: ['keys']
-
-- name: check if ssh private key exists
-  stat: path="{{ user.sshdir }}/id_rsa"
-  register: haskeys
-  tags: ['keys']
-
-- name: copy ssh keys unless a private key already exists
-  synchronize:
-      src: "{{ user.sshdir }}"
-      dest: "{{ user.home }}"
-      perms: yes
-  become: yes
-  become_user: "{{ user.name }}"
-  # delegate_to: bender
-  when: not haskeys.stat.exists
-  tags: ['keys']
+# - name: ensure ssh directory exists and set perms
+#   file: >
+#     path="{{ user.sshdir }}"
+#     state=directory
+#     recurse=yes
+#     owner="{{ user.primary_group }}"
+#     group="{{ user.primary_group }}"
+#     mode=0700
+#   tags: ['keys']
+#
+# - name: check if ssh private key exists
+#   stat: path="{{ user.sshdir }}/id_rsa"
+#   register: haskeys
+#   tags: ['keys']
+#
+# - name: copy ssh keys unless a private key already exists
+#   synchronize:
+#       src: "{{ user.sshdir }}"
+#       dest: "{{ user.home }}"
+#       perms: yes
+#   become: yes
+#   become_user: "{{ user.name }}"
+#   # delegate_to: bender
+#   when: not haskeys.stat.exists
+#   tags: ['keys']
 
 - name: create user group(s)
   group: name={{ item.name }} state=present gid={{ item.gid }}
