@@ -8,8 +8,6 @@ cups: False
 
 system_pkgs:
   - lnav
-  - zsh-theme-powerlevel10k-git
-  - guake
   - go
 
 docker_pkgs:

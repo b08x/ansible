@@ -10,14 +10,18 @@ gtkgreet: False
 terminal_pkgs:
   - kitty
   - guake
+  - ripgrep-all
+  - surfraw
+  - googler
+  - arch-wiki-man
+  - zsh-theme-powerlevel10k-git
+  - oh-my-zsh
+  - thefuck
+  - fzf  
 
 ui_pkgs:
   - pcmanfm-hardlinkcopy
   - xarchiver
-  - ripgrep-all
-  - arch-wiki-man
-  - surfraw
-  - googler
   - scrot
 
 misc_pkgs:
