@@ -11,6 +11,7 @@
       tags: ['facts']
 
   roles:
-     - { role: network, tags: ['network'] }
+     # - { role: network, tags: ['network'] }
+     - { role: common, tags: ['common'] }
      - { role: system, tags: ['system'] }
      - { role: ui, tags: ['ui'] }

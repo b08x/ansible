@@ -1,0 +1,173 @@
+---
+
+- name: set fact for local dns resolver in use
+  set_fact:
+    host_has_local_dns_resolver: "{{ dns_servers|length == 1 and '127.0.0.1' in dns_servers }}"
+
+- name: set hostname
+  hostname: name="{{ inventory_hostname }}"
+
+- name: install pacman config
+  template: src=pacman.conf.j2 dest=/etc/pacman.conf mode=0644 owner=root group=root
+
+- name: install pamac config
+  template: src=pamac.conf.j2 dest=/etc/pamac.conf mode=0644 owner=root group=root
+
+- name: configure pacman mirror
+  template: src=mirrorlist.j2 dest=/etc/pacman.d/mirrorlist owner=root group=root mode=0644
+
+- name: update package cache
+  pacman: update_cache=yes
+
+- name: start and enable auditd
+  service: name=auditd enabled=yes state=started
+
+- name: start and enable systemd-timesyncd
+  service: name=systemd-timesyncd enabled=yes state=started
+
+- name: install smart
+  pacman: name=smartmontools state=present
+  when: "'hcloud' not in group_names"
+
+# override smartd.service with ConditionVirtualization=no
+# this should appear in the next upstream release, see https://github.com/smartmontools/smartmontools/issues/62
+- name: create drop-in directory for smartd.service
+  file: path=/etc/systemd/system/smartd.service.d state=directory owner=root group=root mode=0755
+
+- name: install drop-in snippet for smartd.service
+  copy: src=smartd-override.conf dest=/etc/systemd/system/smartd.service.d/override.conf owner=root group=root mode=0644
+
+- name: start and enable smart
+  service: name=smartd enabled=yes state=started daemon_reload=yes
+  when: "'hcloud' not in group_names"
+
+- name: start and enable btrfs scrub timer
+  service: name=btrfs-scrub@{{ '-' if (item.mount | length == 1) else (item.mount.split("/", 1)[1] | replace("/", "-")) }}.timer enabled=yes state=started
+  loop: "{{ ansible_mounts }}"
+  when: "item.fstype == 'btrfs' and item.mount != '/var/lib/docker/btrfs' and 'backup' not in item.mount"
+
+- name: install mlocate
+  pacman: name=mlocate state=present
+
+- name: activate regular updatedb for mlocate
+  service: name=updatedb.timer enabled=yes state=started
+
+- name: generate locales
+  locale_gen: name={{ item }} state=present
+  with_items:
+    - en_US.UTF-8
+
+- name: configure locales
+  template: src=locale.conf.j2 dest=/etc/locale.conf owner=root group=root mode=0644
+
+- name: generate ssh key for root
+  command: ssh-keygen -b 4096 -N "" -f /root/.ssh/id_rsa creates="/root/.ssh/id_rsa"
+
+- name: configure network
+  template: src=10-static-ethernet.network.j2 dest=/etc/systemd/network/10-static-ethernet.network owner=root group=root mode=0644
+  notify:
+    - restart networkd
+  when: configure_network
+
+- name: create symlink to resolv.conf
+  file: src=/run/systemd/resolve/stub-resolv.conf dest=/etc/resolv.conf state=link force=yes owner=root group=root mode=0755
+  when: configure_network and not host_has_local_dns_resolver
+
+- name: create resolv.conf
+  template: src=resolv.conf.j2 dest=/etc/resolv.conf owner=root group=root mode=0644
+  when: configure_network and host_has_local_dns_resolver
+
+- name: start networkd
+  service: name=systemd-networkd state=started enabled=yes
+  when: configure_network
+
+- name: start resolved
+  service:
+    name: systemd-resolved
+    state: "{{'stopped' if host_has_local_dns_resolver else 'started'}}"
+    enabled: "{{'no' if host_has_local_dns_resolver else 'yes'}}"
+  when: configure_network
+  tags:
+    - this
+
+- name: configure tcp receive window limits
+  sysctl:
+    name: net.ipv4.tcp_rmem
+    value: "{{ tcp_rmem }}"
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.d/net.conf
+  when: tcp_rmem is defined
+
+- name: configure tcp send window limits
+  sysctl:
+    name: net.ipv4.tcp_wmem
+    value: "{{ tcp_wmem }}"
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.d/net.conf
+  when: tcp_wmem is defined
+
+- name: configure journald
+  template: src={{ item }}.j2 dest=/etc/systemd/{{ item }} owner=root group=root mode=644
+  with_items:
+    - journald.conf
+  notify:
+    - restart journald
+
+- name: install syslog-ng
+  pacman: name=syslog-ng state=present
+
+- name: configure syslog-ng
+  template: src=syslog-ng.conf.j2 dest=/etc/syslog-ng/syslog-ng.conf owner=root group=root mode=0600
+  notify:
+    - restart syslog-ng
+
+- name: configure syslog-ng default config
+  template: src=syslog-ng@default.j2 dest=/etc/default/syslog-ng@default owner=root group=root mode=0644
+  notify:
+    - restart syslog-ng
+
+- name: start syslog-ng
+  service: name=syslog-ng@default state=started enabled=yes
+
+- name: install system.conf
+  template: src=system.conf.j2 dest=/etc/systemd/system.conf owner=root group=root mode=0644
+  notify:
+    - systemd daemon-reload
+
+- name: install systemd-swap
+  pacman: name=systemd-swap state=present
+  when: enable_zram_swap
+
+- name: install systemd-swap config for zram
+  copy: src=zram-swap.conf dest=/etc/systemd/swap.conf owner=root group=root mode=0644
+  notify:
+    - restart systemd-swap
+  when: enable_zram_swap
+
+- name: start systemd-swap
+  service: name=systemd-swap state=started enabled=yes
+  when: enable_zram_swap
+
+- name: install logrotate
+  pacman: name=logrotate state=present
+
+- name: configure logrotate
+  template: src=logrotate.conf.j2 dest=/etc/logrotate.conf owner=root group=root mode=0644
+
+- name: enable logrotate timer
+  service: name=logrotate.timer state=started enabled=yes
+
+- name: create zsh directory
+  file: path=/root/.zsh state=directory owner=root group=root mode=0700
+
+- name: install root shell config
+  copy: src={{ item }} dest=/root/.{{ item }} owner=root group=root mode=0644
+  with_items:
+    - zshrc
+    - dircolors
+
+- name: install custom paccache.service
+  copy: src=paccache.service dest=/etc/systemd/system/paccache.service owner=root group=root mode=0644
+
+- name: enable paccache timer
+  systemd: name=paccache.timer enabled=yes state=started daemon_reload=yes

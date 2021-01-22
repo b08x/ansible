@@ -1,0 +1,5 @@
+---
+configure_network: false
+enable_zram_swap: false
+network_interface: "e*"
+dns_servers: []

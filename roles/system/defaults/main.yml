@@ -33,6 +33,7 @@ audio_pkgs:
   - sooperlooper
   - konfyt
   - iempluginsuite
+  - jack_utils
 
 visual_pkgs:
   - touchosc-editor

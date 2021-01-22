@@ -1,11 +1,14 @@
 ---
 
 hostname: lapbot
+network_interface: wlp1s0
+ipv4_address: "192.168.41.5"
+ipv4_netmask: "/24"
+ipv4_gateway: "192.168.41.1"
+dns_servers: ["192.168.41.1"]
 
 docker_host: True
 docker_storage: /var/lib/docker
-
-wlan: wlp0s20f0u3
 
 sshd_port: 22
 sshd_allow_groups: b08x
