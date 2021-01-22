@@ -36,6 +36,9 @@
 - include: ui_pkgs.yml
   tags: ['ui_pkgs']
 
+- include: ydotool.yml
+  tags: ['ydotool']
+
 # - include: tuigreet.yml
 #   tags: ['tuigreet']
 #   when: tuigreet == true

@@ -1,0 +1,32 @@
+---
+
+- name: install ydotool
+  shell: "pamac install --no-confirm ydotool"
+  become: True
+  become_user: "{{ user.name }}"
+
+- name: push uinput module
+  copy:
+    src: etc/modules-load.d/uinput.conf
+    dest: /etc/modules-load.d/uinput.conf
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: push uinput module
+  copy:
+    src: etc/udev/rules.d/80-uinput.rules
+    dest: /etc/udev/rules.d/80-uinput.rules
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: enable and/or start ydotool
+  systemd: enabled=yes state=started daemon_reload=yes name=ydotool scope=user
+
+- name: reboot to enable uinput perms
+  command: shutdown -r now
