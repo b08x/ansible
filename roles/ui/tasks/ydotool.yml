@@ -26,7 +26,7 @@
     backup: yes
 
 - name: enable and/or start ydotool
-  systemd: enabled=yes state=started daemon_reload=yes name=ydotool scope=user
+  systemd: enabled=yes state=stopped name=ydotool scope=user
 
 - name: reboot to enable uinput perms
   command: shutdown -r now
