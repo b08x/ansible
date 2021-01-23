@@ -56,3 +56,5 @@
     delete: no
   notify: reload user systemd
   tags: ['autostart']
+
+#TODO: enable services after sway-session.service is sorted

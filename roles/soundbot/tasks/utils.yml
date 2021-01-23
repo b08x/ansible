@@ -6,10 +6,15 @@
   become_user: "{{ user.name }}"
   tags: ['unsilence']
 
+- name: check if file and/or directory exists
+  stat: path="{{ user.home }}/.local/bin/unsilence"
+  register: haziunsilence
+
 - name: install unsilence
   command: pipx install unsilence
   become: True
   become_user: "{{ user.name }}"
+  when: not haziunsilence.stat.exists
   tags: ['unsilence']
 
 - name: push sonic-visualizer suite
