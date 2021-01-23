@@ -51,6 +51,7 @@
   become: yes
   become_user: "{{ user.name }}"
   register: yadm_status
+  ignore_errors: true
 
 - name: clone dotfiles
   command: yadm clone "{{ dotfiles.url }}"
