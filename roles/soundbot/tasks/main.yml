@@ -10,6 +10,9 @@
   become_user: "{{ user.name }}"
   tags: ['soundbot_pkgs']
 
+- name: add user to realtime group
+  user: name="{{ user.name }}" groups=realtime append=yes
+
 - include: pulse.yml
   tags: ['pulse']
 
