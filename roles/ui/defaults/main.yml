@@ -1,13 +1,13 @@
 ---
 
-tuigreet: True
+tuigreet: False
 gtkgreet: False
+ly: True
 
 #greeter_pkgs:
 #  - greetd-git
 #  - greetd-gtkgreet-git
 #  - cage
-#  - ly
 
 greeter_pkgs:
   - ly
