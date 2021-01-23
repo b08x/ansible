@@ -3,7 +3,7 @@
 docker_host: False
 kvm_host: False
 
-journal_level: debug
+journal_level: info
 cups: False
 
 docker_pkgs:
