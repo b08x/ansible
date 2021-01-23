@@ -12,6 +12,9 @@
   become: yes
   become_user: "{{ user.name }}"
 
+- name: enable ly service
+  systemd: enabled=yes name=ly
+  ignore_errors: true
 #
 # - name: enable guake service
 #   systemd: name=guake scope=user state=started enabled=true

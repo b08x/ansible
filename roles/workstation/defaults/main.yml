@@ -14,6 +14,7 @@ workstation_pkgs:
   - python-gtkspellcheck
   - mousepad
   - seahorse
+  - rofi-search-git
 
 install_apm_pkgs: False
 apm_pkgs:

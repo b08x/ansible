@@ -26,3 +26,4 @@ common_pkgs:
   - net-tools
   - keepassxc
   - python-pip
+  - wol

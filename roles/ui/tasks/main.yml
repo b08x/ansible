@@ -19,8 +19,11 @@
     mode: 0644
   tags: ['backgrounds']
 
+- include: ly.yml
+  tags: ['greeter']
+
 - include: sway.yml
-  tags: ['ui','sway']
+  tags: ['sway']
 
 - include: ydotool.yml
   tags: ['ydotool']

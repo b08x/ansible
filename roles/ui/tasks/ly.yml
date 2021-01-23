@@ -1,0 +1,23 @@
+---
+
+#install greetd-gtkgreet
+
+- name: push ly configs
+  copy:
+    src: etc/ly/config.ini
+    dest: /etc/ly/config.ini
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify: enable ly service
+  tags: ['ly']
+
+- name: get default runlevel
+  command: systemctl get-default
+  register: runlevel
+
+- name: Set graphical runlevel
+  command: systemctl set-default graphical.target
+  when: runlevel.stdout != "graphical.target"

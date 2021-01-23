@@ -47,6 +47,17 @@
     delete: yes
   tags: ['autostart']
 
+- name: copy sway-session systemd target
+  copy:
+    src: etc/systemd/user/sway-session.target
+    dest: /etc/systemd/user/sway-session.target
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: ['sway', 'systemd']
+
 - name: push systemd user services
   synchronize:
     src: etc/skel/.config/systemd/user/

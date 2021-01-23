@@ -4,5 +4,5 @@ Description="start the radiotray"
 [Service]
 ExecStart=/usr/bin/radiotray-ng
 
-#[Install]
-#WantedBy=default.target
+[Install]
+WantedBy=sway-session.target

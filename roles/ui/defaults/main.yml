@@ -3,6 +3,12 @@
 tuigreet: True
 gtkgreet: False
 
+greeter_pkgs:
+  - greetd-git
+  - greetd-gtkgreet-git
+  - cage
+  - ly
+
 sway_pkgs:
   - wofi
   - azote
