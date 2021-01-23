@@ -38,8 +38,9 @@
 - name: add this user to desired groups
   user: >
     name="{{ user.name }}"
-    uid={{ user.uid }}
-    groups={{ user.secondary_groups }}
+    uid="{{ user.uid }}"
+    groups="{{ user.secondary_groups }}"
+    shell="{{ user.shell }}"
     append=yes
     state=present
   ignore_errors: true
@@ -59,4 +60,4 @@
   become_user: "{{ user.name }}"
   args:
     chdir: "{{ user.home }}"
-  when: yadm_status.rc == 0
+  when: yadm_status.rc != 0
