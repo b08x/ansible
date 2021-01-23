@@ -11,3 +11,22 @@
   become: True
   become_user: "{{ user.name }}"
   tags: ['unsilence']
+
+- name: push sonic-visualizer suite
+  synchronize:
+    src: .local/
+    dest: "{{ user.home }}/.local/"
+    recursive: yes
+    mode: push
+    delete: no
+  become: yes
+  become_user: "{{ user.name }}"
+  tags: ['sonicvisualizer']
+
+- name: Extract vamp plugins into home dir
+  unarchive:
+    src: vamp.tar.gz
+    dest: "{{ user.home }}"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['sonicvisualizer', 'vamp']
