@@ -27,7 +27,6 @@ soundbot_pkgs:
   - qmidiarp
   - qsampler
   - hydrogen
-  - konfyt
   - jaaa
   - japa
   - sonic-visualiser

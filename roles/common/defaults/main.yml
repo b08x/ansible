@@ -25,3 +25,4 @@ common_pkgs:
   - iotop
   - net-tools
   - keepassxc
+  - python-pip
