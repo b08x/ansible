@@ -29,6 +29,3 @@
   systemd: enabled=yes state=stopped name=ydotool scope=user
   become: True
   become_user: "{{ user.name }}"
-
-- name: reboot to enable uinput perms
-  command: shutdown -r now

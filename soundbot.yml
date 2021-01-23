@@ -10,6 +10,11 @@
         var: ansible_facts
       tags: ['facts']
 
+    - name: reboot to enable uinput perms
+      command: shutdown -r now
+      when: reboot is defined
+
+
   roles:
      - { role: network, tags: ['network'] }
      - { role: common, tags: ['common'] }
