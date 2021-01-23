@@ -65,7 +65,7 @@
   tags: ['yadm']
 
 - name: fetch dotfiles
-  command: yadm fetch && yadm pull
+  shell: 'yadm fetch && yadm pull'
   become: yes
   become_user: "{{ user.name }}"
   args:
