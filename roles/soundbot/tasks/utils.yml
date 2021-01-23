@@ -1,0 +1,13 @@
+---
+
+- name: install pipx
+  command: pip install pipx
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['unsilence']
+
+- name: install unsilence
+  command: pipx install unsilence
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['unsilence']

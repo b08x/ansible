@@ -1,0 +1,4 @@
+---
+
+- name: enable and start cups
+  systemd: enabled=yes state=started name=cups

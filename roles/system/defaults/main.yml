@@ -2,13 +2,9 @@
 
 docker_host: False
 kvm_host: False
-use_rvm: False
+
 journal_level: debug
 cups: False
-
-system_pkgs:
-  - lnav
-  - go
 
 docker_pkgs:
   - docker
@@ -23,64 +19,13 @@ kvm_pkgs:
   - edk2-ovmf
   - dmidecode
 
-audio_pkgs:
-  - ocenaudio
-  - jalv-select
-  - jack-keyboard
-  - ffmulticonverter
-  - scala-music
-  - unsilence
-  - sooperlooper
-  - konfyt
-  - iempluginsuite
-  - jack_utils
-
-visual_pkgs:
-  - touchosc-editor
-  - darktable
-  - gpick
-
-install_apm_pkgs: True
-apm_pkgs:
-  - ruby-block
-  - atom-beautify
-  - blocky
-  - language-docker
-  - language-dotfiles
-  - language-sfz
-  - language-ansible
-  - highlight-colors
-  - color-picker
-  - open-terminal-here
-  - ansible-snippets
-  - ruby-solargraph
-  - file-types
-
-editor_pkgs:
-  - atom
-  - zim
-  - mousepad
-  - ruby-rubocop
-  - ruby-solargraph
-  - meld
-  - neovim-plug
-  - neovim-symlinks
-  - hexchat
-
-media_pkgs:
-  - mpv-full
-  - mpv-plugin-excerpt-git
-  - celluloid
-  - vlc
-  - youtube-dl
-  - qbittorrent
-  - radiotray-ng
-  - libbluray
-  - libaacs
-  - feh
-  - viewnior
-  - musikcube
-
-printer_pkgs:
-  - cups
-  - epson-inkjet-printer-escpr
+bluetooth_pkgs:
+  - blueman
+  - bluez
+  - bluez-cups
+  - bluez-firmware
+  - bluez-hid2hci
+  - bluez-libs
+  - bluez-plugins
+  - bluez-tools
+  - bluez-utils

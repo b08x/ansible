@@ -10,15 +10,7 @@ dns_servers: ["192.168.41.1"]
 docker_host: True
 docker_storage: /var/lib/docker
 
-sshd_port: 22
-sshd_allow_groups: b08x
-
 autofs:
   host: bender
   shares:
     - b08x
-
-# autofs:
-#   host: ninjabot
-#   shares:
-#     - share

@@ -11,17 +11,6 @@
   become_user: "{{ user.name }}"
   tags: ['font_pkgs']
 
-- name: install terminal packages
-  shell: "pamac install --no-confirm {{ item }}"
-  with_items:
-    - "{{ terminal_pkgs }}"
-  register: command_result
-  failed_when: command_result.rc != 0
-  changed_when: "'installing' in command_result.stdout"
-  become: True
-  become_user: "{{ user.name }}"
-  tags: ['terminal_pkgs']
-
 - name: push background
   copy:
     src: usr/share/backgrounds/
@@ -32,9 +21,6 @@
 
 - include: sway.yml
   tags: ['ui','sway']
-
-- include: ui_pkgs.yml
-  tags: ['ui_pkgs']
 
 - include: ydotool.yml
   tags: ['ydotool']

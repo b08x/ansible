@@ -171,3 +171,6 @@
 
 - name: enable paccache timer
   systemd: name=paccache.timer enabled=yes state=started daemon_reload=yes
+
+- include: tools.yml
+  tags: ['tools']

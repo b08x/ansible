@@ -1,14 +1,17 @@
 ---
-
-use_rvm: False
-
-workstation: True
-
-printers:
-  - name: epson
-
 workstation_pkgs:
   - hexchat
+  - meld
+  - opera
+  - pcmanfm-hardlinkcopy
+  - xarchiver
+  - scrot
+  - guake
+  - surfraw
+  - atom
+  - zim
+  - mousepad
+  - seahorse
 
 install_apm_pkgs: False
 apm_pkgs:
@@ -25,36 +28,6 @@ apm_pkgs:
   - ansible-snippets
   - ruby-solargraph
   - file-types
-
-editor_pkgs:
-  - ruby-rubocop
-  - ruby-solargraph
-  - meld
-  - neovim-plug
-  - neovim-symlinks
-
-browser_pkgs:
-  - opera
-
-comm_pkgs:
-  - hexchat
-
-codec_pkgs:
-  - amrnb
-  - amrwb
-  - faac
-  - faad2
-  - flac
-  - lame
-  - libdca
-  - libmad
-  - libmatroska
-  - x264
-  - x265
-  - xvidcore
-  - ffmpeg
-  - ffmpeg-libs
-  - ffmpeg-devel
 
 media_pkgs:
   - mpv-full
@@ -73,6 +46,3 @@ media_pkgs:
 printer_pkgs:
   - cups
   - epson-inkjet-printer-escpr
-
-gpg_pkgs:
-  - seahorse

@@ -1,0 +1,78 @@
+---
+
+- block:
+  - name: install clthreads
+    unarchive: >
+      src=clthreads-2.4.0.tar.bz2
+      dest="{{ local_src_dir }}/"
+
+  - name: update prefix in make to /usr
+    command: sed -i s:/usr/local:/usr:g Makefile
+    args:
+      chdir: "{{ local_src_dir}}/clthreads-2.4.0"
+
+  - name: run make
+    command: bash -lc "make"
+    args:
+      chdir: "{{ local_src_dir }}/clthreads-2.4.0"
+
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: run make install
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/clthreads-2.4.0"
+
+
+
+
+    # changed: [qubert] => {"changed": true, "cmd": ["make", "install"], "delta": "0:00:00.012653", "end": "2018-05-01 16:07:20.159831", "rc": 0, "start": "2018-05-01 16:07:20.147178", "stderr": "", "stderr_lines": [], "stdout": "/usr/bin/install -d /usr/local/lib64\n/usr/bin/install -m 644 clthreads.h /usr/local/include\n/usr/bin/install -m 755 libclthreads.so.2.4.0 /usr/local/lib64\n/sbin/ldconfig -n /usr/local/lib64\nln -sf libclthreads.so.2.4.0 /usr/local/lib64/libclthreads.so", "stdout_lines": ["/usr/bin/install -d /usr/local/lib64", "/usr/bin/install -m 644 clthreads.h /usr/local/include", "/usr/bin/install -m 755 libclthreads.so.2.4.0 /usr/local/lib64", "/sbin/ldconfig -n /usr/local/lib64", "ln -sf libclthreads.so.2.4.0 /usr/local/lib64/libclthreads.so"]}
+
+
+- block:
+  - name: install clxclient
+    unarchive: >
+      src=clxclient-3.9.0.tar.bz2
+      dest="{{ local_src_dir }}/"
+  - name: update prefix in make to /usr
+    command: sed -i s:/usr/local:/usr:g Makefile
+    args:
+      chdir: "{{ local_src_dir}}/clxclient-3.9.0"
+  - name: run make
+    command: bash -lc "make"
+    args:
+      chdir: "{{ local_src_dir }}/clxclient-3.9.0"
+
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: run make install
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/clxclient-3.9.0"
+
+
+###############3
+
+- block:
+  - name: install zita
+    unarchive: >
+      src=zita-dpl1-0.1.0.tar.bz2
+      dest="{{ local_src_dir }}/"
+  - name: update prefix in make to /usr
+    command: sed -i s:/usr/local:/usr:g Makefile
+    args:
+      chdir: "{{ local_src_dir}}/zita-dpl1-0.1.0/source"
+  - name: run make
+    command: bash -lc "make"
+    args:
+      chdir: "{{ local_src_dir }}/zita-dpl1-0.1.0/source"
+
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: run make install
+  command: make install
+  args:
+    chdir: "{{ local_src_dir }}/zita-dpl1-0.1.0/source"

@@ -5,10 +5,10 @@
   hosts: all
 
   tasks:
-    - debug:
-        msg: "{{ installed_aur_pkgs  }}"
-    - debug:
-        msg: "{{ installed_arch_pkgs }}"
+    # - debug:
+    #     msg: "{{ installed_aur_pkgs  }}"
+    # - debug:
+    #     msg: "{{ installed_arch_pkgs }}"
     # - debug:
     #     msg:
     #       - " Data type of 'ansible_architecture'  is {{ ansible_architecture | type_debug }} "
@@ -22,17 +22,14 @@
     # - debug:
     #     msg: "{{ ansible_default_ipv4.interface }}"
     #
-    # - name: Execute the command only mwiapp01 server
-    #   become: yes
-    #   become_user: root
-    #   command: "lsmod | grep r8168"
-    #   register: r8168_module
-    #   ignore_errors: true
-    #
-    # # Accessing an element of dictionary
-    # - debug:
-    #     msg: "it exists"
-    #   when: r8168_module.rc == 0
+    - name: Execute the command only mwiapp01 server
+      shell: "lsmod | grep r8168"
+      register: r8168_module
+      ignore_errors: true
+
+    # Accessing an element of dictionary
+    - debug:
+        msg: "{{ r8168_module }}"
     #
     # # Accessing the list
     # - debug:
@@ -42,19 +39,19 @@
     # - debug:
     #     msg: "{{ansible_all_ipv4_addresses[1]}}"
 
-    - name: check if file and/or directory exists
-      stat: path="/mnt/bender/b08x"
-      register: bender_mounted
-
-    - name: push main sway dir to etc
-      synchronize:
-        src: /home/b08x/tmp/
-        dest: /mnt/bender/b08x/tmp/
-        recursive: yes
-        mode: pull
-      tags: ['backup_test']
-      become: yes
-      become_user: b08x
+    # - name: check if file and/or directory exists
+    #   stat: path="/mnt/bender/b08x"
+    #   register: bender_mounted
+    #
+    # - name: push main sway dir to etc
+    #   synchronize:
+    #     src: /home/b08x/tmp/
+    #     dest: /mnt/bender/b08x/tmp/
+    #     recursive: yes
+    #     mode: pull
+    #   tags: ['backup_test']
+    #   become: yes
+    #   become_user: b08x
     # - name: Print all available facts
     #   ansible.builtin.debug:
     #     var: ansible_facts

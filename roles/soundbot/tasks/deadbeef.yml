@@ -1,0 +1,23 @@
+---
+
+- name: install deadbeef
+  shell: "pamac install --no-confirm {{item}}"
+  with_items:
+    - "{{ deadbeef_pkgs }}"
+  register: command_result
+  failed_when: command_result.rc != 0
+  changed_when: "'installing' in command_result.stdout"
+  become: True
+  become_user: "{{ user.name }}"
+  tags: ['deadbeef']
+
+- name: push deadbeef plugins
+  copy:
+    src: usr/lib/deadbeef/
+    dest: /usr/lib/deadbeef/
+    directory_mode: yes
+    owner: root
+    group: root
+    mode: '0755'
+    backup: yes
+  tags: ['deadbeef_plugins']

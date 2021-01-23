@@ -11,7 +11,9 @@
       tags: ['facts']
 
   roles:
-     # - { role: network, tags: ['network'] }
+     - { role: network, tags: ['network'] }
      - { role: common, tags: ['common'] }
      - { role: system, tags: ['system'] }
+     - { role: soundbot, tags: ['soundbot'] }
+     - { role: workstation, tags: ['workstation'] }
      - { role: ui, tags: ['ui'] }

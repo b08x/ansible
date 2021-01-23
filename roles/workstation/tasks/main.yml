@@ -11,19 +11,13 @@
   become_user: "{{ user.name }}"
   tags: ['workstation_pkgs']
 
-- include: editors.yml
-  tags: ['editors']
-  when: workstation == true
+- include: apm.yml
+  tags: ['atom', 'apm']
 
 - include: media.yml
   tags: ['media']
-
-- include: browsers.yml
-  tags: ['browsers']
-
-- include: rvm.yml
-  tags: ['rvm']
-  when: use_rvm == true
+  when: install_media_pkgs is defined
 
 - include: printer.yml
   tags: ['printer']
+  when: printers is defined

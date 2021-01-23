@@ -1,0 +1,11 @@
+---
+
+- name: push updatedb config
+  copy:
+    src: etc/updatedb.conf
+    dest: /etc/updatedb.conf
+    directory_mode: no
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes

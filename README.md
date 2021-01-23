@@ -1,30 +1,37 @@
-# system setup
+# soundbot setup
+---
+# ansible
 
-# roles
 
-## system
+## roles
 
-base os configuration
+### network
+  * ensure wired and/or wireless networking is setup
+
+### common
+tasks to be run on all hosts
+
+  * logging
+  * root sshkeys / shell
+  * system utility packages
+
+### system
+
   * create users and copy ssh keys
   * package manager configuration & system update
 
+### workstation
+  * editors
+  * cli stuff
+  * media players
 
-## dotfiles
+### ui
+  * sway window manager
+  * themes
+  * fonts
 
+### soundbot
 
+## To Do
 
-
-# an atom search & replace
-#(package: \w+=)(\{\{ item \}\}) (state=present)
-#$1$2 $3 use="{{ package_manager }}"
-
-
-
-
-pamac install ansible
-git clone https://github.com/b08x/ansible.git
-
-
-
-# TODO
-[] wpa_supplicant ssid & passphrase
+- [ ] store & retrieve keys

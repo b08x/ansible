@@ -42,3 +42,11 @@
     groups={{ user.secondary_groups }}
     append=yes
     state=present
+  ignore_errors: true
+
+- name: clone dotfiles
+  command: yadm clone "{{ dotfiles.url }}"
+  become: yes
+  become_user: db_owner
+  args:
+    chdir: "{{ user.home }}"

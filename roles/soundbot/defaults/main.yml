@@ -1,0 +1,87 @@
+---
+
+soundbot_pkgs:
+  - alsa-card-profiles
+  - alsa-firmware
+  - alsa-lib
+  - alsa-plugins
+  - alsa-tools
+  - alsa-topology-conf
+  - alsa-ucm-conf
+  - alsa-utils
+  - ams
+  - a2jmidid
+  - jack_utils
+  - jack_capture
+  - audacity
+  - jalv
+  - jalv-select
+  - jack-keyboard
+  - noise-repellent
+  - ocenaudio
+  - jnoisemeter
+  - konfyt
+  - scala-music
+  - sooperlooper
+  - helm-synth
+  - qmidiarp
+  - qsampler
+  - hydrogen
+  - konfyt
+  - jaaa
+  - japa
+  - sonic-visualiser
+  - realtime-privileges
+  - touchosc-editor
+  - darktable
+  - gpick
+
+obs_pkgs:
+  - wlrobs
+  - obs-studio-wayland
+
+deadbeef_pkgs:
+  - deadbeef
+  - deadbeef-jack-git
+  - deadbeef-plugin-customizabletb-gtk3-git
+  - deadbeef-plugin-headerbar-gtk3-git
+  # - deadbeef-plugin-medialib-git
+  - deadbeef-plugin-musical-spectrum-gtk3-git
+  - deadbeef-plugin-spectrogram-gtk3-git
+  - deadbeef-plugin-waveform-gtk3-git
+
+zita_pkgs:
+  - zita-ajbridge
+  - zita-alsa-pcmi
+  - zita-bls1
+  - zita-convolver
+  - zita-dc1
+  - zita-dpl1
+  - zita-lrx
+  - zita-mu1
+  - zita-resampler
+  - zita-rev1
+
+plugins:
+  - ladspa
+  - swh-plugins
+  - lv2
+  - x42-plugins
+  - sfizz
+  - iempluginsuite
+  - swh-lv2-git
+  - xmonk.lv2
+
+pulseaudio_pkgs:
+  - pulseaudio
+  - pulseaudio-alsa
+  - pulseaudio-jack
+  - pulseaudio-modules-bt
+  - pavucontrol
+  - paprefs
+  - pulsemixer
+
+sonic_pkgs:
+  - sonic-pi
+  - wkhtmltopdf-static
+  - rust

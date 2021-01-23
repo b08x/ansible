@@ -2,8 +2,6 @@
 
 hostname: bender
 
-make_hard: False
-
 docker_host: True
 docker_storage: /var/lib/docker
 
@@ -35,6 +33,3 @@ sysctl_ip_forward: True
 #   idVendor: 0bc2
 #   idProduct: ac2d
 #   disklabel: mediasync
-
-rcm_tags:
-  - vim

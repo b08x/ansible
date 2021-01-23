@@ -1,7 +1,7 @@
 ---
 
 local_src_dir: "{{ user.home }}/Workspace/source"
-local_bin_dir: "{{ user.home }}/bin"
+local_bin_dir: "{{ user.home }}/.local/bin"
 themes_dir: "{{ user.home }}/.themes"
 icons_dir: "{{ user.home }}/.icons"
 
@@ -12,10 +12,8 @@ gnupg:
   emulate_ssh: False
 
 dotfiles:
-  url: git@github.com:b08x/dotfiles.git
+  url: git@github.com:b08x/dots.git
   branch: main
-  destination: "{{ user.home }}/Workspace/dotfiles"
-  rcup_flags: -fx README.md
 
 user_groups:
   - name: home
@@ -27,13 +25,8 @@ user:
   sshdir: /home/b08x/.ssh
   uid: 1000
   gid: 1000
-  primary_group: audio
-  secondary_groups: "wheel,network,input,home,storage,video,users,realtime"
+  primary_group: b08x
+  secondary_groups: "wheel,network,input,home,storage,video,users,realtime,audio"
   shell: /bin/zsh
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
-
-font: Hack Nerd Font Regular
-
-git_name: "{{ user.name }}"
-git_mail: "{{ user.email }}"

@@ -1,8 +1,6 @@
 ---
 
 - name: check if the r8168 network card module is loaded
-  become: yes
-  become_user: root
   shell: "lsmod | grep r8168"
   register: r8168_module
   ignore_errors: true
@@ -17,5 +15,5 @@
     group: root
     mode: 0644
     backup: no
-  tags: ['r8169']
+  tags: ['r8168']
   when: r8168_module.rc == 0

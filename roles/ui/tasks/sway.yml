@@ -36,7 +36,7 @@
     recursive: yes
     mode: push
     delete: yes
-  tags: ['sway_etc']
+  tags: ['sway_usr']
 
 
 # - name: push sway definitions

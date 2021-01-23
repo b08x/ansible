@@ -8,9 +8,6 @@
 - include: pamac.yml
   tags: ['packages']
 
-- include: install.yml
-  tags: ['install']
-
 - include: grub.yml
   tags: ['grub']
 
@@ -23,13 +20,6 @@
 
 - include: modprobe.yml
   tags: ['modprobe']
-
-- include: audio.yml
-- include: apm.yml
-- include: media.yml
-- include: visual.yml
-- include: printer.yml
-- include: reaper.yml
 
 - include: docker.yml
   tags: ['docker']
@@ -50,3 +40,9 @@
 - include: fileshare.yml
   tags: ['fileshare']
   when: file_share is defined
+
+- include: bluray.yml
+  tags: ['bluray']
+
+- include: bluetooth.yml
+  tags: ['bluetooth']

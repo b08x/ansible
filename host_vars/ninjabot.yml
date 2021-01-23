@@ -7,31 +7,10 @@ ipv4_netmask: "/24"
 ipv4_gateway: "192.168.41.1"
 dns_servers: ["192.168.41.1"]
 
-host_environment_paths:
-  PATH: /home/b08x/.rvm/gems/ruby-2.7.2/bin:/home/b08x/.rvm/gems/ruby-2.7.2@global/bin:/home/b08x/.rvm/rubies/ruby-2.7.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/b08x/.rvm/bin:/home/b08x/.local/bin:/home/b08x/bin
-  GEM_PATH: /home/b08x/.rvm/gems/ruby-2.7.2
-
-rvm1_rubies:
-  - 'ruby-2.7.2'
-
-rvm1_install_flags: '--user-install'
-
-rvm1_user: 'b08x'
-
 docker_host: True
 docker_storage: /var/lib/docker
 
 kvm_host: True
-
-sshd_port: 22
-sshd_allow_groups: b08x
-
-dotfiles:
-  url: "git@github.com:b08x/dotfiles"
-  branch: main
-  destination: "{{ user.home }}/Workspace/dotfiles"
-  rcup_flags: -f -t profile -x README.md -x rcrc -x *_bak
-
 samba_host: True
 
 # folders to make available
