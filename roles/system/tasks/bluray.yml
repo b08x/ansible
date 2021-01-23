@@ -17,27 +17,5 @@
       dest: "{{ user.home }}/.config/aacs/KEYDB.cfg"
     tags: ['bluray']
 
-  - name: install media packages
-    shell: "pamac install --no-confirm {{item}}"
-    with_items:
-      - "{{ media_pkgs }}"
-    register: command_result
-    failed_when: command_result.rc != 0
-    changed_when: "'installing' in command_result.stdout"
-    become: True
-    become_user: "{{ user.name }}"
-    tags: ['media_pkgs']
-
   become: True
   become_user: "{{ user.name }}"
-
-# - name: push mpv image viewer script
-#   copy:
-#     src: usr/share/mpv/scripts/image.lua
-#     dest: /usr/share/mpv/scripts/image.lua
-#     directory_mode: no
-#     owner: root
-#     group: root
-#     mode: '0644'
-#     backup: yes
-#   tags: ['mpv']
