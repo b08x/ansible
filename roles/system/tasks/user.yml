@@ -44,7 +44,7 @@
     state=present
   ignore_errors: true
 
-- name: run this script
+- name: check if dots have been cloned
   shell:  yadm status
   args:
     chdir: "{{ user.home }}"
