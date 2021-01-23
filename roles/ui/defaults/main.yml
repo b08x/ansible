@@ -30,6 +30,7 @@ font_pkgs:
   - gnu-free-fonts
   - ttf-nerd-fonts-symbols
   - ttf-material-design-icons-webfont
+  - nerd-fonts-roboto-mono
 
 misc_pkgs:
   - oomox
