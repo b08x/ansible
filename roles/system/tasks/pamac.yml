@@ -1,15 +1,5 @@
 ---
 
-- name: push pacman conf
-  template: >
-    src=etc/pacman.conf.j2
-    dest=/etc/pacman.conf
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  tags: ['pacman']
-
 - name: clean and update repo db
   command: yay -Sc --noconfirm
   become: yes

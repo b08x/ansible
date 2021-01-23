@@ -12,15 +12,6 @@ file_shares:
   mounts:
     - /mnt/b08x
 
-# showmount -e autofs.host
-autofs:
-  host: ninjabot
-  shares:
-    - share
-
-sshd_port: 22
-sshd_allow_groups: b08x
-
 sysctl_ip_forward: True
 
 

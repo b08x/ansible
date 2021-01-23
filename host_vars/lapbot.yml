@@ -14,3 +14,5 @@ autofs:
   host: bender
   shares:
     - b08x
+
+blutooth: True

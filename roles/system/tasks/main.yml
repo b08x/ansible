@@ -46,3 +46,4 @@
 
 - include: bluetooth.yml
   tags: ['bluetooth']
+  when: blutooth is defined
