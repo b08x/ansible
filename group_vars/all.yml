@@ -30,3 +30,5 @@ user:
   shell: /bin/zsh
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
+
+printers: epson

@@ -1,0 +1,9 @@
+[Unit]
+Description="start the guake terminal"
+
+[Service]
+ExecStart=/usr/bin/guake
+ExecStartPre=-/usr/bin/guake --restore-preferences ~/.config/guake/guake.config
+
+[Install]
+WantedBy=default.target

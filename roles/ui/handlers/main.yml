@@ -6,3 +6,12 @@
   ignore_errors: yes
   become: yes
   become_user: "{{ user.name }}"
+
+- name: reload user systemd
+  systemd: daemon_reload=yes scope=user
+  become: yes
+  become_user: "{{ user.name }}"
+
+#
+# - name: enable guake service
+#   systemd: name=guake scope=user state=started enabled=true

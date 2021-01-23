@@ -38,34 +38,21 @@
     delete: yes
   tags: ['sway_usr']
 
+- name: push xdg autostart dir with disabled items
+  synchronize:
+    src: etc/skel/.config/autostart/
+    dest: "{{ user.home }}/.config/autostart/"
+    recursive: yes
+    mode: push
+    delete: yes
+  tags: ['autostart']
 
-# - name: push sway definitions
-#   template: >
-#     src=etc/sway/definitions.j2
-#     dest=/etc/sway/definitions
-#     mode=0644
-#     owner=0
-#     group=0
-#     backup=yes
-#   tags: ['sway_etc']
-
-# - name: create sway config dir
-#   file:
-#     path: ~/.config/sway/
-#     state: directory
-#
-# - name: copy configuration file
-#   template:
-#     src: config.j2
-#     dest: ~/.config/sway/config
-#
-# - name: copy gsettings importer
-#   copy:
-#     src: import-gsettings
-#     dest: ~/.config/sway/
-#     mode: 0755
-#
-# - name: copy config user.dirs
-#   copy:
-#     src: user-dirs.dirs
-#     dest: ~/.config/
+- name: push systemd user services
+  synchronize:
+    src: etc/skel/.config/systemd/user/
+    dest: "{{ user.home }}/.config/systemd/user/"
+    recursive: yes
+    mode: push
+    delete: no
+  notify: reload user systemd
+  tags: ['autostart']
