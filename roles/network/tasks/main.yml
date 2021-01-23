@@ -1,18 +1,8 @@
 ---
 
-- include: udev-rules.yml
-  tags: ['network', 'udev']
-
 # - include: systemd-networkd.yml
 #   tags: ['systemdnetwork']
 
-- include: wpa_supplicant.yml
+- include: wireless.yml
   tags: ['network', 'wireless']
   when: wlan is defined
-
-- name: link wpa_supplicant hook to dhcpcd-hooks dir
-  file:
-    src: /usr/share/dhcpcd/hooks/10-wpa_supplicant
-    dest: /usr/lib/dhcpcd/dhcpcd-hooks/10-wpa_supplicant
-    state: link
-  notify: restart dhcpcd

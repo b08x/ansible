@@ -44,9 +44,18 @@
     state=present
   ignore_errors: true
 
+- name: run this script
+  shell:  yadm status
+  args:
+    chdir: "{{ user.home }}"
+  become: yes
+  become_user: "{{ user.name }}"
+  register: yadm_status
+
 - name: clone dotfiles
   command: yadm clone "{{ dotfiles.url }}"
   become: yes
-  become_user: db_owner
+  become_user: "{{ user.name }}"
   args:
     chdir: "{{ user.home }}"
+  when: yadm_status.rc == 0

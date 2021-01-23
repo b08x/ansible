@@ -12,16 +12,6 @@
   ignore_errors: False
   tags: ['pamac']
 
-- name: push pamac conf with aur enabled
-  template: >
-    src=etc/pamac.conf.j2
-    dest=/etc/pamac.conf
-    mode=0644
-    owner=0
-    group=0
-    backup=yes
-  tags: ['pamac']
-
 - block:
   - name: get list of installed packages
     shell: "pamac list --installed | grep -v AUR | awk '{print $1}'"

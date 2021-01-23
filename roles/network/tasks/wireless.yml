@@ -1,5 +1,14 @@
 ---
 
+- name: copy udev rules
+  copy: >
+    src=etc/udev/rules.d/90-local.rules
+    dest=/etc/udev/rules.d/90-local.rules
+    mode=0644
+    owner=0
+    group=0
+    backup=yes
+
 - name: check if wpa_supplicant config exists
   stat: path="/etc/wpa_supplicant/wpa_supplicant-{{ wlan }}.conf"
   register: wpa_conf
@@ -13,3 +22,10 @@
     group=0
     backup=yes
   when: not wpa_conf.stat.exists
+
+- name: link wpa_supplicant hook to dhcpcd-hooks dir
+  file:
+    src: /usr/share/dhcpcd/hooks/10-wpa_supplicant
+    dest: /usr/lib/dhcpcd/dhcpcd-hooks/10-wpa_supplicant
+    state: link
+  notify: restart dhcpcd
