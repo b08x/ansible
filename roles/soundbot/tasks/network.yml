@@ -1,9 +1,23 @@
 ---
 
+- name: setup network bridge
+  template: >
+    src="{{ item }}.j2"
+    dest="/etc/systemd/network/{{ item }}"
+    mode=0644
+    owner=0
+    group=0
+  with_items:
+    - etc/systemd/network/01-bind.network
+    - etc/systemd/network/02-soundbot_bridge.netdev
+    - etc/systemd/network/03-soundbot_bridge.network
+  notify: restart networkd
+  when: soundbot_bridge is defined
+
 - name: configure network
   template: src=20-soundbot-ethernet.network.j2 dest=/etc/systemd/network/20-soundbot-ethernet.network owner=root group=root mode=0644
-  notify:
-    - restart networkd
+  notify: restart networkd
+  when: soundbot_network == True
 
 - name: start networkd
   service: name=systemd-networkd state=started enabled=yes

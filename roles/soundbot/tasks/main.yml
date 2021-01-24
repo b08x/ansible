@@ -36,4 +36,3 @@
 
 - include: network.yml
   tags: ['soundbot_net']
-  when: soundbot_network
