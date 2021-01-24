@@ -1,0 +1,25 @@
+---
+
+- name: configure network
+  template: src=20-soundbot-ethernet.network.j2 dest=/etc/systemd/network/20-soundbot-ethernet.network owner=root group=root mode=0644
+  notify:
+    - restart networkd
+
+- name: start networkd
+  service: name=systemd-networkd state=started enabled=yes
+
+- name: configure tcp receive window limits
+  sysctl:
+    name: net.ipv4.tcp_rmem
+    value: "{{ tcp_rmem }}"
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.d/net.conf
+  when: tcp_rmem is defined
+
+- name: configure tcp send window limits
+  sysctl:
+    name: net.ipv4.tcp_wmem
+    value: "{{ tcp_wmem }}"
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.d/net.conf
+  when: tcp_wmem is defined
