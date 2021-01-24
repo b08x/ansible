@@ -11,8 +11,8 @@ soundbot_network: True
 soundbot_net_dev: enp14s0
 soundbot_net_addr: "10.40.41.1"
 soundbot_net_mask: "/28"
-# tcp_rmem: "10240 87380 33554432"
-# tcp_wmem: "10240 87380 33554432"
+tcp_rmem: "10240 87380 33554432"
+tcp_wmem: "10240 87380 33554432"
 
 docker_host: True
 docker_storage: /var/lib/docker
