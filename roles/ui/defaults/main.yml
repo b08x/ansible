@@ -22,6 +22,8 @@ sway_pkgs:
   - wlsunset
   - light
   - swayidle
+  - wf-recorder
+  - sbdp
 
 theme_pkgs:
   - vimix-icon-theme

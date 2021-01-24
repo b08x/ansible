@@ -2,6 +2,14 @@
 
 hostname: bender
 
+primary_net_dev: enp3s0
+primary_net_addr: "192.168.41.3"
+primary_net_mask: "/24"
+primary_net_gateway: "192.168.41.1"
+
+# enp2s0f0:
+# enp2s0f1:
+
 docker_host: True
 docker_storage: /var/lib/docker
 

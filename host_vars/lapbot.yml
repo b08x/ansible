@@ -1,11 +1,18 @@
 ---
 
 hostname: lapbot
-network_interface: wlp1s0
-ipv4_address: "192.168.41.5"
-ipv4_netmask: "/24"
-ipv4_gateway: "192.168.41.1"
-dns_servers: ["192.168.41.1"]
+
+primary_net_dev: wlp1s0
+primary_net_addr: "192.168.41.5"
+primary_net_mask: "/24"
+primary_net_gateway: "192.168.41.1"
+
+soundbot_network: True
+soundbot_net_dev: enp2s0
+soundbot_net_addr: "10.40.41.2"
+soundbot_net_mask: "/28"
+# tcp_rmem: "10240 87380 33554432"
+# tcp_wmem: "10240 87380 33554432"
 
 docker_host: True
 docker_storage: /var/lib/docker

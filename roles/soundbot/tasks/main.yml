@@ -33,3 +33,7 @@
 
 - include: utils.yml
   tags: ['audio_tools']
+
+- include: network.yml
+  tags: ['soundbot_net']
+  when: soundbot_network
