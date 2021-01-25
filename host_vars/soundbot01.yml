@@ -1,9 +1,14 @@
 ---
 
 hostname: soundbot01
-workstation: False
-docker_host: False
-docker_storage: /var/lib/docker
+
+a040_ip4_network:
+  device: wlan0
+  address: "192.168.41.6"
+
+soundbot_ip4_network:
+  device: eth0
+  address: "10.40.41.3"
 
 voicecard:
   url: https://github.com/respeaker/seeed-voicecard.git

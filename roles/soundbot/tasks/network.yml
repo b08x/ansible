@@ -12,17 +12,14 @@
     - etc/systemd/network/02-soundbot_bridge.netdev
     - etc/systemd/network/03-soundbot_bridge.network
   notify: restart networkd
-  when: soundbot_bridge is defined
+  when: soundbot_ip4_network.bridge is defined
 
 - name: configure network
   template: src=20-soundbot-ethernet.network.j2 dest=/etc/systemd/network/20-soundbot-ethernet.network owner=root group=root mode=0644
   notify: restart networkd
-  when: soundbot_network == True
+  when: soundbot_ip4_network.device is defined
 
-- name: start networkd
-  service: name=systemd-networkd state=started enabled=yes
-
-- name: copy etc hosts
+- name: copy etc hosts with soundbot hosts
   copy:
     src: etc/hosts
     dest: /etc/hosts

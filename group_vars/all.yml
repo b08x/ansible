@@ -32,3 +32,16 @@ user:
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
 
 printers: epson
+
+a040_ip4_network:
+  domain: "a040.net."
+  gateway: "192.168.41.1"
+  mask: "/24"
+  dns: ['192.168.41.1']
+
+soundbot_ip4_network:
+  domain: "soundbot.net."
+  mask: "/28"
+
+tcp_rmem: "10240 87380 33554432"
+tcp_wmem: "10240 87380 33554432"

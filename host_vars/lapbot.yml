@@ -2,24 +2,18 @@
 
 hostname: lapbot
 
-primary_net_dev: wlp1s0
-primary_net_addr: "192.168.41.5"
-primary_net_mask: "/24"
-primary_net_gateway: "192.168.41.1"
+a040_ip4_network:
+  device: wlp0s20f0u3
+  address: "192.168.41.5"
 
-soundbot_network: True
-soundbot_net_dev: enp2s0
-soundbot_net_addr: "10.40.41.2"
-soundbot_net_mask: "/28"
-tcp_rmem: "10240 87380 33554432"
-tcp_wmem: "10240 87380 33554432"
+soundbot_ip4_network:
+  device: enp2s0
+  address: "10.40.41.2"
 
 docker_host: True
-docker_storage: /var/lib/docker
+blutooth: True
 
 autofs:
   host: bender
   shares:
     - b08x
-
-blutooth: True

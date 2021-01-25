@@ -1,8 +1,8 @@
 [Match]
-Name={{ soundbot_bridge }}
+Name={{ soundbot_ip4_network.bridge }}
 
 [Network]
-Domains=soundbot.net.
+Domains={{ soundbot_ip4_network.domain }}
 
 [Address]
-Address={{ soundbot_net_addr }}{{ soundbot_net_mask }}
+Address={{ soundbot_ip4_network.address }}{{ soundbot_ip4_network.mask }}

@@ -1,0 +1,31 @@
+[Match]
+Name={{ a040_ip4_network.device }}
+
+[Network]
+{% for server in a040_ip4_network.dns %}
+DNS={{server}}
+{% endfor %}
+Gateway={{ a040_ip4_network.gateway }}
+{% if a040_ip6_network.gateway is defined %}
+Gateway={{ a040_ip6_network.gateway }}
+{% endif %}
+{% if ipv6_ignore_ra|default(false) is true %}
+IPv6AcceptRA=false
+{% endif %}
+Domains="{{ a040_ip4_network.domain }}"
+
+[Address]
+Address={{ a040_ip4_network.address }}{{ a040_ip4_network.mask }}
+{% if a040_ip4_network.mask == "/32" %}
+Peer={{ a040_ip4_network.gateway }}{{ a040_ip4_network.mask }}
+{% endif %}
+
+{% if a040_ip6_network is defined %}
+[Address]
+Address={{ a040_ip6_network.address }}{{ a040_ip6_network.mask }}
+{% endif %}
+
+{% if not a040_ip6_network.gateway.startswith("fe80") %}
+[Route]
+Destination={{ a040_ip6_network.gateway }}
+{% endif %}
