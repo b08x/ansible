@@ -27,6 +27,7 @@ apm_pkgs:
   - language-sfz
   - language-ansible
   - language-markdown
+  - language-unix-shell
   - highlight-colors
   - color-picker
   - open-terminal-here

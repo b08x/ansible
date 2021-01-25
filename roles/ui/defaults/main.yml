@@ -42,6 +42,8 @@ font_pkgs:
   - ttf-nerd-fonts-symbols
   - ttf-material-design-icons-webfont
   - nerd-fonts-roboto-mono
+  - numix-icon-theme-git
+  - kvantum-theme-matchama
 
 misc_pkgs:
   - oomox
