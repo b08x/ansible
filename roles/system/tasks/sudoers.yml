@@ -14,6 +14,15 @@
   when: not hazifile.stat.exists
   tags: ['sudoers']
 
+- name: ensure rules.d directory exists
+  file:
+    path: "/etc/polkit-1/rules.d"
+    state: directory
+    owner: root
+    group: root
+    mode: '0750'
+  tags: ['polkit']
+
 - name: like sudoers for polkit
   template: >
     src=49-nopasswd_global.rules.j2
