@@ -25,7 +25,7 @@ HoldPkg      = pacman glibc manjaro-system
 Architecture = auto
 
 # Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
-#IgnorePkg   = 
+#IgnorePkg   =
 #IgnoreGroup =
 
 #NoUpgrade   =
@@ -85,9 +85,11 @@ Include = /etc/pacman.d/mirrorlist
 SigLevel = PackageRequired
 Include = /etc/pacman.d/mirrorlist
 
+{% if ansible_facts.architecture == "x86_64" %}
 [multilib]
 SigLevel = PackageRequired
 Include = /etc/pacman.d/mirrorlist
+{% endif %}
 
 # An example of a custom package repository.  See the pacman manpage for
 # tips on creating your own repositories.

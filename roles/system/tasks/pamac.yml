@@ -1,9 +1,22 @@
 ---
 
-- name: clean and update repo db
-  command: yay -Sc --noconfirm
-  become: yes
-  become_user: "{{ user.name }}"
+- name: install pacman config
+  template: src=etc/pacman.conf.j2 dest=/etc/pacman.conf mode=0644 owner=root group=root
+
+- name: install pamac config
+  template: src=etc/pamac.conf.j2 dest=/etc/pamac.conf mode=0644 owner=root group=root
+
+- name: update package cache
+  pacman: update_cache=yes
+
+- name: install yay
+  pacman: name=yay state=present
+
+- name: install custom paccache.service
+  copy: src=etc/systemd/paccache.service dest=/etc/systemd/system/paccache.service owner=root group=root mode=0644
+
+- name: enable paccache timer
+  systemd: name=paccache.timer enabled=yes state=started daemon_reload=yes
 
 - name: install pamac with aur
   command: yay -S --noconfirm --needed pamac

@@ -21,3 +21,12 @@
     backup=yes
   tags: ['user_logs']
   notify: reload systemd
+
+- name: install logrotate
+  pacman: name=logrotate state=present
+
+- name: configure logrotate
+  template: src=logrotate.conf.j2 dest=/etc/logrotate.conf owner=root group=root mode=0644
+
+- name: enable logrotate timer
+  service: name=logrotate.timer state=started enabled=yes

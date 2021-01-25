@@ -16,6 +16,13 @@ workstation_pkgs:
   - seahorse
   - rofi-search-git
   - xdg-desktop-portal-wlr-git
+  - keepassxc
+  - ruby-rubocop
+  - ruby-solargraph
+  - ripgrep-all
+  - neovim
+  - neovim-plug
+  - neovim-symlinks
 
 install_apm_pkgs: False
 apm_pkgs:

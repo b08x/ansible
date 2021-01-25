@@ -1,5 +1,12 @@
 ---
 
+- name: install googler
+  get_url:
+    url: https://raw.githubusercontent.com/jarun/googler/v4.3.2/googler
+    dest: /usr/local/bin/googler
+    mode: '0755'
+  tags: ['googler']
+
 - name: install font packages
   shell: "pamac install --no-confirm {{ item }}"
   with_items:

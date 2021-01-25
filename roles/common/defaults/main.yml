@@ -4,26 +4,19 @@ enable_zram_swap: false
 network_interface: "e*"
 dns_servers: []
 
+# for headless hosts, at least one terminal emulator needs to be installed
+#- xterm
+#- htop
 common_pkgs:
   - lnav
-  - ripgrep-all
   - zsh-theme-powerlevel10k-git
   - oh-my-zsh
-  - thefuck
   - fzf
-  - arch-wiki-man
-  - ruby-rubocop
-  - ruby-solargraph
-  - neovim
-  - neovim-plug
-  - neovim-symlinks
   - bat
-  - lsd
   - exa
   - htop
   - iftop
   - iotop
   - net-tools
-  - keepassxc
   - python-pip
   - wol
