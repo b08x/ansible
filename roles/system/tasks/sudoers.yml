@@ -1,5 +1,8 @@
 ---
 
+- name: create sudo group if it does not already exist
+  group: name=sudo state=present system=yes
+
 - name: check if file and/or directory exists
   stat: "path=/etc/sudoers.d/10-unix_admin"
   register: hazifile

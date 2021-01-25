@@ -1,9 +1,9 @@
 ---
-- include: user.yml
-  tags: ['users']
-
 - include: sudoers.yml
   tags: ['sudoers']
+  
+- include: user.yml
+  tags: ['users']
 
 - include: pamac.yml
   tags: ['packages']

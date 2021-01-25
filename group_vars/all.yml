@@ -26,7 +26,7 @@ user:
   uid: 1000
   gid: 1000
   primary_group: b08x
-  secondary_groups: "wheel,network,input,home,storage,video,users,audio"
+  secondary_groups: "sudo,wheel,home,users,network,input,storage,video,audio"
   shell: /bin/zsh
   email: rwpannick@gmail.com
   password: $1$ynx7axf8$D/jA4ELwCCtvToD9tcmDq.
