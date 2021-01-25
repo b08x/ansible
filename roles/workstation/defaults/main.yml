@@ -15,6 +15,7 @@ workstation_pkgs:
   - mousepad
   - seahorse
   - rofi-search-git
+  - xdg-desktop-portal-wlr-git
 
 install_apm_pkgs: False
 apm_pkgs:

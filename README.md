@@ -32,6 +32,11 @@ tasks to be run on all hosts
 
 ### soundbot
 
+#### studio
+
+#### bots
+
+
 ## To Do
 
 - [ ] store & retrieve keys
