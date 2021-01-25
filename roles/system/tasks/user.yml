@@ -44,31 +44,3 @@
     append=yes
     state=present
   ignore_errors: true
-
-- name: check if dots have been cloned
-  shell:  yadm status
-  args:
-    chdir: "{{ user.home }}"
-  become: yes
-  become_user: "{{ user.name }}"
-  register: yadm_status
-  ignore_errors: true
-  tags: ['yadm']
-
-- name: clone dotfiles
-  command: yadm clone "{{ dotfiles.url }}"
-  become: yes
-  become_user: "{{ user.name }}"
-  args:
-    chdir: "{{ user.home }}"
-  when: yadm_status.rc != 0
-  tags: ['yadm']
-
-- name: fetch dotfiles
-  shell: 'yadm fetch && yadm pull'
-  become: yes
-  become_user: "{{ user.name }}"
-  args:
-    chdir: "{{ user.home }}"
-  when: yadm_status.rc == 0
-  tags: ['yadm']
