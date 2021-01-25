@@ -19,6 +19,9 @@ kvm_pkgs:
   - edk2-ovmf
   - dmidecode
 
+laptop_pkgs:
+  - wluma
+
 bluetooth_pkgs:
   - blueman
   - bluez

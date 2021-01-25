@@ -20,10 +20,10 @@ sway_pkgs:
   - kanshi
   - flashfocus
   - wlsunset
-  - light
   - swayidle
   - wf-recorder
   - sbdp
+  - sgtk-menu
 
 theme_pkgs:
   - vimix-icon-theme
