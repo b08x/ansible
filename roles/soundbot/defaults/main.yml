@@ -1,5 +1,18 @@
 ---
 
+synths:
+  - ams
+  - helm-synth
+
+editors:
+  - audacity
+
+tools:
+  - jack-keyboard
+  - jaaa
+  - japa
+  - patchage
+
 soundbot_pkgs:
   - alsa-card-profiles
   - alsa-firmware
@@ -9,31 +22,25 @@ soundbot_pkgs:
   - alsa-topology-conf
   - alsa-ucm-conf
   - alsa-utils
-  - ams
   - a2jmidid
+  # - jack2 *
   - jack_utils
   - jack_capture
-  - audacity
-  - jalv
-  - jalv-select
-  - jack-keyboard
   - noise-repellent
-  - ocenaudio
   - jnoisemeter
-  - konfyt
-  - scala-music
   - sooperlooper
-  - helm-synth
-  - qmidiarp
-  - qsampler
-  - hydrogen
-  - jaaa
-  - japa
-  - sonic-visualiser
   - realtime-privileges
-  - touchosc-editor
-  - darktable
-  - gpick
+  - zita-ajbridge
+  - njconnect
+  - sox
+
+sequencers:
+  - hydrogen
+  - qmidiarp
+
+soundfont:
+   - qsampler
+   - polyphone
 
 obs_pkgs:
   - wlrobs
@@ -62,6 +69,9 @@ zita_pkgs:
   - zita-rev1
 
 plugins:
+  - carla
+  - jalv
+  - jalv-select
   - ladspa
   - swh-plugins
   - lv2
@@ -70,15 +80,17 @@ plugins:
   - iempluginsuite
   - swh-lv2-git
   - xmonk.lv2
+  - iempluginsuite
 
 pulseaudio_pkgs:
   - pulseaudio
   - pulseaudio-alsa
   - pulseaudio-jack
   - pulseaudio-modules-bt
-  - pavucontrol
   - paprefs
   - pulsemixer
+  - pulseaudio-ctl
+  - pulseaudio-zeroconf
 
 sonic_pkgs:
   - sonic-pi
