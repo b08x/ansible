@@ -71,6 +71,6 @@
 - include: logging.yml
   tags: ['logging']
 
-- include: laptop.yml
-  tags: ['laptop']
-  when: laptop is defined
+  #- include: laptop.yml
+  #  tags: ['laptop']
+  #  when: laptop is defined

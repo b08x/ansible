@@ -23,7 +23,7 @@ soundbot_pkgs:
   - alsa-ucm-conf
   - alsa-utils
   - a2jmidid
-  # - jack2 *
+  - jack2
   - jack_utils
   - jack_capture
   - noise-repellent
