@@ -9,7 +9,7 @@ dns_servers: []
 #- htop
 common_pkgs:
   - lnav
-  - zsh-theme-powerlevel10k-git
+  - zsh-theme-powerlevel10k
   - oh-my-zsh
   - fzf
   - bat
