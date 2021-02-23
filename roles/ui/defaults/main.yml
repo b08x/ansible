@@ -39,7 +39,6 @@ font_pkgs:
   - ttf-nerd-fonts-symbols
   - nerd-fonts-noto-sans-mono
   - gnu-free-fonts
-  - ttf-nerd-fonts-symbols
   - ttf-material-design-icons-webfont
   - nerd-fonts-roboto-mono
   - numix-icon-theme-git
