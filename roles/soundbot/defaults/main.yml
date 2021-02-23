@@ -80,7 +80,6 @@ plugins:
   - iempluginsuite
   - swh-lv2-git
   - xmonk.lv2
-  - iempluginsuite
 
 pulseaudio_pkgs:
   - pulseaudio

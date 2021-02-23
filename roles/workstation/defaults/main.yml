@@ -24,7 +24,7 @@ workstation_pkgs:
   - neovim-plug
   - neovim-symlinks
 
-install_apm_pkgs: False
+install_apm_pkgs: True
 apm_pkgs:
   - ruby-block
   - atom-beautify
